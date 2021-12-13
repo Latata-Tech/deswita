@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="maincolor">#274F81</color>
     <color name="blue">#0000FF</color>
+    <color name="googleLoginColor">#DF3737</color>
 </resources>
