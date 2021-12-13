@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Deswita</string>
 
-    <!-- Register Activity String -->
+    <!-- Login Activity String -->
     <string name="login_greet">Hai.\nSelamat Datang</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -9,4 +9,11 @@
     <string name="login">Masuk</string>
     <string name="not_have_account">Belum punya akun?</string>
     <string name="register">Daftar</string>
+
+    <!-- Register Activity String -->
+    <string name="register_greet">Registrasi</string>
+    <string name="register_sentence">Silahkan registrasi untuk masuk</string>
+    <string name="name">Name</string>
+    <string name="already_have_account">Sudah punya akun?</string>
+    <string name="or">Atau</string>
 </resources>
