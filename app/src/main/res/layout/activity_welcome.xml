@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomeActivity">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:layout_alignParentTop="true"
+        android:foregroundGravity="center"
+        android:layout_margin="20dp"
+        tools:ignore="MissingConstraints" />
+
+    <me.relex.circleindicator.CircleIndicator
+        android:id="@+id/indicatorSlider"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="120dp"
+        app:ci_margin="10dp"
+        app:ci_drawable="@drawable/circleindicator_round"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="70dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/maincolor"
+        android:layout_alignParentBottom="true"
+        android:textSize="18sp"
+        android:onClick="loginActivity"
+        android:text="@string/skip"
+        />
+
+</RelativeLayout>

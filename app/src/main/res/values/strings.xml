@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Deswita</string>
 
+    <!-- Welcome page activity -->
+    <string name="splash_screen_text">Deswita</string>
+    <string name="skip">Lewati</string>
+
     <!-- Login Activity String -->
     <string name="login_greet">Hai.\nSelamat Datang</string>
     <string name="username">Username</string>
@@ -16,4 +20,7 @@
     <string name="name">Name</string>
     <string name="already_have_account">Sudah punya akun?</string>
     <string name="or">Atau</string>
+    <string name="title_activity_splash_screen">Deswita</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
