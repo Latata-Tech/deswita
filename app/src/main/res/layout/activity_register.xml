@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.RegisterActivity">
+
+    <View
+        android:layout_width="319dp"
+        android:layout_height="250dp"
+        android:background="@drawable/ic_vector_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/register_greet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/register_greet"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.289"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.646"
+        tools:ignore="MissingConstraints">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Username"
+            android:hint="@string/name"
+            android:importantForAutofill="no"
+            android:layout_marginBottom="30dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="Username"
+            android:hint="@string/username"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:autofillHints="Password"
+            android:hint="@string/password"
+            android:importantForAutofill="no"
+            android:inputType="textPassword" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="227dp"
+            android:id="@+id/btnRegister"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/maincolor"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            app:cornerRadius="25dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/already_have_account" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="@font/poppins_regular"
+                android:linksClickable="true"
+                android:text="@string/login"
+                android:clickable="true"
+                android:onClick="loginActivity"
+                android:textColor="@color/blue" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

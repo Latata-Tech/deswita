@@ -95,6 +95,11 @@ dependencies {
     // Jsoup
     implementation 'org.jsoup:jsoup:1.13.1'
 
+    //Design Google
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'me.relex:circleindicator:2.1.6'
+
 }
 
 
