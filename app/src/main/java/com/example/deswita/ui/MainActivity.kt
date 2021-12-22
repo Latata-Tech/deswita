@@ -1,6 +1,7 @@
 package com.example.deswita.ui
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -15,6 +16,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
+import com.example.deswita.ui.mainmenu.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
@@ -43,6 +45,11 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener(this)
+
+        binding.btnAppBarSearch.setOnClickListener{
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

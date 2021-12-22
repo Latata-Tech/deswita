@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:theme="@style/Theme.Deswita"
+            android:name=".ui.mainmenu.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/Theme.Deswita" />
         <activity
             android:name=".ui.SplashScreenActivity"
             android:exported="true"
@@ -24,17 +27,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen"
             android:name=".ui.auth.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen" />
         <activity
-            android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen"
             android:name=".ui.auth.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen" />
         <activity
-            android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen"
             android:name=".ui.WelcomeActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen" />
     </application>
 
 </manifest>
