@@ -29,4 +29,7 @@
 
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.</string>
 
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">First Fragment</string>
+
 </resources>
