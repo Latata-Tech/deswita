@@ -3,17 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_date_event_item.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_item_story.xml" value="0.20052083333333334" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_notification.xml" value="0.20052083333333334" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_round_white.xml" value="0.20052083333333334" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_tablyout_profile.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bottom_color.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/ic_icon_home_active.xml" value="0.20052083333333334" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20052083333333334" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/tab_selector.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_register.xml" value="0.16168478260869565" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/appbar_layout.xml" value="0.2" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_event.xml" value="0.18206521739130435" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_home.xml" value="0.14221014492753623" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_profile.xml" value="0.14221014492753623" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/destination_card_layout.xml" value="0.33" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_destinations.xml" value="0.1" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_event.xml" value="0.33" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_events.xml" value="0.1" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_profile.xml" value="0.2883625128733265" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_stories.xml" value="0.1" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_story.xml" value="0.16" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_event_grid_layout.xml" value="0.1" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_event_layout.xml" value="0.5" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_story_grid_layout.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_story_layout.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/menu/bottom_menu.xml" value="0.184375" />
       </map>

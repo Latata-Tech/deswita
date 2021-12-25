@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentStoryBinding
 import com.example.deswita.models.Story
+import com.google.android.material.appbar.AppBarLayout
 
 class StoryFragment : Fragment() {
 
@@ -23,6 +24,9 @@ class StoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentStoryBinding.inflate(inflater,container,false)
+
+        val findViewById = activity?.findViewById<AppBarLayout>(R.id.appBarLayoutMain)
+        findViewById?.visibility = View.VISIBLE
 
         storyAdapter = StoryAdapter()
         initialRecycler()

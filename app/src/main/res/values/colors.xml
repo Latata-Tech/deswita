@@ -22,5 +22,9 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+    <color name="grey_dark">#3A3841</color>
+    <color name="blue_grey">#555A78</color>
+
+    <color name="transparent_500">#92000000</color>
 
 </resources>

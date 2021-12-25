@@ -2,20 +2,18 @@ package com.example.deswita.ui.mainmenu.story
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deswita.databinding.ItemStoryLayoutBinding
 import com.example.deswita.models.Story
-import com.example.deswita.utils.StoryDiffUtil
 
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
     private var stories = emptyList<Story>()
 
     fun setData(stories: List<Story>){
-        val storyDiffUtil = StoryDiffUtil(stories,this.stories)
+        val storyDiffUtil = com.example.deswita.utils.StoryDiffUtil(stories,this.stories)
         val diffUtilResult = DiffUtil.calculateDiff(storyDiffUtil)
         this.stories = stories
         diffUtilResult.dispatchUpdatesTo(this)
