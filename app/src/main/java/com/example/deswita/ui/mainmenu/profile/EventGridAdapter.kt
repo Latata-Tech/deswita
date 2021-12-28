@@ -20,6 +20,7 @@ class EventGridAdapter : RecyclerView.Adapter<EventGridAdapter.ViewHolder>() {
         diffUtilResult.dispatchUpdatesTo(this)
     }
 
+
     inner class ViewHolder(private val binding: ItemEventGridLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
             binding.imageView.load(event.image)
