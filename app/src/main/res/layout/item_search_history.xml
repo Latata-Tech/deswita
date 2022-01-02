@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:padding="10dp"
     android:showDividers="middle"
-    android:divider="@drawable/divider_linear_layout"
     android:layout_height="wrap_content">
 
     <TextView

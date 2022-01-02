@@ -37,6 +37,4 @@ class EventGridAdapter : RecyclerView.Adapter<EventGridAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int = events.size
-
-
 }

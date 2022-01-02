@@ -37,4 +37,9 @@
     <string name="location">Location</string>
     <string name="distance">Distance</string>
 
+    <!-- Upcoming event -->
+    <string name="upcoming_event">Upcoming event in</string>
+    <string name="upcoming_event_date">21 Desember 2021</string>
+
+    <string name="add_event">Add Event</string>
 </resources>

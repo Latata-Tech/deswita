@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
+            android:name=".ui.mainmenu.event.AddEventActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.mainmenu.search.SearchActivity"
             android:exported="false"
-            android:theme="@style/Theme.Deswita.NoActionBar"
-            />
+            android:theme="@style/Theme.Deswita.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"

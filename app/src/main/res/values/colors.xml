@@ -26,5 +26,6 @@
     <color name="blue_grey">#555A78</color>
 
     <color name="transparent_500">#92000000</color>
+    <color name="place_holder">#EFEFEF</color>
 
 </resources>
