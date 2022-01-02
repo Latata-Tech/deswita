@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
+            android:name=".ui.mainmenu.story.AddStoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.mainmenu.event.AddEventActivity"
             android:exported="false" />
         <activity
