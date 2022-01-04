@@ -3,6 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/ci_round_new.xml" value="0.225" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/circleindicator_round.xml" value="0.225" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.3685185185185185" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/ic_slider_image_welcome_3.xml" value="0.225" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/round_button.xml" value="0.225" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/round_corner.xml" value="0.225" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/round_corner_edit_text.xml" value="0.225" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/font/font.xml" value="0.40208333333333335" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_add_event.xml" value="0.22" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_add_story.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_main.xml" value="0.371875" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_register.xml" value="0.3578125" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_splash_screen.xml" value="0.21770833333333334" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_welcome.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/destination_card_layout.xml" value="0.35688405797101447" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/fragment_destinations.xml" value="0.35688405797101447" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/fragment_event.xml" value="0.3663949275362319" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_event_layout.xml" value="0.35688405797101447" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_search_history.xml" value="0.1" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_slider_welcome.xml" value="0.2" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_story_layout.xml" value="0.3663949275362319" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_upcoming_event.xml" value="0.33" />
+        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.221875" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_date_event_item.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_detail_destination.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/bg_item_story.xml" value="0.20052083333333334" />
@@ -18,9 +42,10 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/ic_star.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/ic_star_grey.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/tab_selector.xml" value="0.20052083333333334" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_add_event.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_destination.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_register.xml" value="0.16168478260869565" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_search.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/appbar_layout.xml" value="0.2" />
@@ -47,36 +72,10 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_story_grid_layout.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_story_layout.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/menu/bottom_menu.xml" value="0.184375" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/ci_round_new.xml" value="0.225" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/circleindicator_round.xml" value="0.225" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.3685185185185185" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/ic_slider_image_welcome_3.xml" value="0.225" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/round_button.xml" value="0.225" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/round_corner.xml" value="0.225" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/drawable/round_corner_edit_text.xml" value="0.225" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/font/font.xml" value="0.40208333333333335" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_add_event.xml" value="0.22" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_add_story.xml" value="0.20885416666666667" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_main.xml" value="0.371875" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_register.xml" value="0.3578125" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_splash_screen.xml" value="0.21770833333333334" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/activity_welcome.xml" value="0.20885416666666667" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/destination_card_layout.xml" value="0.35688405797101447" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/fragment_destinations.xml" value="0.35688405797101447" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/fragment_event.xml" value="0.3663949275362319" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_event_layout.xml" value="0.35688405797101447" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_search_history.xml" value="0.1" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_slider_welcome.xml" value="0.2" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_story_layout.xml" value="0.3663949275362319" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/layout/item_upcoming_event.xml" value="0.33" />
-        <entry key="..\:/Users/Farhan/AndroidStudioProjects/deswita/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.221875" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_main.xml" value="0.1" />
-
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

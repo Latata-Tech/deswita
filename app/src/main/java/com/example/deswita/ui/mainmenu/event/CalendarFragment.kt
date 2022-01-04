@@ -46,8 +46,6 @@ class CalendarFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             val date = SimpleDateFormat("dd-MM-yyyy").parse("$dayOfMonth-${month + 1}-$year")
             mainViewModel.setDate(date)

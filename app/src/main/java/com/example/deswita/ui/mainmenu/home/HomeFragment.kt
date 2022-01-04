@@ -72,8 +72,11 @@ class HomeFragment : Fragment() {
             R.id.chip_filter_favorite -> fragment = FavoriteFragment()
         }
 
-        val transaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.containerFragment,fragment,fragment::class.java.simpleName).commit()
+        if(isAdded) {
+            val transaction = childFragmentManager.beginTransaction()
+            transaction.replace(R.id.containerFragment,fragment,fragment::class.java.simpleName).commit()
+        }
+
 
     }
 

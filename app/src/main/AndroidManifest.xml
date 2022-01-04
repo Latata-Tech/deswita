@@ -17,6 +17,7 @@
             android:name=".ui.mainmenu.story.AddStoryActivity"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen"
             android:name=".ui.mainmenu.event.AddEventActivity"
             android:exported="false" />
         <activity
