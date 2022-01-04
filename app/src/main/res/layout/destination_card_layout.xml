@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="0dp"
     android:backgroundTint="@color/grey_light"
     app:cardCornerRadius="10dp"
@@ -15,8 +16,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="300dp"
-            android:layout_height="150dp"
+            android:layout_width="250dp"
+            android:layout_height="120dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +27,7 @@
             app:layout_constraintVertical_bias="0.0">
 
             <ImageView
+                android:id="@+id/ivDestination"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -34,7 +36,7 @@
         </androidx.cardview.widget.CardView>
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/imageButtonFavorite"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginTop="8dp"
@@ -49,7 +51,7 @@
             tools:ignore="UseAppTint" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvTitleDestination"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -72,12 +74,13 @@
             android:elevation="20dp"
             android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
             android:tint="@color/grey_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintBottom_toBottomOf="@+id/tvTitleDestination"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
-            app:layout_constraintTop_toTopOf="@+id/textView6"
+            app:layout_constraintTop_toTopOf="@+id/tvTitleDestination"
             tools:ignore="UseAppTint" />
 
         <TextView
+            android:id="@+id/tvLocationDestination"
             android:maxLines="1"
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
@@ -86,9 +89,9 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_baseline_location_on_24"
             android:text="Medan,Indonesia"
-            app:layout_constraintEnd_toEndOf="@+id/textView6"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintEnd_toEndOf="@+id/tvTitleDestination"
+            app:layout_constraintStart_toStartOf="@+id/tvTitleDestination"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitleDestination" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

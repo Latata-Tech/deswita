@@ -6,14 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentStoriesBinding
-import com.example.deswita.models.Destination
 import com.example.deswita.models.Story
-import com.example.deswita.ui.mainmenu.profile.EventGridAdapter
-import com.example.deswita.ui.mainmenu.profile.StoriesAdapter
+import com.example.deswita.ui.mainmenu.profile.adapters.StoriesAdapter
 
 
 class StoriesFragment : Fragment() {
@@ -27,7 +24,7 @@ class StoriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentStoriesBinding.inflate(LayoutInflater.from(inflater.context),container,false)
-        storiesAdapter = StoriesAdapter()
+        storiesAdapter = StoriesAdapter(requireActivity())
         initRecyclerView()
 
         setData()
@@ -56,9 +53,9 @@ class StoriesFragment : Fragment() {
                 name = "fiqri ardiansyah",
                 description = "Jakarta ,indonesia",
                 contentText = "Lorem Ipsum is simply...",
-                profile = userImage1,
+                profile = "user_2",
                 commentTotal = 121,
-                contentImage = postImage1,
+                contentImage = "post_2",
                 likeTotal = 234
             ),
             Story(
@@ -66,9 +63,9 @@ class StoriesFragment : Fragment() {
                 name = "fiqri ardiansyah",
                 description = "Jakarta ,indonesia",
                 contentText = "Lorem Ipsum is simply...",
-                profile = userImage1,
+                profile = "user_1",
                 commentTotal = 121,
-                contentImage = postImage1,
+                contentImage = "post_1",
                 likeTotal = 234
             ),
             Story(
@@ -76,9 +73,9 @@ class StoriesFragment : Fragment() {
                 name = "fiqri ardiansyah",
                 description = "Jakarta ,indonesia",
                 contentText = "Lorem Ipsum is simply...",
-                profile = userImage1,
+                profile = "user_2",
                 commentTotal = 121,
-                contentImage = postImage1,
+                contentImage = "post_1",
                 likeTotal = 234
             ),
             Story(
@@ -86,9 +83,9 @@ class StoriesFragment : Fragment() {
                 name = "fiqri ardiansyah",
                 description = "Jakarta ,indonesia",
                 contentText = "Lorem Ipsum is simply...",
-                profile = userImage1,
+                profile = "user_1",
                 commentTotal = 121,
-                contentImage = postImage1,
+                contentImage = "post_2",
                 likeTotal = 234
             ),
         )

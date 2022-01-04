@@ -1,13 +1,25 @@
-package com.example.deswita.ui.mainmenu.profile
+package com.example.deswita.ui.mainmenu.profile.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deswita.databinding.ItemEventGridLayoutBinding
 import com.example.deswita.models.Destination
+import com.example.deswita.utils.Utils
 
-class DestinationGridAdapter : RecyclerView.Adapter<DestinationGridAdapter.ViewHolder>() {
+class DestinationGridAdapter(private val context: Context) : RecyclerView.Adapter<DestinationGridAdapter.ViewHolder>() {
+
+    private var onClickItemCallback: OnClickItemCallback? = null
+
+    fun setOnClickItemCallback(onClickItemCallback: OnClickItemCallback) {
+        this.onClickItemCallback = onClickItemCallback
+    }
+
+    interface OnClickItemCallback {
+        fun onClick(destination: Destination)
+    }
 
     private var destinations = emptyList<Destination>()
 
@@ -18,7 +30,7 @@ class DestinationGridAdapter : RecyclerView.Adapter<DestinationGridAdapter.ViewH
 
     inner class ViewHolder(private val binding: ItemEventGridLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(destinations: Destination){
-            binding.imageView.load(destinations.image)
+            binding.imageView.load(Utils.getImageDrawable(context,destinations.image))
         }
     }
 

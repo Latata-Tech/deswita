@@ -4,17 +4,14 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.databinding.FragmentCalendarBinding
-import com.example.deswita.ui.mainmenu.MainViewModel
+import com.example.deswita.ui.MainViewModel
 import java.text.SimpleDateFormat
-import java.util.*
 
 class CalendarFragment : DialogFragment() {
 

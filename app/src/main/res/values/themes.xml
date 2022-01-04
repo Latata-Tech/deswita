@@ -27,5 +27,30 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="FilterChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/bg_main_chip</item>
+        <item name="android:textColor">@color/surface_main_chip</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="chipStrokeColor">@color/stroke_main_chip</item>
+        <item name="chipCornerRadius">20dp</item>
+        <item name="closeIconVisible">false</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+
+    <style name="StarChip" parent="Widget.MaterialComponents.Chip.Entry">
+        <item name="android:width">20dp</item>
+        <item name="chipBackgroundColor">@color/transparent</item>
+        <item name="closeIconVisible">false</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="android:drawableStart">@drawable/bg_star_chip</item>
+        <item name="android:drawablePadding">0dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="rippleColor">@color/transparent</item>
+        <item name="itemRippleColor">@color/transparent</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
 
 </resources>

@@ -1,13 +1,15 @@
-package com.example.deswita.ui.mainmenu.profile
+package com.example.deswita.ui.mainmenu.profile.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deswita.databinding.ItemStoryGridLayoutBinding
 import com.example.deswita.models.Story
+import com.example.deswita.utils.*
 
-class StoriesAdapter : RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
+class StoriesAdapter (private val context: Context): RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
 
     private var stories = emptyList<Story>()
 
@@ -19,10 +21,10 @@ class StoriesAdapter : RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
     inner class ViewHolder( private val binding: ItemStoryGridLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(story: Story) {
             with(binding) {
-                ivProfile.load(story.profile)
-                tvName.text = story.name
-                tvLocation.text = story.description
-                tvContent.text = story.contentText
+                ivProfile.load(Utils.getImageDrawable(context,story.profile))
+                tvName.text = story.name.CapitalizeAllWord()
+                tvLocation.text = story.description.CapitalizeFirstWord()
+                tvContent.text = story.contentText.CapitalizeFirstWord()
                 tvLike.text = story.likeTotal.toString()
                 tvComment.text = story.commentTotal.toString()
             }
@@ -39,4 +41,5 @@ class StoriesAdapter : RecyclerView.Adapter<StoriesAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int = stories.size
+
 }

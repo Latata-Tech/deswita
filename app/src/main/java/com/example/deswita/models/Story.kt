@@ -11,8 +11,8 @@ data class Story(
     var name: String,
     var description: String,
     var contentText: String,
-    var contentImage: Bitmap,
-    var profile: Bitmap,
+    var contentImage: String,
+    var profile: String,
     var likeTotal: Int,
     var commentTotal: Int
 ) : Parcelable

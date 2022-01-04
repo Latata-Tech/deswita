@@ -1,5 +1,6 @@
 package com.example.deswita.ui.mainmenu.story
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deswita.databinding.ItemStoryLayoutBinding
 import com.example.deswita.models.Story
+import com.example.deswita.utils.*
 
-class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
+class StoryAdapter(private val context: Context) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
     private var stories = emptyList<Story>()
 
@@ -22,13 +24,13 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
     inner class ViewHolder(val binding: ItemStoryLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(story: Story,position: Int) {
             with(binding) {
-                tvNamePost.text = story.name
-                tvDescriptionPost.text = story.description
-                tvContentPost.text = story.contentText
+                tvNamePost.text = story.name.CapitalizeAllWord()
+                tvDescriptionPost.text = story.description.CapitalizeFirstWord()
+                tvContentPost.text = story.contentText.CapitalizeFirstWord()
                 tvLike.text = story.likeTotal.toString()
                 tvComment.text = story.commentTotal.toString()
-                profileImage.load(story.profile)
-                ivPost.load(story.contentImage)
+                profileImage.load(Utils.getImageDrawable(context,story.profile))
+                ivPost.load(Utils.getImageDrawable(context,story.contentImage))
             }
 
             if(position == stories.size - 1) {

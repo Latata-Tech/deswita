@@ -2,22 +2,18 @@ package com.example.deswita.ui.mainmenu.event
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.hilt.lifecycle.ViewModelFactoryModules
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentEventBinding
 import com.example.deswita.models.Event
-import com.example.deswita.ui.mainmenu.MainViewModel
+import com.example.deswita.ui.MainViewModel
 import com.google.android.material.appbar.AppBarLayout
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class EventFragment : Fragment(), View.OnClickListener {
@@ -36,7 +32,7 @@ class EventFragment : Fragment(), View.OnClickListener {
         val findViewById = activity?.findViewById<AppBarLayout>(R.id.appBarLayoutMain)
         findViewById?.visibility = View.VISIBLE
 
-        eventAdapter = EventAdapter()
+        eventAdapter = EventAdapter(requireActivity())
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         return binding.root
@@ -48,17 +44,15 @@ class EventFragment : Fragment(), View.OnClickListener {
         initialRecyclerView()
         setDate()
 
-        val postImage1 = BitmapFactory.decodeResource(resources,R.drawable.post_1)
-        val postImage2 = BitmapFactory.decodeResource(resources,R.drawable.post_2)
         val events = listOf(
-            Event(1,postImage1,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(2,postImage2,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(3,postImage1,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(4,postImage2,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(1,postImage1,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(2,postImage2,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(3,postImage1,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(4,postImage2,"12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(1,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(2,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(3,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(4,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(1,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(2,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(3,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
+            Event(4,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
             )
 
         eventAdapter.setData(events)
@@ -78,11 +72,7 @@ class EventFragment : Fragment(), View.OnClickListener {
         binding.rvEvent.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                if(dy > 0) {
-                    binding.dateEventLayout.elevation = 10f
-                }else {
-                    binding.dateEventLayout.elevation = 0f
-                }
+                binding.dateEventLayout.elevation = if(dy > 0) 10f else 0f
             }
         })
     }

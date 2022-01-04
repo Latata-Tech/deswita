@@ -1,5 +1,6 @@
-package com.example.deswita.ui.mainmenu.profile
+package com.example.deswita.ui.mainmenu.profile.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,8 +9,9 @@ import coil.load
 import com.example.deswita.databinding.ItemEventGridLayoutBinding
 import com.example.deswita.models.Event
 import com.example.deswita.utils.EventDiffUtil
+import com.example.deswita.utils.Utils
 
-class EventGridAdapter : RecyclerView.Adapter<EventGridAdapter.ViewHolder>() {
+class EventGridAdapter (private val context: Context): RecyclerView.Adapter<EventGridAdapter.ViewHolder>() {
 
     private var events = emptyList<Event>()
 
@@ -22,7 +24,7 @@ class EventGridAdapter : RecyclerView.Adapter<EventGridAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemEventGridLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
-            binding.imageView.load(event.image)
+            binding.imageView.load(Utils.getImageDrawable(context,event.image))
         }
     }
 

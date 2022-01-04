@@ -1,4 +1,4 @@
-package com.example.deswita.ui.mainmenu
+package com.example.deswita.ui
 
 import android.util.Log
 import androidx.lifecycle.LiveData

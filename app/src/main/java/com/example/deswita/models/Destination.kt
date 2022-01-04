@@ -7,5 +7,10 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Destination (
-    var image: Bitmap
+    var image: String,
+    var name: String,
+    var location: String,
+    var isFavorite: Boolean,
+    var rating: Double,
+    var distance: Double
     ) : Parcelable

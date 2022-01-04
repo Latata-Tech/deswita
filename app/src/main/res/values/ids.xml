@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="chip_filter_all" type="id" />
+    <item name="chip_filter_recommended" type="id" />
+    <item name="chip_filter_popular" type="id" />
+    <item name="chip_filter_rating" type="id" />
+    <item name="chip_filter_favorite" type="id" />
+
+</resources>

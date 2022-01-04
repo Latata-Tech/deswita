@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentDestinationsBinding
 import com.example.deswita.models.Destination
-import com.example.deswita.ui.mainmenu.profile.DestinationGridAdapter
+import com.example.deswita.ui.mainmenu.profile.adapters.DestinationGridAdapter
 
 class DestinationsFragment : Fragment() {
 
@@ -23,7 +23,7 @@ class DestinationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDestinationsBinding.inflate(LayoutInflater.from(inflater.context),container,false)
-        destinationGridAdapter = DestinationGridAdapter()
+        destinationGridAdapter = DestinationGridAdapter(requireActivity())
         initRecyclerView()
 
         setData()
@@ -43,15 +43,15 @@ class DestinationsFragment : Fragment() {
     private fun setData(){
         val postImage1 = BitmapFactory.decodeResource(resources,R.drawable.post_1)
         val postImage2 = BitmapFactory.decodeResource(resources,R.drawable.post_2)
-        val events = listOf(
-            Destination(postImage1),
-            Destination(postImage2),
-            Destination(postImage1),
-            Destination(postImage2),
-            Destination(postImage1),
+        val destinations = listOf(
+            Destination("post_1","","",false,4.5,121.3),
+            Destination("post_2","","",false,4.5,232.toDouble()),
+            Destination("post_2","","",false,3.4,121.3),
+            Destination("post_2","","",false,4.4,121.3),
+            Destination("post_1","","",false,4.5,121.3),
         )
 
-        destinationGridAdapter.setData(events)
+        destinationGridAdapter.setData(destinations)
 
     }
 

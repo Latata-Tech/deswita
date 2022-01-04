@@ -28,7 +28,7 @@ class StoryFragment : Fragment() {
         val findViewById = activity?.findViewById<AppBarLayout>(R.id.appBarLayoutMain)
         findViewById?.visibility = View.VISIBLE
 
-        storyAdapter = StoryAdapter()
+        storyAdapter = StoryAdapter(requireActivity())
         initialRecycler()
 
         return binding.root
@@ -46,9 +46,9 @@ class StoryFragment : Fragment() {
                 name = "fiqri ardiansyah",
                 description = "Jakarta ,indonesia",
                 contentText = "Lorem Ipsum is simply...",
-                profile = userImage1,
+                profile = "user_1",
                 commentTotal = 121,
-                contentImage = postImage1,
+                contentImage = "post_1",
                 likeTotal = 234
             ),
             Story(
@@ -56,9 +56,19 @@ class StoryFragment : Fragment() {
                 name = "jhon doe",
                 description = "Medan ,indonesia",
                 contentText = "Lorem Ipsum is simply dummy text of the printing",
-                profile = userImage2,
+                profile = "user_2",
                 commentTotal = 324,
-                contentImage = postImage2,
+                contentImage = "post_2",
+                likeTotal = 23432
+            ),
+            Story(
+                id = 1,
+                name = "jhon doe",
+                description = "Medan ,indonesia",
+                contentText = "Lorem Ipsum is simply dummy text of the printing",
+                profile = "user_1",
+                commentTotal = 324,
+                contentImage = "post_2",
                 likeTotal = 23432
             )
         )

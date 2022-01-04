@@ -10,6 +10,7 @@
 
     <color name="blue_dark">#274F81</color>
     <color name="blue_light">#5AA3FF</color>
+    <color name="blue_dark_second">#647D9D</color>
     <color name="grey">#B2B2B2</color>
     <color name="grey_light">#F2F2F2</color>
     <color name="pink">#FF2C2C</color>
@@ -24,7 +25,9 @@
     <color name="black_overlay">#66000000</color>
     <color name="grey_dark">#3A3841</color>
     <color name="blue_grey">#555A78</color>
+    <color name="yellow">#FFEC40</color>
 
     <color name="transparent_500">#92000000</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

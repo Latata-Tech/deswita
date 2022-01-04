@@ -1,5 +1,6 @@
 package com.example.deswita.ui.mainmenu.event
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,8 +9,9 @@ import coil.load
 import com.example.deswita.databinding.ItemEventLayoutBinding
 import com.example.deswita.models.Event
 import com.example.deswita.utils.EventDiffUtil
+import com.example.deswita.utils.*
 
-class EventAdapter :RecyclerView.Adapter<EventAdapter.ViewHolder>() {
+class EventAdapter(private val context: Context) :RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     private var events = emptyList<Event>()
 
@@ -23,11 +25,11 @@ class EventAdapter :RecyclerView.Adapter<EventAdapter.ViewHolder>() {
     inner class ViewHolder (private val binding: ItemEventLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event,position: Int){
             with(binding) {
-                tvNameEventItem.text = event.name
+                tvNameEventItem.text = event.name.CapitalizeAllWord()
                 tvDateEventItem.text = event.date
-                tvLocationEventItem.text = event.location
-                tvDescEventItem.text = event.description
-                ivEventItem.load(event.image)
+                tvLocationEventItem.text = event.location.CapitalizeAllWord()
+                tvDescEventItem.text = event.description.CapitalizeFirstWord()
+                ivEventItem.load(Utils.getImageDrawable(context,event.image))
             }
 
             if(position == events.size - 1) {
