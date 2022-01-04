@@ -22,6 +22,7 @@ class EventGridAdapter (private val context: Context): RecyclerView.Adapter<Even
         diffUtilResult.dispatchUpdatesTo(this)
     }
 
+
     inner class ViewHolder(private val binding: ItemEventGridLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
             binding.imageView.load(Utils.getImageDrawable(context,event.image))
@@ -38,6 +39,4 @@ class EventGridAdapter (private val context: Context): RecyclerView.Adapter<Even
     }
 
     override fun getItemCount(): Int = events.size
-
-
 }

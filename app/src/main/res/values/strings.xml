@@ -36,4 +36,15 @@
     <string name="new_place">New Place!</string>
     <string name="destination_desc">Rumah Tjong A Fie adalah rumah dua lantai di Jalan Ahmad Yani di Kesawan, Medan, Sumatra Utara, yang dibangun oleh Tjong A Fie, pedagang Hakka yang memiliki banyak tanah perkebunan di Medan. Selengkapnya</string>
 
+    <string name="search_history">Search History</string>
+    <string name="destination">Destination</string>
+    <string name="location">Location</string>
+    <string name="distance">Distance</string>
+
+    <!-- Upcoming event -->
+    <string name="upcoming_event">Upcoming event in</string>
+    <string name="upcoming_event_date">21 Desember 2021</string>
+
+    <string name="add_event">Add Event</string>
+    <string name="add_story">Add Story</string>
 </resources>
