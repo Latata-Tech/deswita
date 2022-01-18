@@ -46,4 +46,7 @@
 
     <string name="add_event">Add Event</string>
     <string name="add_story">Add Story</string>
+    <string name="date_time"><![CDATA[Date & time]]></string>
+    <string name="review_content">Tempat bersejarah, belajar sejarah, salah satu icon sejarah suku tionghoa datang ke kota medan pada zaman kesultanan Deli Medan</string>
+    <string name="add_destination">Add Destination</string>
 </resources>

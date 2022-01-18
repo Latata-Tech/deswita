@@ -13,6 +13,16 @@ import com.example.deswita.utils.*
 
 class EventAdapter(private val context: Context) :RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
+    private var onClickItemCallback: OnClickItemCallback? = null
+
+    fun setOnClickItemCallback(onClickItemCallback: OnClickItemCallback) {
+        this.onClickItemCallback = onClickItemCallback
+    }
+
+    interface OnClickItemCallback {
+        fun onClick(event: Event)
+    }
+
     private var events = emptyList<Event>()
 
     fun setData(events: List<Event>){
@@ -36,6 +46,10 @@ class EventAdapter(private val context: Context) :RecyclerView.Adapter<EventAdap
                 val params = itemView.layoutParams as ViewGroup.MarginLayoutParams
                 params.setMargins(36,20,36,50)
                 itemView.layoutParams = params
+            }
+
+            itemView.setOnClickListener {
+                onClickItemCallback?.onClick(event)
             }
         }
     }

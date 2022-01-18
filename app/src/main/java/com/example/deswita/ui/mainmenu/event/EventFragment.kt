@@ -15,8 +15,8 @@ import com.example.deswita.R
 import com.example.deswita.databinding.FragmentEventBinding
 import com.example.deswita.models.Event
 import com.example.deswita.ui.MainViewModel
+import com.example.deswita.ui.event.EventActivity
 import com.google.android.material.appbar.AppBarLayout
-
 
 class EventFragment : Fragment(), View.OnClickListener {
 
@@ -85,6 +85,14 @@ class EventFragment : Fragment(), View.OnClickListener {
         binding.rvEvent.layoutManager = LinearLayoutManager(requireContext())
         binding.rvEvent.setHasFixedSize(true)
         binding.rvEvent.adapter = eventAdapter
+
+        eventAdapter.setOnClickItemCallback(object: EventAdapter.OnClickItemCallback{
+            override fun onClick(event: Event) {
+                val intent = Intent(requireContext(),EventActivity::class.java)
+                intent.putExtra(EventActivity.EXTRA_EVENT,event)
+                startActivity(intent)
+            }
+        })
     }
 
     override fun onClick(v: View?) {

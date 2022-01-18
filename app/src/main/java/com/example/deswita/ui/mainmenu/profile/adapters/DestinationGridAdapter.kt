@@ -29,8 +29,12 @@ class DestinationGridAdapter(private val context: Context) : RecyclerView.Adapte
     }
 
     inner class ViewHolder(private val binding: ItemEventGridLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(destinations: Destination){
-            binding.imageView.load(Utils.getImageDrawable(context,destinations.image))
+        fun bind(destination: Destination){
+            binding.imageView.load(Utils.getImageDrawable(context,destination.image))
+
+            itemView.setOnClickListener {
+                onClickItemCallback?.onClick(destination)
+            }
         }
     }
 

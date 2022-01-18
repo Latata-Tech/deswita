@@ -4,132 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     tools:context=".ui.mainmenu.event.AddEventActivity">
 
-    <LinearLayout
-        android:id="@+id/containerAddEvent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/backButtonAddEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/round_corner"
-            android:padding="10dp"
-            android:src="@drawable/ic_left_arrow" />
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_left_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="7dp"
             android:fontFamily="@font/poppins_medium"
             android:text="@string/add_event"
             android:textColor="@color/black"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnBack"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/containerAddEvent"
-        app:layout_constraintVertical_bias="0.0"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
-        <ImageView
-            android:id="@+id/ivAddEvent"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="211dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/round_corner"
-            android:src="@drawable/placeholder_image"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_height="match_parent">
 
-        <TextView
-            android:layout_marginTop="15dp"
-            android:text="@string/location"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edtLocationAddEvent"
-            android:background="@drawable/round_corner_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="34dp"
-            />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.157"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints">
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:text="Title"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edtTitleAddEvent"
-            android:background="@drawable/round_corner_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="34dp"
-            />
+                <ImageView
+                    android:id="@+id/ivAddEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="211dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_corner"
+                    android:src="@drawable/placeholder_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                    app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:text="Description"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edtDescriptionAddEvent"
-            android:background="@drawable/round_corner_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="136dp"
-            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/location"
+                    android:textColor="@color/black" />
 
-        <TextView
-            android:layout_marginTop="10dp"
-            android:text="Date"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edtDateAddEvent"
-            android:background="@drawable/round_corner_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="34dp"
-            />
+                <EditText
+                    android:id="@+id/edtLocationAddEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:background="@drawable/round_corner_edit_text" />
 
-        <Button
-            android:layout_marginTop="20dp"
-            android:id="@+id/btn_add_event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:background="@drawable/round_button"
-            android:text="Save"
-            android:fontFamily="@font/poppins_semibold"
-            />
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Title"
+                    android:textColor="@color/black" />
 
+                <EditText
+                    android:id="@+id/edtTitleAddEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:background="@drawable/round_corner_edit_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Description"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/edtDescriptionAddEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="136dp"
+                    android:background="@drawable/round_corner_edit_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Date"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+                    android:id="@+id/edtDateAddEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"
+                    android:background="@drawable/round_corner_edit_text" />
+
+                <Button
+                    android:id="@+id/btn_add_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/round_button"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Save"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

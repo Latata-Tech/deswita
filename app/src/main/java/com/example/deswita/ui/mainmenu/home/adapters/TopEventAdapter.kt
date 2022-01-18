@@ -6,10 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deswita.databinding.EventCardLayoutBinding
+import com.example.deswita.models.Destination
 import com.example.deswita.models.Event
 import com.example.deswita.utils.*
 
 class TopEventAdapter(private val context: Context): RecyclerView.Adapter<TopEventAdapter.ViewHolder>() {
+
+    private var onClickItemCallback: OnClickItemCallback? = null
+
+    fun setOnClickItemCallback(onClickItemCallback: OnClickItemCallback) {
+        this.onClickItemCallback = onClickItemCallback
+    }
+
+    interface OnClickItemCallback {
+        fun onClick(event: Event)
+    }
 
     private var events = emptyList<Event>()
 
@@ -28,6 +39,10 @@ class TopEventAdapter(private val context: Context): RecyclerView.Adapter<TopEve
                 val params = itemView.layoutParams as ViewGroup.MarginLayoutParams
                 params.setMargins(32,0,if(position == events.size - 1) 32 else 0,0)
                 itemView.layoutParams = params
+
+                itemView.setOnClickListener {
+                    onClickItemCallback?.onClick(event)
+                }
             }
         }
     }

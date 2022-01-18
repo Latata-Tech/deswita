@@ -1,5 +1,6 @@
 package com.example.deswita.ui.mainmenu.profile.fragments
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentEventsBinding
 import com.example.deswita.models.Event
+import com.example.deswita.ui.event.EventActivity
+import com.example.deswita.ui.mainmenu.event.EventAdapter
 import com.example.deswita.ui.mainmenu.profile.adapters.EventGridAdapter
 
 
@@ -58,6 +61,14 @@ class EventsFragment : Fragment() {
         )
 
         eventGridAdapter.setData(events)
+
+        eventGridAdapter.setOnClickItemCallback(object: EventGridAdapter.OnClickItemCallback{
+            override fun onClick(event: Event) {
+                val intent = Intent(requireContext(), EventActivity::class.java)
+                intent.putExtra(EventActivity.EXTRA_EVENT,event)
+                startActivity(intent)
+            }
+        })
 
     }
 

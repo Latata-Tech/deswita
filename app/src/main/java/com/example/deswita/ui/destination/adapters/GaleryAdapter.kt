@@ -27,6 +27,7 @@ class GaleryAdapter(private val context: Context): RecyclerView.Adapter<GaleryAd
                     val params = itemView.layoutParams as ViewGroup.MarginLayoutParams
                     params.setMargins(10,0,40,0)
                     itemView.layoutParams = params
+
                 }
             }
         }

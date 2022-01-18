@@ -14,6 +14,7 @@ import com.example.deswita.databinding.FragmentAllBinding
 import com.example.deswita.models.Destination
 import com.example.deswita.models.Event
 import com.example.deswita.ui.destination.DestinationActivity
+import com.example.deswita.ui.event.EventActivity
 import com.example.deswita.ui.mainmenu.home.adapters.DestinationAdapter
 import com.example.deswita.ui.mainmenu.home.adapters.TopDestinationAdapter
 import com.example.deswita.ui.mainmenu.home.adapters.TopEventAdapter
@@ -103,6 +104,22 @@ class AllFragment : Fragment() {
 
         topUpcomingEventAdapter.setData(events)
         topOngoingEventAdapter.setData(events)
+
+        topOngoingEventAdapter.setOnClickItemCallback(object: TopEventAdapter.OnClickItemCallback {
+            override fun onClick(event: Event) {
+                val intent = Intent(requireContext(),EventActivity::class.java)
+                intent.putExtra(EventActivity.EXTRA_EVENT,event)
+                startActivity(intent)
+            }
+        })
+
+        topUpcomingEventAdapter.setOnClickItemCallback(object: TopEventAdapter.OnClickItemCallback {
+            override fun onClick(event: Event) {
+                val intent = Intent(requireContext(),EventActivity::class.java)
+                intent.putExtra(EventActivity.EXTRA_EVENT,event)
+                startActivity(intent)
+            }
+        })
 
     }
 

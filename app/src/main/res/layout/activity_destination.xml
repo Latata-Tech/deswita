@@ -41,299 +41,434 @@
                android:background="@drawable/bg_detail_destination"
                android:paddingHorizontal="16dp"
                android:paddingTop="20dp"
-               android:paddingBottom="50dp">
+               android:paddingBottom="50dp"
+               tools:layout_editor_absoluteY="400dp">
 
-               <TextView
-                   android:id="@+id/tvName"
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_marginEnd="32dp"
-                   android:ellipsize="end"
-                   android:fontFamily="@font/poppins_bold"
-                   android:maxLines="2"
-                   android:text="Tjong a fie mansion"
-                   android:textColor="@color/blue_dark_second"
-                   android:textSize="24sp"
-                   app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toTopOf="parent" />
+                     <TextView
+                         android:id="@+id/tvName"
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_marginEnd="32dp"
+                         android:ellipsize="end"
+                         android:fontFamily="@font/poppins_bold"
+                         android:maxLines="2"
+                         android:text="Tjong a fie mansion"
+                         android:textColor="@color/blue_dark_second"
+                         android:textSize="24sp"
+                         app:layout_constraintEnd_toStartOf="@+id/btnFavorite"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toTopOf="parent" />
 
-               <ImageButton
-                   android:id="@+id/btnFavorite"
-                   android:layout_width="40dp"
-                   android:layout_height="40dp"
-                   android:background="?attr/selectableItemBackgroundBorderless"
-                   android:src="@drawable/ic_baseline_favorite_border_24"
-                   android:tint="@color/pink"
-                   app:layout_constraintBottom_toBottomOf="@+id/tvName"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintTop_toTopOf="@+id/tvName"
-                   tools:ignore="UseAppTint" />
-
-
-               <TextView
-                   android:id="@+id/tvTicket"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/poppins_regular"
-                   android:text="Ticket"
-                   android:textColor="@color/grey"
-                   app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintHorizontal_bias="0.0"
-                   app:layout_constraintStart_toStartOf="@+id/tvPrice"
-                   app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-               <LinearLayout
-                   android:id="@+id/linearLayout"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="16dp"
-                   android:orientation="horizontal"
-                   app:layout_constraintStart_toStartOf="@+id/tvName"
-                   app:layout_constraintTop_toBottomOf="@+id/tvName">
-
-                   <ImageView
-                       android:layout_width="20dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginRight="5dp"
-                       android:src="@drawable/ic_star" />
-
-                   <ImageView
-                       android:layout_width="20dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginRight="5dp"
-                       android:src="@drawable/ic_star" />
-
-                   <ImageView
-                       android:layout_width="20dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginRight="5dp"
-                       android:src="@drawable/ic_star" />
-
-                   <ImageView
-                       android:layout_width="20dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginRight="5dp"
-                       android:src="@drawable/ic_star" />
-
-                   <ImageView
-                       android:layout_width="20dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginRight="5dp"
-                       android:src="@drawable/ic_star_grey" />
-
-               </LinearLayout>
-
-               <TextView
-                   android:id="@+id/tvPrice"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:fontFamily="@font/poppins_bold"
-                   android:text="Rp. 30.00"
-                   android:textColor="@color/black"
-                   android:textSize="24sp"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/tvTicket" />
+                     <ImageButton
+                         android:id="@+id/btnFavorite"
+                         android:layout_width="40dp"
+                         android:layout_height="40dp"
+                         android:background="?attr/selectableItemBackgroundBorderless"
+                         android:src="@drawable/ic_baseline_favorite_border_24"
+                         android:tint="@color/pink"
+                         app:layout_constraintBottom_toBottomOf="@+id/tvName"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintTop_toTopOf="@+id/tvName"
+                         tools:ignore="UseAppTint" />
 
 
-               <LinearLayout
-                   android:id="@+id/linearLayout2"
+                     <TextView
+                         android:id="@+id/tvTicket"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/poppins_regular"
+                         android:text="Ticket"
+                         android:textColor="@color/grey"
+                         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.0"
+                         app:layout_constraintStart_toStartOf="@+id/tvPrice"
+                         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+
+                     <LinearLayout
+                         android:id="@+id/linearLayout"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="16dp"
+                         android:orientation="horizontal"
+                         app:layout_constraintStart_toStartOf="@+id/tvName"
+                         app:layout_constraintTop_toBottomOf="@+id/tvName">
+
+                         <ImageView
+                             android:layout_width="20dp"
+                             android:layout_height="wrap_content"
+                             android:layout_marginRight="5dp"
+                             android:src="@drawable/ic_star" />
+
+                         <ImageView
+                             android:layout_width="20dp"
+                             android:layout_height="wrap_content"
+                             android:layout_marginRight="5dp"
+                             android:src="@drawable/ic_star" />
+
+                         <ImageView
+                             android:layout_width="20dp"
+                             android:layout_height="wrap_content"
+                             android:layout_marginRight="5dp"
+                             android:src="@drawable/ic_star" />
+
+                         <ImageView
+                             android:layout_width="20dp"
+                             android:layout_height="wrap_content"
+                             android:layout_marginRight="5dp"
+                             android:src="@drawable/ic_star" />
+
+                         <ImageView
+                             android:layout_width="20dp"
+                             android:layout_height="wrap_content"
+                             android:layout_marginRight="5dp"
+                             android:src="@drawable/ic_star_grey" />
+
+                     </LinearLayout>
+
+                     <TextView
+                         android:id="@+id/tvPrice"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:fontFamily="@font/poppins_bold"
+                         android:text="Rp. 30.00"
+                         android:textColor="@color/black"
+                         android:textSize="24sp"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/tvTicket" />
+
+
+                     <LinearLayout
+                         android:id="@+id/linearLayout2"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.5"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/tvPrice">
+
+                         <LinearLayout
+                             android:layout_width="0dp"
+                             android:layout_height="wrap_content"
+                             android:layout_weight="1"
+                             android:gravity="top"
+                             android:orientation="horizontal">
+
+                             <ImageView
+                                 android:id="@+id/imageView4"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:src="@drawable/ic_baseline_location_on_24"
+                                 android:tint="@color/blue_dark_second"
+                                 tools:ignore="UseAppTint" />
+
+                             <TextView
+                                 android:id="@+id/tvLocation"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_marginStart="4dp"
+                                 android:fontFamily="@font/poppins_medium"
+                                 android:textColor="@color/grey"
+                                 tools:text="Medan,Indonesia asdf asdf lasdfjljasdolfij asoidf joasidfj oasidfj oasdifjao sdfjaosdif j" />
+
+                         </LinearLayout>
+
+                         <LinearLayout
+                             android:layout_width="0dp"
+                             android:layout_height="wrap_content"
+                             android:layout_marginLeft="10dp"
+                             android:layout_weight="1"
+                             android:gravity="top"
+                             android:orientation="vertical">
+
+                             <LinearLayout
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_marginLeft="10dp"
+                                 android:gravity="top"
+                                 android:orientation="horizontal">
+
+                                 <ImageView
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:src="@drawable/ic_baseline_access_time_24"
+                                     android:tint="@color/blue_dark_second"
+                                     tools:ignore="UseAppTint" />
+
+                                 <TextView
+                                     android:id="@+id/tvTime"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:layout_marginStart="4dp"
+                                     android:fontFamily="@font/poppins_medium"
+                                     android:text="09:00 - 17:00"
+                                     android:textColor="@color/grey" />
+
+                             </LinearLayout>
+
+                             <LinearLayout
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_marginLeft="10dp"
+                                 android:gravity="top"
+                                 android:orientation="horizontal">
+
+                                 <ImageView
+                                     android:id="@+id/fd"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:src="@drawable/ic_baseline_flag_24"
+                                     android:tint="@color/blue_dark_second"
+                                     tools:ignore="UseAppTint" />
+
+                                 <TextView
+                                     android:id="@+id/tvFree"
+                                     android:layout_width="wrap_content"
+                                     android:layout_height="wrap_content"
+                                     android:layout_marginStart="4dp"
+                                     android:fontFamily="@font/poppins_medium"
+                                     android:text="Gratis pemandu wisata"
+                                     android:textColor="@color/grey" />
+
+                             </LinearLayout>
+
+                         </LinearLayout>
+
+                     </LinearLayout>
+
+
+                     <FrameLayout
+                         android:id="@+id/frameLayout"
+                         android:layout_width="match_parent"
+                         android:layout_height="2dp"
+                         android:layout_marginTop="16dp"
+                         android:background="@color/blue_dark_second"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.5"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+                     <TextView
+                         android:id="@+id/textView6"
+                         android:layout_width="0dp"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="8dp"
+                         android:fontFamily="@font/poppins"
+                         android:text="@string/destination_desc"
+                         android:textColor="@color/blue_dark_second"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintHorizontal_bias="0.5"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+
+                     <TextView
+                         android:id="@+id/textView7"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="16dp"
+                         android:fontFamily="@font/poppins_semibold"
+                         android:text="Galery"
+                         android:textColor="@color/black"
+                         android:textSize="24sp"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                     <TextView
+                         android:id="@+id/tvLookAll"
+                         android:fontFamily="@font/poppins_regular"
+                         android:textColor="@color/blue_dark_second"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Lihat Semua"
+                         app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintTop_toTopOf="@+id/textView7" />
+
+                     <androidx.recyclerview.widget.RecyclerView
+                         android:id="@+id/rvGalery"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="8dp"
+                         app:layout_constraintEnd_toEndOf="parent"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                     <TextView
+                         android:id="@+id/textView8"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginTop="24dp"
+                         android:fontFamily="@font/poppins_semibold"
+                         android:text="Author"
+                         android:textColor="@color/black"
+                         android:textSize="24sp"
+                         app:layout_constraintStart_toStartOf="parent"
+                         app:layout_constraintTop_toBottomOf="@+id/rvGalery" />
+
+
+                     <de.hdodenhof.circleimageview.CircleImageView
+                         android:id="@+id/ivAuthor"
+                         android:layout_width="80dp"
+                         android:layout_height="80dp"
+                         android:src="@drawable/user_1"
+                         app:layout_constraintStart_toStartOf="@+id/textView8"
+                         app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                     <TextView
+                         android:id="@+id/tvNameAuthor"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_marginStart="16dp"
+                         android:fontFamily="@font/poppins_semibold"
+                         android:text="Amanda Lyzly"
+                         android:textColor="@color/grey"
+                         android:textSize="20sp"
+                         app:layout_constraintStart_toEndOf="@+id/textView8"
+                         app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                     <TextView
+                         android:id="@+id/tvLocationAuthor"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Medan ,indonesia"
+                         app:layout_constraintStart_toStartOf="@+id/tvNameAuthor"
+                         app:layout_constraintTop_toBottomOf="@+id/tvNameAuthor" />
+
+      <TextView
+          android:id="@+id/textView20"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="40dp"
+          android:fontFamily="@font/poppins_medium"
+          android:text="Penilaian"
+          android:textColor="@color/grey"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/ivAuthor" />
+
+      <include
+          android:id="@+id/include2"
+          layout="@layout/rating_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+      <TextView
+          android:id="@+id/tvUlasan"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="32dp"
+          android:fontFamily="@font/poppins_semibold"
+          android:text="Ulasan(12)"
+          android:textColor="@color/black"
+          android:textSize="24sp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+      <TextView
+          android:id="@+id/tvLookAllComment"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/poppins_regular"
+          android:text="Lihat Semua"
+          android:textColor="@color/blue_dark_second"
+          app:layout_constraintBottom_toBottomOf="@+id/tvUlasan"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="@+id/tvUlasan" />
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rvReview"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.5"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/tvUlasan" />
+
+               <Button
+                   android:layout_marginTop="30dp"
+                   android:id="@+id/btnGiveReview"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:orientation="horizontal"
+                   android:background="@drawable/bg_round_blue_dark"
+                   android:text="Beri Ulasan"
+                   android:textAllCaps="false"
                    app:layout_constraintEnd_toEndOf="parent"
                    app:layout_constraintHorizontal_bias="0.5"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/tvPrice">
-
-                   <LinearLayout
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:gravity="top"
-                       android:orientation="horizontal">
-
-                       <ImageView
-                           android:id="@+id/imageView4"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:src="@drawable/ic_baseline_location_on_24"
-                           android:tint="@color/blue_dark_second"
-                           tools:ignore="UseAppTint" />
-
-                       <TextView
-                           android:id="@+id/tvLocation"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginStart="4dp"
-                           android:fontFamily="@font/poppins_medium"
-                           android:textColor="@color/grey"
-                           tools:text="Medan,Indonesia asdf asdf lasdfjljasdolfij asoidf joasidfj oasidfj oasdifjao sdfjaosdif j" />
-
-                   </LinearLayout>
-
-                   <LinearLayout
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_marginLeft="10dp"
-                       android:layout_weight="1"
-                       android:gravity="top"
-                       android:orientation="vertical">
-
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginLeft="10dp"
-                           android:gravity="top"
-                           android:orientation="horizontal">
-
-                           <ImageView
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:src="@drawable/ic_baseline_access_time_24"
-                               android:tint="@color/blue_dark_second"
-                               tools:ignore="UseAppTint" />
-
-                           <TextView
-                               android:id="@+id/tvTime"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginStart="4dp"
-                               android:fontFamily="@font/poppins_medium"
-                               android:text="09:00 - 17:00"
-                               android:textColor="@color/grey" />
-
-                       </LinearLayout>
-
-                       <LinearLayout
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:layout_marginLeft="10dp"
-                           android:gravity="top"
-                           android:orientation="horizontal">
-
-                           <ImageView
-                               android:id="@+id/fd"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:src="@drawable/ic_baseline_flag_24"
-                               android:tint="@color/blue_dark_second"
-                               tools:ignore="UseAppTint" />
-
-                           <TextView
-                               android:id="@+id/tvFree"
-                               android:layout_width="wrap_content"
-                               android:layout_height="wrap_content"
-                               android:layout_marginStart="4dp"
-                               android:fontFamily="@font/poppins_medium"
-                               android:text="Gratis pemandu wisata"
-                               android:textColor="@color/grey" />
-
-                       </LinearLayout>
-
-                   </LinearLayout>
-
-               </LinearLayout>
-
-
-               <FrameLayout
-                   android:id="@+id/frameLayout"
-                   android:layout_width="match_parent"
-                   android:layout_height="2dp"
-                   android:layout_marginTop="16dp"
-                   android:background="@color/blue_dark_second"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintHorizontal_bias="0.5"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                   app:layout_constraintTop_toBottomOf="@+id/rvReview"
+                   tools:layout_editor_absoluteY="21dp" />
 
                <TextView
-                   android:id="@+id/textView6"
-                   android:layout_width="0dp"
-                   android:layout_height="wrap_content"
-                   android:layout_marginTop="8dp"
-                   android:fontFamily="@font/poppins"
-                   android:text="@string/destination_desc"
-                   android:textColor="@color/blue_dark_second"
-                   app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintHorizontal_bias="0.5"
-                   app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
-
-
-               <TextView
-                   android:id="@+id/textView7"
+                   android:id="@+id/tvEvent"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_marginTop="16dp"
+                   android:layout_marginTop="32dp"
                    android:fontFamily="@font/poppins_semibold"
-                   android:text="Galery"
+                   android:text="Acara"
                    android:textColor="@color/black"
                    android:textSize="24sp"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                   app:layout_constraintTop_toBottomOf="@+id/btnGiveReview" />
 
                <TextView
-                   android:id="@+id/tvLookAll"
-                   android:fontFamily="@font/poppins_regular"
-                   android:textColor="@color/blue_dark_second"
+                   android:id="@+id/tvLookAllEvents"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:fontFamily="@font/poppins_regular"
                    android:text="Lihat Semua"
-                   app:layout_constraintBottom_toBottomOf="@+id/textView7"
+                   android:textColor="@color/blue_dark_second"
+                   app:layout_constraintBottom_toBottomOf="@+id/tvEvent"
                    app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintTop_toTopOf="@+id/textView7" />
+                   app:layout_constraintTop_toTopOf="@+id/tvEvent" />
 
                <androidx.recyclerview.widget.RecyclerView
-                   android:id="@+id/rvGalery"
+                   android:id="@+id/rvEvents"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_marginTop="8dp"
                    app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.5"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                   app:layout_constraintTop_toBottomOf="@+id/tvEvent" />
 
                <TextView
-                   android:id="@+id/textView8"
+                   android:id="@+id/tvDestination"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_marginTop="24dp"
+                   android:layout_marginTop="32dp"
                    android:fontFamily="@font/poppins_semibold"
-                   android:text="Author"
+                   android:text="Wisata"
                    android:textColor="@color/black"
                    android:textSize="24sp"
                    app:layout_constraintStart_toStartOf="parent"
-                   app:layout_constraintTop_toBottomOf="@+id/rvGalery" />
-
-
-               <de.hdodenhof.circleimageview.CircleImageView
-                   android:id="@+id/ivAuthor"
-                   android:layout_width="80dp"
-                   android:layout_height="80dp"
-                   android:src="@drawable/user_1"
-                   app:layout_constraintStart_toStartOf="@+id/textView8"
-                   app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                   app:layout_constraintTop_toBottomOf="@+id/rvEvents" />
 
                <TextView
-                   android:id="@+id/tvNameAuthor"
+                   android:id="@+id/tvLookAllDestination"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:layout_marginStart="16dp"
-                   android:fontFamily="@font/poppins_semibold"
-                   android:text="Amanda Lyzly"
-                   android:textColor="@color/grey"
-                   android:textSize="20sp"
-                   app:layout_constraintStart_toEndOf="@+id/textView8"
-                   app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                   android:fontFamily="@font/poppins_regular"
+                   android:text="Lihat Semua"
+                   android:textColor="@color/blue_dark_second"
+                   app:layout_constraintBottom_toBottomOf="@+id/tvDestination"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toTopOf="@+id/tvDestination" />
 
-               <TextView
-                   android:id="@+id/tvLocationAuthor"
-                   android:layout_width="wrap_content"
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rvDestination"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="Medan ,indonesia"
-                   app:layout_constraintStart_toStartOf="@+id/tvNameAuthor"
-                   app:layout_constraintTop_toBottomOf="@+id/tvNameAuthor" />
+                   android:layout_marginTop="8dp"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintHorizontal_bias="0.5"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/tvDestination" />
+
 
            </androidx.constraintlayout.widget.ConstraintLayout>
 

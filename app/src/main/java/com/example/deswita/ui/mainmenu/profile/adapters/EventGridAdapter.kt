@@ -13,6 +13,16 @@ import com.example.deswita.utils.Utils
 
 class EventGridAdapter (private val context: Context): RecyclerView.Adapter<EventGridAdapter.ViewHolder>() {
 
+    private var onClickItemCallback: OnClickItemCallback? = null
+
+    fun setOnClickItemCallback(onClickItemCallback: OnClickItemCallback) {
+        this.onClickItemCallback = onClickItemCallback
+    }
+
+    interface OnClickItemCallback {
+        fun onClick(event: Event)
+    }
+
     private var events = emptyList<Event>()
 
     fun setData(events: List<Event>){
@@ -26,6 +36,10 @@ class EventGridAdapter (private val context: Context): RecyclerView.Adapter<Even
     inner class ViewHolder(private val binding: ItemEventGridLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
             binding.imageView.load(Utils.getImageDrawable(context,event.image))
+
+            itemView.setOnClickListener {
+                onClickItemCallback?.onClick(event)
+            }
         }
     }
 

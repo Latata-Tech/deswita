@@ -12,6 +12,8 @@ import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
 import com.example.deswita.ui.mainmenu.story.StoryFragment
+import com.example.deswita.ui.notification.NotificationActivity
+import com.example.deswita.ui.notification.NotificationAdapter
 import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
@@ -38,6 +40,11 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         binding.btnAppBarSearch.setOnClickListener{
             val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnAppBarNotification.setOnClickListener {
+            val intent = Intent(this, NotificationActivity::class.java)
             startActivity(intent)
         }
 

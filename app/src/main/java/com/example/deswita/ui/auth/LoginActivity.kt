@@ -26,17 +26,24 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         binding.btnLogin.setOnClickListener(this)
+        binding.tvForgotPassword.setOnClickListener(this)
     }
 
     fun registerActivity(view : View)
     {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
             binding.btnLogin.id -> startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+            binding.tvForgotPassword.id -> {
+                val changePasswordFragment = ChangePasswordFragment()
+                changePasswordFragment.show(supportFragmentManager,ChangePasswordFragment::class.java.simpleName)
+            }
         }
     }
+
 }
