@@ -21,6 +21,7 @@ import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.story.AddStoryActivity
 import com.example.deswita.ui.notification.NotificationActivity
 import com.example.deswita.ui.notification.NotificationAdapter
+import com.example.deswita.ui.setting.SettingActivity
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -66,6 +67,11 @@ class ProfileFragment : Fragment() {
 
         binding.btnAppBarNotification.setOnClickListener {
             val intent = Intent(requireActivity(), NotificationActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnAppBarSetting.setOnClickListener {
+            val intent = Intent(requireActivity(),SettingActivity::class.java)
             startActivity(intent)
         }
 

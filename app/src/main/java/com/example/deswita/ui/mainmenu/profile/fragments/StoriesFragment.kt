@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentStoriesBinding
 import com.example.deswita.models.Story
+import com.example.deswita.ui.MainViewModel
 import com.example.deswita.ui.mainmenu.profile.adapters.StoriesAdapter
 
 
@@ -18,6 +20,7 @@ class StoriesFragment : Fragment() {
     private lateinit var _binding: FragmentStoriesBinding
     private val binding get() = _binding
     private lateinit var storiesAdapter: StoriesAdapter
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +29,8 @@ class StoriesFragment : Fragment() {
         _binding = FragmentStoriesBinding.inflate(LayoutInflater.from(inflater.context),container,false)
         storiesAdapter = StoriesAdapter(requireActivity())
         initRecyclerView()
+
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         setData()
         return binding.root
@@ -42,55 +47,7 @@ class StoriesFragment : Fragment() {
     }
 
     private fun setData(){
-        val userImage1 = BitmapFactory.decodeResource(resources, R.drawable.user_1)
-        val postImage1 = BitmapFactory.decodeResource(resources,R.drawable.post_1)
-        val userImage2 = BitmapFactory.decodeResource(resources, R.drawable.user_2)
-        val postImage2 = BitmapFactory.decodeResource(resources,R.drawable.post_2)
-
-        var storiesDummy = arrayListOf<Story>(
-            Story(
-                id = 1,
-                name = "fiqri ardiansyah",
-                description = "Jakarta ,indonesia",
-                contentText = "Lorem Ipsum is simply...",
-                profile = "user_2",
-                commentTotal = 121,
-                contentImage = "post_2",
-                likeTotal = 234
-            ),
-            Story(
-                id = 1,
-                name = "fiqri ardiansyah",
-                description = "Jakarta ,indonesia",
-                contentText = "Lorem Ipsum is simply...",
-                profile = "user_1",
-                commentTotal = 121,
-                contentImage = "post_1",
-                likeTotal = 234
-            ),
-            Story(
-                id = 1,
-                name = "fiqri ardiansyah",
-                description = "Jakarta ,indonesia",
-                contentText = "Lorem Ipsum is simply...",
-                profile = "user_2",
-                commentTotal = 121,
-                contentImage = "post_1",
-                likeTotal = 234
-            ),
-            Story(
-                id = 1,
-                name = "fiqri ardiansyah",
-                description = "Jakarta ,indonesia",
-                contentText = "Lorem Ipsum is simply...",
-                profile = "user_1",
-                commentTotal = 121,
-                contentImage = "post_2",
-                likeTotal = 234
-            ),
-        )
-
-        storiesAdapter.setData(storiesDummy)
+        storiesAdapter.setData(mainViewModel.storiesDummy2)
 
     }
 

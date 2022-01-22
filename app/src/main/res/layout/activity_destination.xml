@@ -79,52 +79,24 @@
                          android:fontFamily="@font/poppins_regular"
                          android:text="Ticket"
                          android:textColor="@color/grey"
-                         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                          app:layout_constraintEnd_toEndOf="parent"
                          app:layout_constraintHorizontal_bias="0.0"
                          app:layout_constraintStart_toStartOf="@+id/tvPrice"
-                         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
+                         app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
-                     <LinearLayout
-                         android:id="@+id/linearLayout"
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:layout_marginTop="16dp"
-                         android:orientation="horizontal"
-                         app:layout_constraintStart_toStartOf="@+id/tvName"
-                         app:layout_constraintTop_toBottomOf="@+id/tvName">
 
-                         <ImageView
-                             android:layout_width="20dp"
-                             android:layout_height="wrap_content"
-                             android:layout_marginRight="5dp"
-                             android:src="@drawable/ic_star" />
 
-                         <ImageView
-                             android:layout_width="20dp"
-                             android:layout_height="wrap_content"
-                             android:layout_marginRight="5dp"
-                             android:src="@drawable/ic_star" />
-
-                         <ImageView
-                             android:layout_width="20dp"
-                             android:layout_height="wrap_content"
-                             android:layout_marginRight="5dp"
-                             android:src="@drawable/ic_star" />
-
-                         <ImageView
-                             android:layout_width="20dp"
-                             android:layout_height="wrap_content"
-                             android:layout_marginRight="5dp"
-                             android:src="@drawable/ic_star" />
-
-                         <ImageView
-                             android:layout_width="20dp"
-                             android:layout_height="wrap_content"
-                             android:layout_marginRight="5dp"
-                             android:src="@drawable/ic_star_grey" />
-
-                     </LinearLayout>
+               <RatingBar
+                   app:layout_constraintStart_toStartOf="@+id/tvName"
+                   app:layout_constraintTop_toBottomOf="@+id/tvName"
+                   android:id="@+id/ratingBar"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:numStars="5"
+                   android:progressTint="@color/yellow"
+                   style="?android:attr/ratingBarStyleIndicator"
+                   android:secondaryProgressTint="@android:color/transparent" />
 
                      <TextView
                          android:id="@+id/tvPrice"
@@ -276,7 +248,7 @@
                          app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                      <TextView
-                         android:id="@+id/tvLookAll"
+                         android:id="@+id/tvLookAllGallery"
                          android:fontFamily="@font/poppins_regular"
                          android:textColor="@color/blue_dark_second"
                          android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package com.example.deswita.ui.mainmenu.story
+package com.example.deswita.ui.mainmenu.story.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,10 +12,26 @@ import com.example.deswita.utils.*
 
 class StoryAdapter(private val context: Context) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
+    companion object {
+        const val CLICK_IMAGE = "CLICK_IMAGE"
+        const val CLICK_COMMENT = "CLICK_COMMENT"
+        const val CLICK_USER = "CLICK_USER"
+    }
+
     private var stories = emptyList<Story>()
 
+    private lateinit var onItemClickCallback: OnItemClickCallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onClick(story: Story,state: String)
+    }
+
     fun setData(stories: List<Story>){
-        val storyDiffUtil = com.example.deswita.utils.StoryDiffUtil(stories,this.stories)
+        val storyDiffUtil = StoryDiffUtil(stories,this.stories)
         val diffUtilResult = DiffUtil.calculateDiff(storyDiffUtil)
         this.stories = stories
         diffUtilResult.dispatchUpdatesTo(this)
@@ -31,6 +47,27 @@ class StoryAdapter(private val context: Context) : RecyclerView.Adapter<StoryAda
                 tvComment.text = story.commentTotal.toString()
                 profileImage.load(Utils.getImageDrawable(context,story.profile))
                 ivPost.load(Utils.getImageDrawable(context,story.contentImage))
+
+                tvNamePost.setOnClickListener {
+                    onItemClickCallback.onClick(story, CLICK_USER)
+                }
+                profileImage.setOnClickListener {
+                    onItemClickCallback.onClick(story, CLICK_USER)
+                }
+                tvDescriptionPost.setOnClickListener {
+                    onItemClickCallback.onClick(story, CLICK_USER)
+                }
+
+                ivPost.setOnClickListener {
+                    onItemClickCallback.onClick(story, CLICK_IMAGE)
+                }
+
+                tvComment.setOnClickListener {
+                    onItemClickCallback.onClick(story, CLICK_COMMENT)
+                }
+                ivComment.setOnClickListener {
+                    onItemClickCallback.onClick(story, CLICK_COMMENT)
+                }
             }
 
             if(position == stories.size - 1) {
@@ -38,6 +75,7 @@ class StoryAdapter(private val context: Context) : RecyclerView.Adapter<StoryAda
                 params.setMargins(20,20,20,30)
                 itemView.layoutParams = params
             }
+
         }
     }
 

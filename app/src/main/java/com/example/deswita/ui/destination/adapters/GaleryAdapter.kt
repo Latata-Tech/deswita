@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.deswita.databinding.ItemEventGridLayoutBinding
 import com.example.deswita.databinding.ItemGaleryLayoutBinding
+import com.example.deswita.ui.mainmenu.story.adapters.StoryAdapter
 import com.example.deswita.utils.Utils
 
 class GaleryAdapter(private val context: Context): RecyclerView.Adapter<GaleryAdapter.ViewHolder>() {
@@ -16,6 +17,16 @@ class GaleryAdapter(private val context: Context): RecyclerView.Adapter<GaleryAd
     fun setData(galeries: List<String>) {
         this.galeries = galeries
         notifyDataSetChanged()
+    }
+
+    private lateinit var onItemClickCallback: OnItemClickCcallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCcallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCcallback {
+        fun onClick(photo: String)
     }
 
     inner class ViewHolder(private val binding: ItemGaleryLayoutBinding): RecyclerView.ViewHolder(binding.root) {
@@ -28,6 +39,10 @@ class GaleryAdapter(private val context: Context): RecyclerView.Adapter<GaleryAd
                     params.setMargins(10,0,40,0)
                     itemView.layoutParams = params
 
+                }
+
+                itemView.setOnClickListener {
+                    onItemClickCallback.onClick(galery)
                 }
             }
         }

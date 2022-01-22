@@ -1,22 +1,28 @@
 package com.example.deswita.ui.mainmenu.story
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentStoryBinding
 import com.example.deswita.models.Story
+import com.example.deswita.ui.MainViewModel
+import com.example.deswita.ui.mainmenu.story.adapters.StoryAdapter
+import com.example.deswita.ui.story.StoryActivity
+import com.example.deswita.utils.ImageFragment
 import com.google.android.material.appbar.AppBarLayout
 
 class StoryFragment : Fragment() {
 
     private var _binding: FragmentStoryBinding? = null
     private val binding get() = _binding!!
+    private lateinit var  mainViewModel: MainViewModel
 
     private lateinit var storyAdapter: StoryAdapter
 
@@ -32,6 +38,7 @@ class StoryFragment : Fragment() {
         storyAdapter = StoryAdapter(requireActivity())
         initialRecycler()
 
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         binding.fabStory.setOnClickListener {
             startActivity(Intent(requireContext(),AddStoryActivity::class.java))
@@ -41,51 +48,37 @@ class StoryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val userImage1 = BitmapFactory.decodeResource(resources, R.drawable.user_1)
-        val postImage1 = BitmapFactory.decodeResource(resources,R.drawable.post_1)
-        val userImage2 = BitmapFactory.decodeResource(resources, R.drawable.user_2)
-        val postImage2 = BitmapFactory.decodeResource(resources,R.drawable.post_2)
-
-        var storiesDummy = arrayListOf<Story>(
-            Story(
-                id = 1,
-                name = "fiqri ardiansyah",
-                description = "Jakarta ,indonesia",
-                contentText = "Lorem Ipsum is simply...",
-                profile = "user_1",
-                commentTotal = 121,
-                contentImage = "post_1",
-                likeTotal = 234
-            ),
-            Story(
-                id = 1,
-                name = "jhon doe",
-                description = "Medan ,indonesia",
-                contentText = "Lorem Ipsum is simply dummy text of the printing",
-                profile = "user_2",
-                commentTotal = 324,
-                contentImage = "post_2",
-                likeTotal = 23432
-            ),
-            Story(
-                id = 1,
-                name = "jhon doe",
-                description = "Medan ,indonesia",
-                contentText = "Lorem Ipsum is simply dummy text of the printing",
-                profile = "user_1",
-                commentTotal = 324,
-                contentImage = "post_2",
-                likeTotal = 23432
-            )
-        )
-
-        storyAdapter.setData(storiesDummy)
+        storyAdapter.setData(mainViewModel.storiesDummy)
     }
 
     fun initialRecycler(){
         binding.rvStory.layoutManager = LinearLayoutManager(requireContext())
         binding.rvStory.setHasFixedSize(true)
         binding.rvStory.adapter = storyAdapter
+
+        storyAdapter.setOnItemClickCallback(object: StoryAdapter.OnItemClickCallback{
+            override fun onClick(story: Story,state: String) {
+
+                when {
+                    state == StoryAdapter.CLICK_IMAGE -> {
+                        val bundle = Bundle()
+                        bundle.putString(ImageFragment.IMAGE_STR,story.contentImage)
+                        val imageFragment = ImageFragment()
+                        imageFragment.arguments = bundle
+                        imageFragment.show(childFragmentManager, ImageFragment::class.java.simpleName)
+                    }
+                    state == StoryAdapter.CLICK_COMMENT -> {
+                        val intent = Intent(requireContext(),StoryActivity::class.java)
+                        intent.putExtra(StoryActivity.EXTRA_STORY,story)
+                        startActivity(intent)
+                    }
+                    state == StoryAdapter.CLICK_USER -> {
+                        Toast.makeText(requireContext(),"${story.name} user",Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+            }
+        })
     }
 
 

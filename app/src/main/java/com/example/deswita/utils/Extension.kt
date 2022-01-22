@@ -9,3 +9,6 @@ fun String.CapitalizeAllWord(): String =
 
 fun String.CapitalizeFirstWord(): String =
     this.lowercase(Locale.getDefault()).replaceFirstChar { if(it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+
+fun IntRange.random() =
+    Random().nextInt((endInclusive + 1) - start) + start
