@@ -19,7 +19,7 @@ import com.google.android.material.navigation.NavigationBarView
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var fragment: Fragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,16 +29,16 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         supportActionBar?.hide()
 
-        val homeFragment = HomeFragment()
+        fragment = HomeFragment()
         val mFragmentManager = supportFragmentManager
         mFragmentManager.beginTransaction().apply {
-            add(R.id.frameContainer,homeFragment,HomeFragment::class.java.simpleName)
+            add(R.id.frameContainer, fragment, fragment::class.java.simpleName)
             commit()
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener(this)
 
-        binding.btnAppBarSearch.setOnClickListener{
+        binding.btnAppBarSearch.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             startActivity(intent)
         }
@@ -51,32 +51,43 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.homeFragment -> {
-                val fragment = HomeFragment()
-                replaceFragment(fragment,HomeFragment::class.java.simpleName)
+                fragment = HomeFragment()
+                replaceFragment(fragment, fragment::class.java.simpleName)
             }
             R.id.eventFragment -> {
-                val fragment = EventFragment()
-                replaceFragment(fragment,EventFragment::class.java.simpleName)
+                fragment = EventFragment()
+                replaceFragment(fragment, fragment::class.java.simpleName)
             }
             R.id.storyFragment -> {
-                val fragment = StoryFragment()
-                replaceFragment(fragment,StoryFragment::class.java.simpleName)
+                fragment = StoryFragment()
+                replaceFragment(fragment, fragment::class.java.simpleName)
             }
             R.id.profileFragment -> {
-                val fragment = ProfileFragment()
-                replaceFragment(fragment,ProfileFragment::class.java.simpleName)
+                fragment = ProfileFragment()
+                replaceFragment(fragment, fragment::class.java.simpleName)
             }
         }
         return true
     }
 
-    private fun replaceFragment(fragment: Fragment,tag: String) {
+    private fun replaceFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frameContainer,fragment,tag)
+            replace(R.id.frameContainer, fragment, tag)
             commit()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        supportFragmentManager.putFragment(outState, "STATE_FRAGMENT", fragment)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        fragment = supportFragmentManager.getFragment(savedInstanceState, "STATE_FRAGMENT")!!
+        replaceFragment(fragment, fragment::class.java.simpleName)
     }
 
 }

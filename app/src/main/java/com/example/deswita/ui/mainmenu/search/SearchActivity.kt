@@ -11,7 +11,7 @@ import com.example.deswita.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchBinding
-
+    private lateinit var fragmentImplement : Fragment;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -19,9 +19,9 @@ class SearchActivity : AppCompatActivity() {
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val searchHistoryFragment = SearchHistoryFragment()
+        fragmentImplement = SearchHistoryFragment()
         supportFragmentManager.beginTransaction().apply {
-            add(R.id.frameContainerSearch, searchHistoryFragment, SearchHistoryFragment::class.java.simpleName)
+            add(R.id.frameContainerSearch, fragmentImplement, SearchHistoryFragment::class.java.simpleName)
             commit()
         }
 
@@ -39,9 +39,8 @@ class SearchActivity : AppCompatActivity() {
 
     protected fun findDestination()
     {
-        val searchRecomendationFragment = SearchRecomendationFragment()
-        Log.i("Replace", "Replace Fragment")
-        replaceFragment(searchRecomendationFragment, SearchRecomendationFragment::class.java.simpleName)
+        fragmentImplement = SearchRecomendationFragment()
+        replaceFragment(fragmentImplement, fragmentImplement::class.java.simpleName)
     }
 
 
@@ -50,5 +49,16 @@ class SearchActivity : AppCompatActivity() {
             replace(R.id.frameContainerSearch, fragment, tag)
             commit()
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        supportFragmentManager.putFragment(outState, "SEARCH_RECOMENDATION", fragmentImplement)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        fragmentImplement = supportFragmentManager.getFragment(savedInstanceState, "SEARCH_RECOMENDATION")!!
+        replaceFragment(fragmentImplement, fragmentImplement::class.java.simpleName)
     }
 }
