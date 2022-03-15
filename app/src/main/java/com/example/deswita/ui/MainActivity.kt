@@ -3,10 +3,12 @@ package com.example.deswita.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
+import com.example.deswita.ui.auth.LoginActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
@@ -16,13 +18,21 @@ import com.example.deswita.ui.notification.NotificationActivity
 import com.example.deswita.ui.notification.NotificationAdapter
 import com.google.android.material.navigation.NavigationBarView
 
+const val EXTRA_USER = "EXTRA_USER"
+const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragment: Fragment
+
+    private lateinit var username : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        username = intent.getStringExtra(EXTRA_USER).toString()
+        Log.i("USERNAME", username)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

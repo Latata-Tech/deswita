@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityLoginBinding
 import com.example.deswita.databinding.ActivityRegisterBinding
+import com.example.deswita.ui.EXTRA_USER
 import com.example.deswita.ui.MainActivity
 import com.example.deswita.ui.MainViewModel
 
@@ -44,21 +45,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id) {
             binding.btnLogin.id -> {
-                val username = binding.username.text?.trim().toString()
-                val password = binding.password.text?.trim().toString()
+                val usernameData = binding.username.text?.trim().toString()
+                val passwordData = binding.password.text?.trim().toString()
+                var usernameLogin = intent.getStringExtra("EXTRA_USER")
+                var passwordUser = intent.getStringExtra("EXTRA_PASSWORD")
 
                 when {
-                    username.isEmpty() -> {
+                    usernameData.isEmpty() -> {
                         binding.username.error = "Field required"
                     }
-                    password.isEmpty() -> {
-                        binding.password.error = "Field required"
+                    passwordData.length<5 ->{
+                        binding.password.error = "Password must be longer than 5"
                     }
-                    password != mainViewModel.password || username != mainViewModel.username -> {
+                    passwordData != passwordUser || usernameData != usernameLogin  ->{
                         binding.password.error = "Username or Password not valid"
                     }
-                    password == mainViewModel.password && username == mainViewModel.username -> {
-                        startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                   passwordData == passwordUser || usernameData == usernameLogin ->{
+                       var intent = Intent(this,MainActivity::class.java)
+                       intent.putExtra(EXTRA_USER, usernameLogin)
+                       startActivity(intent)
                     }
                 }
 
