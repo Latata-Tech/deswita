@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Destination (
+    var id: Int,
     var image: String,
     var name: String,
     var location: String,

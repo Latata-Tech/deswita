@@ -26,10 +26,8 @@ class EventAdapter(private val context: Context) :RecyclerView.Adapter<EventAdap
     private var events = emptyList<Event>()
 
     fun setData(events: List<Event>){
-        val eventDiffUtil = EventDiffUtil(events,this.events)
-        val diffUtilResult = DiffUtil.calculateDiff(eventDiffUtil)
         this.events = events
-        diffUtilResult.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder (private val binding: ItemEventLayoutBinding): RecyclerView.ViewHolder(binding.root) {

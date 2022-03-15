@@ -1,9 +1,7 @@
 package com.example.deswita.ui.mainmenu.event
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,19 +44,7 @@ class EventFragment : Fragment(), View.OnClickListener {
         initialRecyclerView()
         setDate()
 
-        val events = listOf(
-            Event(1,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(2,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(3,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(4,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(1,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(2,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(3,"post_1","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            Event(4,"post_2","12 Desember 2021","Bali event festival","Bali,Indonesia","new open-source projects and other ways of contributing to the community. If you have used our component in your project we would be extremely happy"),
-            )
-
-        eventAdapter.setData(events)
-
+        eventAdapter.setData(mainViewModel.getEvent())
 
         binding.btnEventCalendar.setOnClickListener(this)
         binding.fabEvent.setOnClickListener(this)
@@ -69,6 +55,8 @@ class EventFragment : Fragment(), View.OnClickListener {
     private fun setDate() {
         mainViewModel.date.observe(requireActivity(),{
             binding.tvDateEvent.text = it
+
+            eventAdapter.setData(mainViewModel.getEvent())
         })
     }
 
@@ -84,6 +72,7 @@ class EventFragment : Fragment(), View.OnClickListener {
     private fun initialRecyclerView() {
         binding.rvEvent.layoutManager = LinearLayoutManager(requireContext())
         binding.rvEvent.setHasFixedSize(true)
+        binding.rvEvent.recycledViewPool.clear()
         binding.rvEvent.adapter = eventAdapter
 
         eventAdapter.setOnClickItemCallback(object: EventAdapter.OnClickItemCallback{

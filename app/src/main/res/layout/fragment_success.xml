@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/sheetChangePassword"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_bottom_sheet_round_white"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:id="@+id/textView23"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Kata Sandi Diubah"
+        android:textSize="24sp" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:lottie_rawRes="@raw/confetti"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:background="@drawable/bg_round_blue_dark"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="55dp" />
+
+</LinearLayout>

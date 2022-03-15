@@ -14,5 +14,6 @@ data class Story(
     var contentImage: String,
     var profile: String,
     var likeTotal: Int,
-    var commentTotal: Int
+    var commentTotal: Int,
+    var comments: List<Comment>
 ) : Parcelable
