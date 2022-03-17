@@ -2,6 +2,7 @@ package com.example.deswita.ui.mainmenu.event
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ import com.example.deswita.models.Event
 import com.example.deswita.ui.MainViewModel
 import com.example.deswita.ui.event.EventActivity
 import com.google.android.material.appbar.AppBarLayout
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EventFragment : Fragment(), View.OnClickListener {
 
@@ -22,6 +25,11 @@ class EventFragment : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!
     private lateinit var eventAdapter: EventAdapter
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var date: String
+
+    companion object {
+        const val EXTRA_DATE = "extra_date"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,22 +50,31 @@ class EventFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         initialRecyclerView()
-        setDate()
+
+        if(savedInstanceState != null) {
+            date = savedInstanceState.getString(EXTRA_DATE).toString()
+            binding.tvDateEvent.text = date
+        }else {
+            setDate(Date())
+        }
 
         eventAdapter.setData(mainViewModel.getEvent())
-
         binding.btnEventCalendar.setOnClickListener(this)
         binding.fabEvent.setOnClickListener(this)
 
         recyclerViewScrollListener()
     }
 
-    private fun setDate() {
-        mainViewModel.date.observe(requireActivity(),{
-            binding.tvDateEvent.text = it
+    private fun setDate(dt: Date) {
+        val sdf = SimpleDateFormat("dd MMMM yyyy")
+        val currentDate = sdf.format(dt)
+        date = currentDate
+        binding.tvDateEvent.text = date
+    }
 
-            eventAdapter.setData(mainViewModel.getEvent())
-        })
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString(EXTRA_DATE,date)
+        super.onSaveInstanceState(outState)
     }
 
     private fun recyclerViewScrollListener() {
@@ -88,7 +105,17 @@ class EventFragment : Fragment(), View.OnClickListener {
         when(v?.id) {
             binding.btnEventCalendar.id -> {
                 val calendarFragment = CalendarFragment()
+
+                val bundle = Bundle()
+                bundle.putString(EXTRA_DATE,date)
+                calendarFragment.arguments = bundle
+
                 calendarFragment.show(childFragmentManager,CalendarFragment::class.java.simpleName)
+                calendarFragment.setOnClickItemCallback(object: CalendarFragment.OnClickItemCallback{
+                    override fun onClick(dt: Date) {
+                        setDate(dt)
+                    }
+                })
             }
             binding.fabEvent.id ->{
                 activity?.let {
@@ -98,4 +125,7 @@ class EventFragment : Fragment(), View.OnClickListener {
             }
         }
     }
+
+
+
 }

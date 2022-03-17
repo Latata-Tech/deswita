@@ -81,6 +81,19 @@
             android:name=".ui.WelcomeActivity"
             android:exported="true"
             android:theme="@style/Theme.Deswita.NoActionBar.Fullscreen" />
+
+        <provider
+            android:name=".GenericFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
     </application>
+
+
 
 </manifest>

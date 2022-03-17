@@ -92,12 +92,23 @@
 
             </androidx.cardview.widget.CardView>
 
+            <ImageButton
+                android:id="@+id/btnShare"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_round_button"
+                android:src="@drawable/ic_baseline_share_24"
+                app:layout_constraintBottom_toTopOf="@+id/cardView4"
+                app:layout_constraintEnd_toEndOf="@+id/cardView4"
+                app:tint="@color/white" />
+
             <androidx.cardview.widget.CardView
-                android:layout_marginBottom="50dp"
+                android:id="@+id/cardView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="70dp"
                 android:layout_marginEnd="16dp"
                 android:background="@color/grey"
                 app:cardCornerRadius="10dp"
@@ -218,10 +229,10 @@
 
                     <TextView
                         android:id="@+id/tvLocation"
-                        android:drawablePadding="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_location"
+                        android:drawablePadding="10dp"
                         android:drawableTint="@color/blue_dark_second"
                         android:text="Bali,indonesia"
                         app:layout_constraintStart_toStartOf="parent"

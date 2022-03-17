@@ -60,14 +60,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     passwordData == mainViewModel.password && usernameData == mainViewModel.username ->{
                         startActivity(Intent(this@LoginActivity,MainActivity::class.java))
                     }
-                    passwordData != passwordUser ||  usernameData != usernameLogin  ->{
+                    passwordData != passwordUser || usernameData != usernameLogin  ->{
                         binding.password.error = "Username or Password not valid"
                     }
-                   passwordData == passwordUser && usernameData == usernameLogin  ->{
+                   passwordData == passwordUser && usernameData == usernameLogin ->{
                        var intent = Intent(this,MainActivity::class.java)
                        intent.putExtra(EXTRA_USER, usernameLogin)
                        startActivity(intent)
-
                     }
                 }
 
