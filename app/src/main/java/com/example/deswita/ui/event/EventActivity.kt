@@ -1,5 +1,7 @@
 package com.example.deswita.ui.event
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import coil.load
@@ -16,6 +18,7 @@ class EventActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_EVENT = "extra_event"
+        const val EXTRA_SHARE = "extra_share"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,19 @@ class EventActivity : AppCompatActivity() {
 
         binding.btnBack.setOnClickListener {
             onBackPressed()
+        }
+
+        binding.btnShare.setOnClickListener {
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+
+                putExtra(Intent.EXTRA_TEXT,"${event.name.CapitalizeAllWord()} \n ${event.description.CapitalizeFirstWord()} \n\n ${event.location.CapitalizeFirstWord()}")
+                type = "text/plain"
+
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            }
+            startActivity(Intent.createChooser(shareIntent,"Pilih dong"))
         }
     }
 }
