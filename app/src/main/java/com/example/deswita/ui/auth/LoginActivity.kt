@@ -57,13 +57,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     passwordData.length<5 ->{
                         binding.password.error = "Password must be longer than 5"
                     }
-                    passwordData != passwordUser || usernameData != usernameLogin  ->{
+                    passwordData == mainViewModel.password && usernameData == mainViewModel.username ->{
+                        startActivity(Intent(this@LoginActivity,MainActivity::class.java))
+                    }
+                    passwordData != passwordUser ||  usernameData != usernameLogin  ->{
                         binding.password.error = "Username or Password not valid"
                     }
-                   passwordData == passwordUser || usernameData == usernameLogin ->{
+                   passwordData == passwordUser && usernameData == usernameLogin  ->{
                        var intent = Intent(this,MainActivity::class.java)
                        intent.putExtra(EXTRA_USER, usernameLogin)
                        startActivity(intent)
+
                     }
                 }
 

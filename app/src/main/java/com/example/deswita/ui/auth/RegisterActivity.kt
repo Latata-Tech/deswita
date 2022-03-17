@@ -12,9 +12,6 @@ import com.example.deswita.R
 import com.example.deswita.databinding.ActivityRegisterBinding
 import com.example.deswita.ui.MainActivity
 
-
-
-
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityRegisterBinding
@@ -48,20 +45,24 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnRegister.id -> {
 
                 when {
-                    fullNameReg.isEmpty()->{
+                    fullNameReg.isEmpty() ->{
                         binding.name.error = "Field required"
                     }
                     usernameReg.isEmpty() -> {
                         binding.username.error = "Field required"
                     }
-                    passwordReg.length<5 -> {
+                    passwordReg.isEmpty() || passwordReg.length<5 -> {
                         binding.password.error = "Password must be longer than 5"
                     }
-                    fullNameReg.isNotBlank() && usernameReg.isNotBlank() && passwordReg.isNotBlank()->{
-                        startActivity(Intent(this@RegisterActivity,LoginActivity::class.java))
+                    fullNameReg.isNotEmpty() || usernameReg.isNotEmpty() || passwordReg.isNotEmpty() ->{
                         Toast.makeText(this, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
+                        Intent(this, LoginActivity::class.java).also {
+                            it.putExtra("EXTRA_NAME", fullNameReg)
+                            it.putExtra("EXTRA_USER", usernameReg)
+                            it.putExtra("EXTRA_PASSWORD", passwordReg)
+                            startActivity(it)
+                        }
                     }
-
                 }
                 val  sharedPref: SharedPreferences = this.getSharedPreferences("nama", Context.MODE_PRIVATE)
                 val editor = sharedPref.edit()
@@ -70,37 +71,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
             }
         }
-
-        Intent(this, LoginActivity::class.java).also {
-            it.putExtra("EXTRA_NAME", fullNameReg)
-            it.putExtra("EXTRA_USER", usernameReg)
-            it.putExtra("EXTRA_PASSWORD", passwordReg)
-            startActivity(it)
-        }
-
-
-
     }
-
-
-
-
-//    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
-//        super.onSaveInstanceState(outState)
-//
-//        val data = getDataRegis()
-//
-//        if(data != null){
-//            outState.putString("data",data.toString())
-//        }
-//
-//    }
-
-//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        val data = savedInstanceState.gets
-//    }
-
 
 }
 
