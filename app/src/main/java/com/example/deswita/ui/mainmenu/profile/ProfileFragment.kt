@@ -1,5 +1,6 @@
 package com.example.deswita.ui.mainmenu.profile
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.deswita.R
 import com.example.deswita.adapter.ProfilePagerAdapter
 import com.example.deswita.databinding.FragmentProfileBinding
+import com.example.deswita.ui.auth.RegisterActivity
 import com.example.deswita.ui.destination.AddDestinationActivity
 import com.example.deswita.ui.mainmenu.event.AddEventActivity
 import com.example.deswita.ui.mainmenu.home.HomeFragment
@@ -41,7 +43,10 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater,container,false)
-
+        var sharedPref = activity?.getSharedPreferences("nama", Context.MODE_PRIVATE )
+        var editor = sharedPref?.edit()
+        binding.tvName.text = sharedPref?.getString("nama","")
+        editor?.commit()
         return binding.root
     }
 

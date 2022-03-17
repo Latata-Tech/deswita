@@ -1,5 +1,6 @@
 package com.example.deswita.ui.setting
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -15,6 +16,15 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var sharedPref = this.getSharedPreferences("nama", Context.MODE_PRIVATE )
+        var editor = sharedPref?.edit()
+        binding.tvName.text = sharedPref?.getString("nama","")
+
+        binding.tvEmail.text = sharedPref?.getString("nama","") +"@gmail.com"
+
+
+        editor?.commit()
 
         binding.btnBack.setOnClickListener {
             onBackPressed()
