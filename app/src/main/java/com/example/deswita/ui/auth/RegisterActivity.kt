@@ -1,6 +1,8 @@
 package com.example.deswita.ui.auth
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -23,6 +25,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val  sharedPref = this.getSharedPreferences("nama", Context.MODE_PRIVATE)
+
         binding.btnRegister.setOnClickListener(this)
 
     }
@@ -34,9 +38,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         finish()
     }
 
-
-
-
     override fun onClick(v: View?) {
 
         val fullNameReg = binding.name.text?.trim().toString()
@@ -44,9 +45,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         val passwordReg = binding.password.text?.trim().toString()
 
         when(v?.id) {
-
             binding.btnRegister.id -> {
-
 
                 when {
                     fullNameReg.isEmpty()->{
@@ -64,11 +63,12 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     }
 
                 }
-
-
+                val  sharedPref: SharedPreferences = this.getSharedPreferences("nama", Context.MODE_PRIVATE)
+                val editor = sharedPref.edit()
+                editor.putString("nama",fullNameReg)
+                editor.commit()
 
             }
-
         }
 
         Intent(this, LoginActivity::class.java).also {
