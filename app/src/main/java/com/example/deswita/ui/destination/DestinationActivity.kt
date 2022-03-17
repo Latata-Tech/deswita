@@ -89,6 +89,19 @@ class DestinationActivity : AppCompatActivity() {
             Toast.makeText(this, "on progress", Toast.LENGTH_SHORT).show()
         }
 
+        binding.fabShare.setOnClickListener {
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+
+                putExtra(Intent.EXTRA_TEXT,"${destination.name.CapitalizeAllWord()} \n\n ${destination.location.CapitalizeFirstWord()} \n ${destination.distance} km")
+                type = "text/plain"
+
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            }
+            startActivity(Intent.createChooser(shareIntent,"Pilih dong"))
+        }
+
     }
 
     private fun initRecyclerviewGalery() {
