@@ -1,0 +1,6 @@
+package com.example.deswita.constant
+
+const val JOB_ID_TIMER = 201
+const val CURRENT_TIMER_RUNNING = "CURRENT_TIMER_RUNNING"
+const val TIMER_RUNNING_PROGRESS = "TIMER_RUNNING_PROGRESS"
+const val TIMER_RUNNING_FINISH = "TIMER_RUNNING_FINISH"

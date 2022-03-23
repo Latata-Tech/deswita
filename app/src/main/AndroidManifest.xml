@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.deswita">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
+        <service
+            android:name=".service.TimerService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            />
         <activity
-            android:theme="@style/Theme.Deswita.NoActionBar"
             android:name=".ui.setting.SettingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Deswita.NoActionBar" />
         <activity
             android:name=".ui.story.StoryActivity"
             android:exported="false"
@@ -89,11 +96,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-
     </application>
-
-
 
 </manifest>
