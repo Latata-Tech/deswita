@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
@@ -12,6 +15,7 @@ import com.example.deswita.ui.auth.LoginActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
+import com.example.deswita.ui.mainmenu.home.fragments.RecommendedFragment
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
 import com.example.deswita.ui.mainmenu.story.StoryFragment
 import com.example.deswita.ui.notification.NotificationActivity
@@ -30,6 +34,22 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Dialog
+        val view2 = View.inflate(this@MainActivity, R.layout.activity_holiday_dialog, null)
+
+        val builder  = AlertDialog.Builder(this@MainActivity)
+        builder.setView(view2)
+
+        val dialog = builder.create()
+        dialog.show()
+        dialog.window?.setBackgroundDrawableResource(R.drawable.bg_holiday_dialog)
+
+        val btnNantiAja = dialog.findViewById<Button>(R.id.btnCanceDialog)
+        btnNantiAja?.setOnClickListener {
+            dialog.dismiss()
+        }
+
 
         username = intent.getStringExtra(EXTRA_USER).toString()
         Log.i("USERNAME", username)
@@ -57,7 +77,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             val intent = Intent(this, NotificationActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
