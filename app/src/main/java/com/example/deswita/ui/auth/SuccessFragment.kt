@@ -1,5 +1,6 @@
 package com.example.deswita.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,6 +30,8 @@ class SuccessFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.btnLogin?.setOnClickListener {
+            val intent = Intent(context,LoginActivity::class.java)
+            activity?.startActivity(intent)
             dismiss()
         }
     }

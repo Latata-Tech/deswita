@@ -1,13 +1,16 @@
 package com.example.deswita.ui.auth
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentChangePasswordBinding
+import com.example.deswita.service.OtpReceiver
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ChangePasswordFragment : BottomSheetDialogFragment() {
@@ -31,10 +34,10 @@ class ChangePasswordFragment : BottomSheetDialogFragment() {
             if(binding.editTextEmail.text.trim().toString().isEmpty()) {
                 binding.editTextEmail.error = "Field Required"
             }else {
-                val changePassword2Fragment = ChangePassword2Fragment()
-                changePassword2Fragment.show(parentFragmentManager,ChangePassword2Fragment::class.java.simpleName)
 
-                dismiss()
+                binding.btnSend.visibility = View.GONE
+                binding.tvSendOtp.visibility = View.VISIBLE
+
             }
         }
 

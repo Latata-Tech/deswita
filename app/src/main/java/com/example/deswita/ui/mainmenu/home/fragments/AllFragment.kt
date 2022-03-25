@@ -3,6 +3,7 @@ package com.example.deswita.ui.mainmenu.home.fragments
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -62,13 +63,18 @@ class AllFragment : Fragment() {
         binding.rvTopDestinations.setHasFixedSize(true)
         binding.rvTopDestinations.adapter = topDestinationAdapter
 
+        var myThread: Runnable = object: Runnable{
+            override fun run() {
+                TODO("Not yet implemented")
+            }
+        }
 
         topDestinationAdapter.setData(mainViewModel.destinationDummy1)
 
         topDestinationAdapter.setOnClickItemCallback(object: TopDestinationAdapter.OnClickItemCallback {
             override fun onClick(destination: Destination) {
                 val intent = Intent(requireContext(),DestinationActivity::class.java)
-                intent.putExtra(DestinationActivity.EXTRA_DESTINATION,destination)
+
                 startActivity(intent)
             }
         })

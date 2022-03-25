@@ -14,8 +14,9 @@ import java.util.*
 
 class TimerService : JobIntentService() {
     override fun onHandleWork(intent: Intent) {
-        var timer = 60
+        var timer = 10
         do {
+            Thread.sleep(500L)
             timer -= 1
             val intentTimer = Intent(CURRENT_TIMER_RUNNING)
             intentTimer.putExtra(TIMER_RUNNING_PROGRESS, timer)

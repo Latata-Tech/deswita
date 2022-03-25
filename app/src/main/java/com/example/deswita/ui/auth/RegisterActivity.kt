@@ -1,16 +1,24 @@
 package com.example.deswita.ui.auth
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.provider.Telephony
+import android.telephony.SmsManager
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityRegisterBinding
-import com.example.deswita.ui.MainActivity
+import com.example.deswita.service.OtpReceiver
+import com.example.deswita.utils.PermissionManager
+
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -26,6 +34,13 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.btnRegister.setOnClickListener(this)
 
+        val message = intent.getStringExtra(EXTRA_SMS_MESSAGE)
+        binding.name.setText(message)
+
+        var SMSReceiver = OtpReceiver()
+        var filter2 = IntentFilter()
+        filter2.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
+        registerReceiver(SMSReceiver, filter2)
     }
 
     fun loginActivity(view : View)
@@ -69,10 +84,66 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 editor.putString("nama",fullNameReg)
                 editor.commit()
 
+                PermissionManager.check(this, Manifest.permission.RECEIVE_SMS, SMS_REQUEST_CODE)
             }
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == SMS_REQUEST_CODE) {
+            when {
+                grantResults[0] == PackageManager.PERMISSION_GRANTED -> Toast.makeText(this, "Sms receiver permission diterima", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(this, "Sms receiver permission ditolak", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+//    protected fun sendSMSMessage() {
+//        phoneNo = "085273580367"
+//        message = "harap dirahasiakan OTP kamu dari orang lain \n #123"
+//        if (ContextCompat.checkSelfPermission(this,Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED ) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale( this, Manifest.permission.SEND_SMS ) ) {
+//            } else {
+//                ActivityCompat.requestPermissions( this, arrayOf(Manifest.permission.SEND_SMS), MY_PERMISSIONS_REQUEST_SEND_SMS )
+//            }
+//        }
+//    }
+//
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        when (requestCode) {
+//            MY_PERMISSIONS_REQUEST_SEND_SMS -> {
+//                if (grantResults.size > 0
+//                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+//                ) {
+//                    val smsManager: SmsManager = SmsManager.getDefault()
+//                    smsManager.sendTextMessage(phoneNo, "55555", message, null, null)
+//                    Toast.makeText(
+//                        applicationContext, "SMS sent.",
+//                        Toast.LENGTH_LONG
+//                    ).show()
+//                } else {
+//                    Toast.makeText(
+//                        applicationContext,
+//                        "SMS faild, please try again.", Toast.LENGTH_LONG
+//                    ).show()
+//                    return
+//                }
+//            }
+//        }
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//    }
+
+
+    companion object {
+        private const val SMS_REQUEST_CODE = 101
+        val EXTRA_SMS_NO = "EXTRA_SMS_NO"
+        val EXTRA_SMS_MESSAGE = "EXTRA_SMS_MESSAGE"
+    }
 }
 
 

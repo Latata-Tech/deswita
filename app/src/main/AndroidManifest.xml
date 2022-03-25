@@ -3,6 +3,9 @@
     package="com.example.deswita">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
@@ -10,11 +13,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
+        <activity
+            android:theme="@style/Theme.Deswita.NoActionBar"
+            android:name=".ui.auth.OtpActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".service.OtpReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".service.TimerService"
             android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            />
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
         <activity
             android:name=".ui.setting.SettingActivity"
             android:exported="false"
