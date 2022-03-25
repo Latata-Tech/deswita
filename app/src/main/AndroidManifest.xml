@@ -18,6 +18,11 @@
             android:name=".ui.auth.OtpActivity"
             android:exported="false" />
 
+        <activity
+            android:theme="@style/Theme.Deswita.NoActionBar"
+            android:name=".ui.notification.HolidayDialog"
+            android:exported="false" />
+
         <receiver
             android:name=".service.OtpReceiver"
             android:enabled="true"
