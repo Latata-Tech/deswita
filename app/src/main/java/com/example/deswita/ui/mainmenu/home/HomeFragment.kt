@@ -52,10 +52,8 @@ class HomeFragment : Fragment() {
         chipFilterClickHandler()
 
         homeViewModel.activeFilter.observe(requireActivity(), {
-
             chipFilterChangeHandler(it)
             fragmentChangeHandler(it)
-
         })
 
     }

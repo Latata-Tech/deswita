@@ -9,12 +9,14 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
 import com.example.deswita.ui.auth.LoginActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
+import com.example.deswita.ui.mainmenu.home.HomeViewModel
 import com.example.deswita.ui.mainmenu.home.fragments.AllFragment
 import com.example.deswita.ui.mainmenu.home.fragments.RecommendedFragment
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragment: Fragment
+    private lateinit var homeViewModel: HomeViewModel
 
     private lateinit var username : String
 
@@ -41,6 +44,8 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         //Dialog
         val view2 = View.inflate(this@MainActivity, R.layout.activity_holiday_dialog, null)
@@ -64,11 +69,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         //dialog to recommend
         val btnCek = dialog.findViewById<Button>(R.id.btnCek)
         btnCek?.setOnClickListener {
-            fragment = RecommendedFragment()
-            replaceFragment(fragment, fragment::class.java.simpleName)
+            homeViewModel.setActiveFilter(R.id.chip_filter_recommended)
             dialog.dismiss()
         }
-
 
         username = intent.getStringExtra(EXTRA_USER).toString()
         Log.i("USERNAME", username)
