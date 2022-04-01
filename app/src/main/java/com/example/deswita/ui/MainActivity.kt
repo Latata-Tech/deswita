@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             dialog.dismiss()
         }
 
+        //dialog to recommend
         val btnCek = dialog.findViewById<Button>(R.id.btnCek)
         btnCek?.setOnClickListener {
             fragment = RecommendedFragment()
