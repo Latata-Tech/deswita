@@ -15,6 +15,7 @@ import com.example.deswita.ui.auth.LoginActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
+import com.example.deswita.ui.mainmenu.home.fragments.AllFragment
 import com.example.deswita.ui.mainmenu.home.fragments.RecommendedFragment
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
 import com.example.deswita.ui.mainmenu.story.StoryFragment
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     private val notificationTime = Calendar.getInstance().timeInMillis + 5000
     private var notified = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,6 +58,13 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         val btnNantiAja = dialog.findViewById<Button>(R.id.btnCanceDialog)
         btnNantiAja?.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val btnCek = dialog.findViewById<Button>(R.id.btnCek)
+        btnCek?.setOnClickListener {
+            fragment = RecommendedFragment()
+            replaceFragment(fragment, fragment::class.java.simpleName)
             dialog.dismiss()
         }
 
