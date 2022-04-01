@@ -30,7 +30,11 @@ class EventActivity : AppCompatActivity() {
 
         event = intent.getParcelableExtra<Event>(EXTRA_EVENT) as Event
 
-        binding.ivEvent.load(Utils.getImageDrawable(this,event.image))
+        try {
+            binding.ivEvent.load(event.image)
+        }catch (e: Exception) {
+            binding.ivEvent.load(Utils.getImageDrawable(this,event.image))
+        }
 
         binding.tvTitle.text = event.name.CapitalizeAllWord()
         binding.tvLocation.text = event.location.CapitalizeFirstWord()
