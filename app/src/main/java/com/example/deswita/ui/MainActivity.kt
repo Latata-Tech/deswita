@@ -20,7 +20,9 @@ import com.example.deswita.ui.mainmenu.profile.ProfileFragment
 import com.example.deswita.ui.mainmenu.story.StoryFragment
 import com.example.deswita.ui.notification.NotificationActivity
 import com.example.deswita.ui.notification.NotificationAdapter
+import com.example.deswita.utils.NotificationScheduleUtils
 import com.google.android.material.navigation.NavigationBarView
+import java.util.*
 
 const val EXTRA_USER = "EXTRA_USER"
 const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
@@ -31,12 +33,19 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     private lateinit var username : String
 
+    private val notificationTime = Calendar.getInstance().timeInMillis + 5000
+    private var notified = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //Dialog
         val view2 = View.inflate(this@MainActivity, R.layout.activity_holiday_dialog, null)
+
+        if (!notified) {
+            NotificationScheduleUtils().setNotification(notificationTime, this@MainActivity)
+        }
 
         val builder  = AlertDialog.Builder(this@MainActivity)
         builder.setView(view2)
