@@ -10,6 +10,7 @@ import com.example.deswita.databinding.ActivityEventBinding
 import com.example.deswita.models.Event
 import com.example.deswita.utils.Utils
 import com.example.deswita.utils.*
+import java.lang.Exception
 
 class EventActivity : AppCompatActivity() {
 
@@ -30,9 +31,10 @@ class EventActivity : AppCompatActivity() {
         event = intent.getParcelableExtra<Event>(EXTRA_EVENT) as Event
 
         binding.ivEvent.load(Utils.getImageDrawable(this,event.image))
+
         binding.tvTitle.text = event.name.CapitalizeAllWord()
         binding.tvLocation.text = event.location.CapitalizeFirstWord()
-
+        binding.tvDescription.text = event.description.CapitalizeFirstWord()
 
         binding.btnBack.setOnClickListener {
             onBackPressed()

@@ -11,5 +11,5 @@ data class Event(
     var date: String,
     var name: String,
     var location: String,
-    var description: String
+    var description: String,
 ) : Parcelable
