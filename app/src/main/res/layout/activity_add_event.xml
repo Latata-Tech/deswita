@@ -74,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="211dp"
                     android:layout_marginTop="10dp"
+                    android:scaleType="centerCrop"
                     android:background="@drawable/round_corner"
                     android:src="@drawable/placeholder_image"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -82,13 +83,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                     app:layout_constraintVertical_bias="0.0" />
-
-                <Button
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/btnSelectImage"
-                    android:layout_width="wrap_content"
-                    android:text="Select"
-                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,9 +93,10 @@
                     android:textColor="@color/black" />
 
                 <EditText
+                    android:padding="10dp"
                     android:id="@+id/edtLocationAddEvent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/round_corner_edit_text" />
 
                 <TextView
@@ -113,9 +108,10 @@
                     android:textColor="@color/black" />
 
                 <EditText
+                    android:padding="10dp"
                     android:id="@+id/edtTitleAddEvent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/round_corner_edit_text" />
 
                 <TextView
@@ -127,6 +123,8 @@
                     android:textColor="@color/black" />
 
                 <EditText
+                    android:padding="10dp"
+                    android:gravity="top"
                     android:id="@+id/edtDescriptionAddEvent"
                     android:layout_width="match_parent"
                     android:layout_height="136dp"
@@ -140,12 +138,33 @@
                     android:text="Date"
                     android:textColor="@color/black" />
 
-                <EditText
-                    android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
-                    android:id="@+id/edtDateAddEvent"
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"
-                    android:background="@drawable/round_corner_edit_text" />
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/tvDateEvent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12 Desember 2021"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <ImageButton
+                        android:id="@+id/btnEventCalendar"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:backgroundTint="@color/blue_dark"
+                        android:src="@drawable/ic_baseline_calendar_month_24"
+                        android:tint="@color/black_overlay"
+                        app:tint="@color/black_overlay"
+                        tools:ignore="UseAppTint" />
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/btn_add_event"

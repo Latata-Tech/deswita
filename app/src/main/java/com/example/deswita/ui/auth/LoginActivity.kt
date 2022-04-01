@@ -54,7 +54,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     usernameData.isEmpty() -> {
                         binding.username.error = "Field required"
                     }
-                    passwordData.length<5 ->{
+                    passwordData.length < 5 ->{
                         binding.password.error = "Password must be longer than 5"
                     }
                     passwordData != passwordUser || usernameData != usernameLogin  ->{
@@ -66,6 +66,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                        startActivity(intent)
                     }
                 }
+
+//                var intent = Intent(this,MainActivity::class.java)
+//                startActivity(intent)
 
             }
 

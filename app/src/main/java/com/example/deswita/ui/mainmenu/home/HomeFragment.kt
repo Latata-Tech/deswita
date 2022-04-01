@@ -60,6 +60,21 @@ class HomeFragment : Fragment() {
 
     }
 
+    private fun chipFilterChangeHandler(chipId: Int) {
+        binding.chipGroup.clearCheck()
+        chipsFilter.forEach { chip ->
+            chip.isChecked = chip.id == chipId
+        }
+    }
+
+    private fun chipFilterClickHandler() {
+        chipsFilter.forEach { chip ->
+            chip.setOnClickListener {
+                homeViewModel.setActiveFilter( chip.id )
+            }
+        }
+    }
+
     private fun fragmentChangeHandler(chipId: Int) {
 
         var fragment: Fragment = AllFragment()
@@ -79,21 +94,5 @@ class HomeFragment : Fragment() {
 
 
     }
-
-    private fun chipFilterChangeHandler(chipId: Int) {
-        binding.chipGroup.clearCheck()
-        chipsFilter.forEach { chip ->
-            chip.isChecked = chip.id == chipId
-        }
-    }
-
-    private fun chipFilterClickHandler() {
-        chipsFilter.forEach { chip ->
-            chip.setOnClickListener {
-                homeViewModel.setActiveFilter( chip.id )
-            }
-        }
-    }
-
 
 }
