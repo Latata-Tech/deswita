@@ -1,13 +1,20 @@
 package com.example.deswita.ui.event
 
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.media.RingtoneManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import coil.load
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityEventBinding
 import com.example.deswita.models.Event
+import com.example.deswita.ui.MainActivity
 import com.example.deswita.utils.Utils
 import com.example.deswita.utils.*
 import java.lang.Exception

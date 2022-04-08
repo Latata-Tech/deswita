@@ -1,5 +1,10 @@
 package com.example.deswita.ui
 
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
+import android.app.job.JobService
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,11 +12,13 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
+import com.example.deswita.service.WeatherService
 import com.example.deswita.ui.auth.LoginActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
@@ -99,6 +106,19 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             val intent = Intent(this, NotificationActivity::class.java)
             startActivity(intent)
         }
+
+        startWeatherJob()
+    }
+
+    private fun startWeatherJob() {
+        val serviceComponent = ComponentName(this,WeatherService::class.java)
+        val jobInfo = JobInfo.Builder(100,serviceComponent)
+            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
+            .setRequiresDeviceIdle(true)
+            .setPeriodic(15*60*1000)
+        val jobWeather = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        jobWeather.schedule(jobInfo.build())
+        Toast.makeText(this,"job service jalan",Toast.LENGTH_SHORT).show()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
