@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
 import com.example.deswita.service.WeatherService
+import com.example.deswita.service.NotificationSchedulerService
 import com.example.deswita.ui.auth.LoginActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
@@ -37,29 +38,19 @@ import java.util.*
 const val EXTRA_USER = "EXTRA_USER"
 const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragment: Fragment
     private lateinit var homeViewModel: HomeViewModel
-
     private lateinit var username : String
-
-    private val notificationTime = Calendar.getInstance().timeInMillis + 5000
-    private var notified = false
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-
+        val serviceNotificationSchedule = Intent(this, NotificationSchedulerService::class.java)
+        this.startService(serviceNotificationSchedule)
         //Dialog
         val view2 = View.inflate(this@MainActivity, R.layout.activity_holiday_dialog, null)
-
-        if (!notified) {
-            NotificationScheduleUtils().setNotification(notificationTime, this@MainActivity)
-        }
 
         val builder  = AlertDialog.Builder(this@MainActivity)
         builder.setView(view2)
