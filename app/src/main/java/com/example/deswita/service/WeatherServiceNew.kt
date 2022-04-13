@@ -1,7 +1,10 @@
 package com.example.deswita.service
 
+import android.app.Service
 import android.app.job.JobParameters
 import android.app.job.JobService
+import android.content.Intent
+import android.os.IBinder
 import android.util.Log
 import com.example.deswita.models.weatherResponse
 import com.example.deswita.utils.ApiConfig
@@ -9,10 +12,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WeatherService: JobService() {
+class WeatherServiceNew : JobService() {
+    val TAG = WeatherServiceNew::class.java
+    override fun onStartJob(p0: JobParameters?): Boolean {
+        Log.i(TAG.toString(), "JOB JALAN")
+        getWeather(p0)
+        return true
+    }
 
-    override fun onStartJob(params: JobParameters?): Boolean {
-        Log.e("JOB","START JOB")
+    override fun onStopJob(p0: JobParameters?): Boolean {
         return true
     }
 
@@ -39,10 +47,5 @@ class WeatherService: JobService() {
                 jobFinished(param,true)
             }
         })
-    }
-
-    override fun onStopJob(params: JobParameters?): Boolean {
-        Log.e("JOB","STOP JOB")
-        return true
     }
 }

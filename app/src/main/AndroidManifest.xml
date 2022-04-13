@@ -15,20 +15,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-
-        <service android:name=".service.WeatherService"
+        <service
+            android:name=".service.WeatherServiceNew"
             android:enabled="true"
             android:exported="true"
-            android:permission="android.permission.BIND_JOB_SERVICE"/>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".service.NotificationSchedulerService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
         <receiver
             android:name=".service.BootReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
-
+            android:exported="true" />
         <receiver
             android:name=".service.NotificationScheduleReceiver"
             android:enabled="true"
