@@ -14,11 +14,18 @@ class MainViewModel : ViewModel() {
     private var _date = MutableLiveData<String>()
     val date: LiveData<String> get() = _date
 
+    private var _weather = MutableLiveData<weatherResponse>()
+    val weather: LiveData<weatherResponse> get() = _weather
+
     var username: String = "admin"
     var password: String = "admin"
 
     init {
         setDate(Date())
+    }
+
+    fun setWeather(weather: weatherResponse) {
+        _weather.postValue(weather)
     }
 
     fun setDate(date: Date) {

@@ -2,10 +2,7 @@ package com.example.deswita.ui
 
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
-import android.app.job.JobService
-import android.content.ComponentName
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,42 +15,50 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
+import com.example.deswita.models.weatherResponse
 import com.example.deswita.service.ExampleService
-import com.example.deswita.service.WeatherService
 import com.example.deswita.service.NotificationSchedulerService
-import com.example.deswita.ui.auth.LoginActivity
+import com.example.deswita.service.WeatherServiceNew
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
 import com.example.deswita.ui.mainmenu.home.HomeViewModel
-import com.example.deswita.ui.mainmenu.home.fragments.AllFragment
-import com.example.deswita.ui.mainmenu.home.fragments.RecommendedFragment
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
 import com.example.deswita.ui.mainmenu.story.StoryFragment
 import com.example.deswita.ui.notification.NotificationActivity
-import com.example.deswita.ui.notification.NotificationAdapter
-import com.example.deswita.utils.NotificationScheduleUtils
 import com.google.android.material.navigation.NavigationBarView
-import java.util.*
 
 const val EXTRA_USER = "EXTRA_USER"
 const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
+
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragment: Fragment
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var username : String
+    private lateinit var mainViewModel: MainViewModel
+    private lateinit var username: String
+
+    private val weatherReceiver = object: BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val weather = intent?.getParcelableExtra<weatherResponse>(WeatherServiceNew.EXTRA_WEATHER)
+            if(weather != null) {
+                mainViewModel.setWeather(weather)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         val serviceNotificationSchedule = Intent(this, NotificationSchedulerService::class.java)
         this.startService(serviceNotificationSchedule)
         //Dialog
         val view2 = View.inflate(this@MainActivity, R.layout.activity_holiday_dialog, null)
 
-        val builder  = AlertDialog.Builder(this@MainActivity)
+        val builder = AlertDialog.Builder(this@MainActivity)
         builder.setView(view2)
 
         val dialog = builder.create()
@@ -90,45 +95,30 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         binding.bottomNavigationView.setOnItemSelectedListener(this)
 
         binding.btnAppBarSearch.setOnClickListener {
-//            val intent = Intent(this, SearchActivity::class.java)
-//            startActivity(intent)
-            startExample()
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
         }
 
         binding.btnAppBarNotification.setOnClickListener {
-//            val intent = Intent(this, NotificationActivity::class.java)
-//            startActivity(intent)
-            val job = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-            job.cancel(100)
+            val intent = Intent(this, NotificationActivity::class.java)
+            startActivity(intent)
         }
-    }
 
-    private fun startExample() {
-        val serviceComponent = ComponentName(this,ExampleService::class.java)
-        val jobInfo = JobInfo.Builder(202,serviceComponent)
-            .setRequiresDeviceIdle(true)
-            .setRequiresCharging(false)
-            .setPeriodic(15*60*1000)
-        val jobWeather = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-        val result = jobWeather.schedule(jobInfo.build())
-        Log.e("JOB","JOB DI TEKAN START")
-        if(result == JobScheduler.RESULT_SUCCESS) {
-            Log.e("JOB","SUCCESS")
-        }
+        startWeatherJob()
+
+        val weatherIntentFilter = IntentFilter(WeatherServiceNew.EXTRA_INTENT)
+        registerReceiver(weatherReceiver,weatherIntentFilter)
     }
 
     private fun startWeatherJob() {
-        val serviceComponent = ComponentName(this,WeatherService::class.java)
-        val jobInfo = JobInfo.Builder(100,serviceComponent)
+        val serviceComponent = ComponentName(this, WeatherServiceNew::class.java)
+        val jobInfo = JobInfo.Builder(3333, serviceComponent)
             .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
-            .setRequiresDeviceIdle(true)
+            .setRequiresDeviceIdle(false)
             .setRequiresCharging(false)
-            .setPeriodic(15*60*1000)
-            .setPersisted(true)
+            .setPeriodic(15 * 60 * 1000)
         val jobWeather = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         jobWeather.schedule(jobInfo.build())
-        Log.e("JOB","JOB DI TEKAN START")
-        Toast.makeText(this,"job service jalan",Toast.LENGTH_SHORT).show()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

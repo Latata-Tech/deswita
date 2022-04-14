@@ -26,10 +26,8 @@ class OtpActivity : AppCompatActivity() {
             val isFinish = intent?.getBooleanExtra(TIMER_RUNNING_FINISH,true)
 
             if(isFinish == true) {
-
                 val changePassword3Fragment = ChangePassword3Fragment()
                 changePassword3Fragment.show(supportFragmentManager,ChangePassword3Fragment::class.java.simpleName)
-
             }
         }
     }

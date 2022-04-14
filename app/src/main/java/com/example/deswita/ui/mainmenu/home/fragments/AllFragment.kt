@@ -1,9 +1,13 @@
 package com.example.deswita.ui.mainmenu.home.fragments
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +15,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import coil.load
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentAllBinding
 import com.example.deswita.models.Destination
 import com.example.deswita.models.Event
+import com.example.deswita.models.weatherResponse
+import com.example.deswita.service.WeatherServiceNew
 import com.example.deswita.ui.MainViewModel
 import com.example.deswita.ui.destination.DestinationActivity
 import com.example.deswita.ui.event.EventActivity
@@ -55,6 +62,18 @@ class AllFragment : Fragment() {
         initialRecyclerViewTopDestination()
         initialRecyclerViewTopEvent()
         initialRecyclerViewDestinations()
+        observeWeather()
+    }
+
+    private fun observeWeather() {
+        mainViewModel.weather.observe(requireActivity()) { weather ->
+            binding.progressGetWeather.visibility = View.GONE
+            binding.constraintLayoutWeather.visibility = View.VISIBLE
+            binding.tvWeatherLocation.text = weather.name
+            binding.ivWeatherIcon.load("https://openweathermap.org/img/w/${weather.weather?.get(0)?.icon}.png")
+            binding.tvTemp.text = "${weather.main?.temp?.minus(273)?.toInt()} C"
+            binding.tvWeatherDescription.text = weather.weather?.get(0)?.main
+        }
     }
 
     private fun initialRecyclerViewTopDestination() {

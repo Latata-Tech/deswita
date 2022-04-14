@@ -1,8 +1,11 @@
 package com.example.deswita.models
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class weatherResponse(
     @SerializedName("base")
     var base: String?,
@@ -30,4 +33,4 @@ data class weatherResponse(
     var weather: List<Weather>?,
     @SerializedName("wind")
     var wind: Wind?
-)
+) : Parcelable

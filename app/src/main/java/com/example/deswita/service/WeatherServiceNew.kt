@@ -1,7 +1,10 @@
 package com.example.deswita.service
 
+import android.app.Service
 import android.app.job.JobParameters
 import android.app.job.JobService
+import android.content.Intent
+import android.os.IBinder
 import android.util.Log
 import com.example.deswita.models.weatherResponse
 import com.example.deswita.utils.ApiConfig
@@ -9,10 +12,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WeatherService: JobService() {
+class WeatherServiceNew : JobService() {
 
-    override fun onStartJob(params: JobParameters?): Boolean {
-        Log.e("JOB","START JOB")
+    companion object {
+        const val EXTRA_INTENT = "extra_intent"
+        const val EXTRA_WEATHER = "extra_weather"
+    }
+
+    override fun onStartJob(p0: JobParameters?): Boolean {
+        Log.i("JOB", "JOB JALAN")
+        getWeather(p0)
+        return true
+    }
+
+    override fun onStopJob(p0: JobParameters?): Boolean {
         return true
     }
 
@@ -24,10 +37,12 @@ class WeatherService: JobService() {
                 response: Response<weatherResponse>
             ) {
                 if (response.isSuccessful) {
-                    val responseBody = response.body()
+                    val responseBody = response.body() as weatherResponse
                     if (responseBody != null) {
-                        Log.w("GET WEATER",responseBody.toString())
                         jobFinished(param,false)
+                        val intent = Intent(EXTRA_INTENT)
+                        intent.putExtra(EXTRA_WEATHER,responseBody)
+                        sendBroadcast(intent)
                     }
                 } else {
                     Log.e("GET WEATHER", "onFailure: ${response.message()}")
@@ -39,10 +54,5 @@ class WeatherService: JobService() {
                 jobFinished(param,true)
             }
         })
-    }
-
-    override fun onStopJob(params: JobParameters?): Boolean {
-        Log.e("JOB","STOP JOB")
-        return true
     }
 }

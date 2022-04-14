@@ -20,14 +20,89 @@
             android:layout_height="match_parent"
             android:paddingBottom="50dp">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTopDestinations"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
+                android:id="@+id/constraintLayoutWeather"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivLocation"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="16dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_location"
+                    android:tint="@color/blue_dark"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvWeatherLocation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvWeatherLocation"
+                    tools:ignore="UseAppTint" />
+
+                <TextView
+                    android:id="@+id/tvWeatherLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Medan"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ivLocation"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivWeatherIcon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_location"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvWeatherDescription"
+                    app:layout_constraintEnd_toStartOf="@+id/tvWeatherDescription"
+                    app:layout_constraintTop_toTopOf="@+id/tvTemp" />
+
+                <TextView
+                    android:id="@+id/tvTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="29c"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvWeatherDescription"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:id="@+id/tvWeatherDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="clear sky"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleSmall"
+                android:id="@+id/progressGetWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTopDestinations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayoutWeather" />
 
             <TextView
                 android:id="@+id/tvUpcomingEvent"
