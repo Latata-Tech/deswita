@@ -16,6 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
 
+        <service android:name=".service.ExampleService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+
+        </service>
+
         <service android:name=".service.WeatherService"
             android:enabled="true"
             android:exported="true"

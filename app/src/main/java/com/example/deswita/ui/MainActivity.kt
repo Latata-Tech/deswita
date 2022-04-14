@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
+import com.example.deswita.service.ExampleService
 import com.example.deswita.service.WeatherService
 import com.example.deswita.service.NotificationSchedulerService
 import com.example.deswita.ui.auth.LoginActivity
@@ -89,16 +90,31 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         binding.bottomNavigationView.setOnItemSelectedListener(this)
 
         binding.btnAppBarSearch.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, SearchActivity::class.java)
+//            startActivity(intent)
+            startExample()
         }
 
         binding.btnAppBarNotification.setOnClickListener {
-            val intent = Intent(this, NotificationActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(this, NotificationActivity::class.java)
+//            startActivity(intent)
+            val job = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+            job.cancel(100)
         }
+    }
 
-        startWeatherJob()
+    private fun startExample() {
+        val serviceComponent = ComponentName(this,ExampleService::class.java)
+        val jobInfo = JobInfo.Builder(202,serviceComponent)
+            .setRequiresDeviceIdle(true)
+            .setRequiresCharging(false)
+            .setPeriodic(15*60*1000)
+        val jobWeather = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
+        val result = jobWeather.schedule(jobInfo.build())
+        Log.e("JOB","JOB DI TEKAN START")
+        if(result == JobScheduler.RESULT_SUCCESS) {
+            Log.e("JOB","SUCCESS")
+        }
     }
 
     private fun startWeatherJob() {
@@ -106,9 +122,12 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         val jobInfo = JobInfo.Builder(100,serviceComponent)
             .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY)
             .setRequiresDeviceIdle(true)
+            .setRequiresCharging(false)
             .setPeriodic(15*60*1000)
+            .setPersisted(true)
         val jobWeather = getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
         jobWeather.schedule(jobInfo.build())
+        Log.e("JOB","JOB DI TEKAN START")
         Toast.makeText(this,"job service jalan",Toast.LENGTH_SHORT).show()
     }
 

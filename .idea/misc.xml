@@ -58,7 +58,7 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_destination.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_event.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_notification.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_otp.xml" value="0.346875" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_register.xml" value="0.16168478260869565" />
@@ -73,7 +73,7 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/destination_card_layout_2.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/dummy.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/event_card_layout.xml" value="0.67" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_all.xml" value="0.13179347826086957" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_all.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_change_password.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_change_password2.xml" value="0.184375" />
