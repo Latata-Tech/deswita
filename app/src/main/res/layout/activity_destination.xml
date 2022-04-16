@@ -234,7 +234,6 @@
                    tools:layout_editor_absoluteX="39dp">
 
                    <androidx.constraintlayout.widget.ConstraintLayout
-                       android:visibility="gone"
                        android:id="@+id/constraintLayoutWeather"
                        android:layout_width="match_parent"
                        android:layout_height="match_parent"
@@ -291,15 +290,7 @@
                            app:layout_constraintEnd_toEndOf="parent"
                            app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
 
-
                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                   <ProgressBar
-                       style="?android:attr/progressBarStyleSmall"
-                       android:id="@+id/progressGetWeather"
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
-                       app:layout_constraintTop_toTopOf="parent" />
 
                </LinearLayout>
 

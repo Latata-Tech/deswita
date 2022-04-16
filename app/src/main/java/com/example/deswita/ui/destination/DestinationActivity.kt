@@ -62,8 +62,6 @@ class DestinationActivity : AppCompatActivity() {
         destinationAdapter = TopDestinationAdapter(this)
         eventAdapter = TopEventAdapter(this)
 
-
-
         observeWeather()
 
         with(binding) {
@@ -117,13 +115,10 @@ class DestinationActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(shareIntent,"Pilih dong"))
         }
 
-
     }
 
     private fun observeWeather() {
-        mainViewModel.weather.observe() { weather ->
-            binding.progressGetWeather.visibility = View.GONE
-            binding.constraintLayoutWeather.visibility = View.VISIBLE
+        mainViewModel.weather.observe(this) { weather ->
             binding.tvWeatherLocation.text = weather.name
             binding.ivWeatherIcon.load("https://openweathermap.org/img/w/${weather.weather?.get(0)?.icon}.png")
             binding.tvTemp.text = "${weather.main?.temp?.minus(273)?.toInt()} °C"
