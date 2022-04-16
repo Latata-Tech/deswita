@@ -224,7 +224,86 @@
                      </LinearLayout>
 
 
-                     <FrameLayout
+               <LinearLayout
+                   android:id="@+id/linearLayout4"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+                   android:layout_marginTop="20dp"
+                   android:orientation="horizontal"
+                   tools:layout_editor_absoluteX="39dp">
+
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:visibility="gone"
+                       android:id="@+id/constraintLayoutWeather"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:paddingHorizontal="16dp"
+                       android:paddingTop="20dp"
+                       android:paddingBottom="20dp"
+                       tools:layout_editor_absoluteX="129dp"
+                       tools:layout_editor_absoluteY="142dp">
+
+
+                       <TextView
+                           android:id="@+id/tvWeatherLocation"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:fontFamily="@font/poppins_semibold"
+                           android:text="Medan"
+                           android:textColor="@color/black"
+                           android:textSize="20sp"
+                           app:layout_constraintBottom_toBottomOf="parent"
+                           app:layout_constraintEnd_toStartOf="@+id/tvTemp"
+                           app:layout_constraintStart_toEndOf="@+id/ivWeatherIcon"
+                           app:layout_constraintTop_toTopOf="parent"
+                           app:layout_constraintVertical_bias="0.422" />
+
+                       <ImageView
+                           android:id="@+id/ivWeatherIcon"
+                           android:layout_width="50dp"
+                           android:layout_height="50dp"
+                           android:layout_marginEnd="208dp"
+                           android:src="@drawable/ic_location"
+                           app:layout_constraintBottom_toBottomOf="@+id/tvWeatherDescription"
+                           app:layout_constraintEnd_toStartOf="@+id/tvWeatherDescription"
+                           app:layout_constraintTop_toTopOf="@+id/tvTemp"
+                           app:layout_constraintVertical_bias="0.0" />
+
+                       <TextView
+                           android:id="@+id/tvTemp"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="29c"
+                           android:textSize="24sp"
+                           app:layout_constraintBottom_toBottomOf="parent"
+                           app:layout_constraintStart_toStartOf="@id/tvWeatherDescription"
+                           app:layout_constraintTop_toTopOf="parent" />
+
+                       <TextView
+                           android:textColor="@color/black"
+                           android:id="@+id/tvWeatherDescription"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginEnd="16dp"
+                           android:text="clear sky"
+                           android:textSize="18sp"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
+
+
+                   </androidx.constraintlayout.widget.ConstraintLayout>
+
+                   <ProgressBar
+                       style="?android:attr/progressBarStyleSmall"
+                       android:id="@+id/progressGetWeather"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       app:layout_constraintTop_toTopOf="parent" />
+
+               </LinearLayout>
+
+               <FrameLayout
                          android:id="@+id/frameLayout"
                          android:layout_width="match_parent"
                          android:layout_height="2dp"
@@ -233,7 +312,7 @@
                          app:layout_constraintEnd_toEndOf="parent"
                          app:layout_constraintHorizontal_bias="0.5"
                          app:layout_constraintStart_toStartOf="parent"
-                         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
                      <TextView
                          android:id="@+id/textView6"

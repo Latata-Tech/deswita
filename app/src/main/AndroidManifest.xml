@@ -81,7 +81,12 @@
         <activity
             android:name=".ui.event.EventActivity"
             android:exported="false"
-            android:theme="@style/Theme.Deswita.NoActionBar" />
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/Theme.Deswita.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainActivity"/>
+        </activity>
         <activity
             android:name=".ui.notification.NotificationActivity"
             android:exported="false"
@@ -104,6 +109,7 @@
             android:theme="@style/Theme.Deswita.NoActionBar" />
         <activity
             android:name=".ui.MainActivity"
+            android:launchMode="singleTop"
             android:exported="true"
             android:theme="@style/Theme.Deswita" />
         <activity

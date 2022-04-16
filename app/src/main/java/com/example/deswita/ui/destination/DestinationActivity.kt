@@ -1,9 +1,16 @@
 package com.example.deswita.ui.destination
 
+import android.app.Activity
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -12,16 +19,20 @@ import com.example.deswita.databinding.ActivityDestinationBinding
 import com.example.deswita.models.Destination
 import com.example.deswita.models.Event
 import com.example.deswita.models.Review
+import com.example.deswita.models.weatherResponse
+import com.example.deswita.service.WeatherServiceNew
 import com.example.deswita.ui.MainViewModel
 import com.example.deswita.ui.destination.adapters.GaleryAdapter
 import com.example.deswita.ui.reviews.adapters.ReviewAdapter
 import com.example.deswita.ui.event.EventActivity
 import com.example.deswita.ui.mainmenu.home.adapters.TopDestinationAdapter
 import com.example.deswita.ui.mainmenu.home.adapters.TopEventAdapter
+import com.example.deswita.ui.mainmenu.home.fragments.AllFragment
 import com.example.deswita.ui.mainmenu.story.adapters.StoryAdapter
 import com.example.deswita.ui.reviews.AddReviewActivity
 import com.example.deswita.ui.reviews.ReviewsActivity
 import com.example.deswita.utils.*
+import java.util.*
 
 class DestinationActivity : AppCompatActivity() {
 
@@ -50,6 +61,10 @@ class DestinationActivity : AppCompatActivity() {
         reviewAdapter = ReviewAdapter(this)
         destinationAdapter = TopDestinationAdapter(this)
         eventAdapter = TopEventAdapter(this)
+
+
+
+        observeWeather()
 
         with(binding) {
             ivBackground.load(Utils.getImageDrawable(this@DestinationActivity,destination.image))
@@ -102,7 +117,20 @@ class DestinationActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(shareIntent,"Pilih dong"))
         }
 
+
     }
+
+    private fun observeWeather() {
+        mainViewModel.weather.observe() { weather ->
+            binding.progressGetWeather.visibility = View.GONE
+            binding.constraintLayoutWeather.visibility = View.VISIBLE
+            binding.tvWeatherLocation.text = weather.name
+            binding.ivWeatherIcon.load("https://openweathermap.org/img/w/${weather.weather?.get(0)?.icon}.png")
+            binding.tvTemp.text = "${weather.main?.temp?.minus(273)?.toInt()} °C"
+            binding.tvWeatherDescription.text = weather.weather?.get(0)?.main
+        }
+    }
+
 
     private fun initRecyclerviewGalery() {
 
