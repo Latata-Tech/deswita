@@ -1,24 +1,38 @@
 package com.example.deswita.ui
 
+import android.app.LoaderManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
 import android.content.*
+import android.graphics.BitmapFactory
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityMainBinding
+import com.example.deswita.models.Destination
+import com.example.deswita.models.Event
 import com.example.deswita.models.weatherResponse
 import com.example.deswita.service.ExampleService
 import com.example.deswita.service.NotificationSchedulerService
+import com.example.deswita.service.WeatherLoader
 import com.example.deswita.service.WeatherServiceNew
+import com.example.deswita.ui.destination.DestinationActivity
+import com.example.deswita.ui.event.EventActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.mainmenu.event.EventFragment
 import com.example.deswita.ui.mainmenu.home.HomeFragment
@@ -26,12 +40,13 @@ import com.example.deswita.ui.mainmenu.home.HomeViewModel
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
 import com.example.deswita.ui.mainmenu.story.StoryFragment
 import com.example.deswita.ui.notification.NotificationActivity
+import com.example.deswita.utils.Utils
 import com.google.android.material.navigation.NavigationBarView
 
 const val EXTRA_USER = "EXTRA_USER"
 const val EXTRA_PASSWORD = "EXTRA_PASSWORD"
 
-class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener, LoaderManager.LoaderCallbacks<String> {
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragment: Fragment
     private lateinit var homeViewModel: HomeViewModel
@@ -50,6 +65,10 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        loaderManager.initLoader(1,Bundle.EMPTY,this)
+
+        createNotificationChannel()
 
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -161,4 +180,55 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         replaceFragment(fragment, fragment::class.java.simpleName)
     }
 
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<String> {
+        return WeatherLoader(this)
+    }
+
+    override fun onLoadFinished(loader: Loader<String>, data: String?) {
+        sendNotification(mainViewModel.destinationDummy1.get(0))
+    }
+
+    override fun onLoaderReset(loader: Loader<String>) {
+
+    }
+
+    private fun createNotificationChannel() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Event"
+            val descriptionText = "New event appeared"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("asynctaskloader",name,importance).apply {
+                description = descriptionText
+            }
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification(destination: Destination) {
+
+        val intent = Intent(this, DestinationActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra(DestinationActivity.EXTRA_DESTINATION,destination)
+        }
+
+        val pendingIntent = PendingIntent.getActivity(this,0,intent,0)
+        val bitmapLargeIcon = BitmapFactory.decodeResource(applicationContext.resources,R.drawable.ic_deswita_icon)
+        val bitmapImage = BitmapFactory.decodeResource(applicationContext.resources,R.drawable.des_10)
+
+        val builder = NotificationCompat.Builder(this,"asynctaskloader")
+            .setSmallIcon(R.drawable.ic_deswita_icon)
+            .setContentTitle(destination.name)
+            .setContentText(destination.location)
+            .setLargeIcon(bitmapLargeIcon)
+            .setStyle(NotificationCompat.BigPictureStyle().bigPicture(bitmapImage))
+            .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            notify(1010,builder.build())
+        }
+    }
+
 }
+
