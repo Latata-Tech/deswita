@@ -33,13 +33,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.btnLogin.setOnClickListener(this)
         binding.tvForgotPassword.setOnClickListener(this)
-    }
-
-    fun registerActivity(view : View)
-    {
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
-        finish()
+        binding.textRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onClick(v: View?) {
