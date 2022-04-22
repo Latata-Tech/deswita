@@ -1,16 +1,22 @@
 package com.example.deswita
 
+import android.view.View
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.RootMatchers.isDialog
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.example.deswita.models.Destination
+import com.example.deswita.models.Event
 import com.example.deswita.ui.MainActivity
+import com.example.deswita.ui.destination.DestinationActivity
+import com.example.deswita.ui.event.EventActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.notification.NotificationActivity
 import org.junit.After
@@ -44,6 +50,58 @@ class MainActivityTest {
         onView(withId(R.id.btnCanceDialog)).perform(ViewActions.click())
         onView(withId(R.id.btnAppBarSearch)).perform(ViewActions.click())
         Intents.intended(IntentMatchers.hasComponent(SearchActivity::class.java.name))
+    }
+
+    @Test
+    fun toAllMenu() {
+        onView(withId(R.id.btnCanceDialog)).perform(ViewActions.click())
+        onView(withId(R.id.eventFragment)).perform(ViewActions.click())
+        onView(withId(R.id.storyFragment)).perform(ViewActions.click())
+        onView(withId(R.id.profileFragment)).perform(ViewActions.click())
+        onView(withId(R.id.homeFragment)).perform(ViewActions.click())
+    }
+
+    @Test
+    fun toAllCategoryHome() {
+        onView(withId(R.id.btnCanceDialog)).perform(ViewActions.click())
+        onView(withId(R.id.chip_filter_recommended)).perform(ViewActions.click())
+        onView(withId(R.id.chip_filter_popular)).perform(ViewActions.click())
+        onView(withId(R.id.chip_filter_rating)).perform(ViewActions.click())
+        onView(withId(R.id.chip_filter_favorite)).perform(ViewActions.click())
+        onView(withId(R.id.chip_filter_all)).perform(ViewActions.click())
+    }
+
+    @Test
+    fun checkDestination() {
+        val destination = Destination(
+            1,
+            "des_1",
+            "Danau Toba",
+            "Bukit Barisan, Kabupaten Toba Samosir, Sumatera Utara.",
+            false,
+            3.5,
+            2323.2
+        )
+
+        onView(withId(R.id.btnCanceDialog)).perform(ViewActions.click())
+        onView(withText(destination.name)).perform(ViewActions.click())
+        Intents.intended(IntentMatchers.hasComponent(DestinationActivity::class.java.name))
+        onView(withId(R.id.tvName)).check(matches(withText(destination.name)))
+    }
+
+    @Test
+    fun showCalenderEvent() {
+        onView(withId(R.id.btnCanceDialog)).perform(ViewActions.click())
+        onView(withId(R.id.eventFragment)).perform(ViewActions.click())
+        onView(withId(R.id.btnEventCalendar)).perform(ViewActions.click())
+    }
+
+    @Test
+    fun testAddEvent() {
+        onView(withId(R.id.btnCanceDialog)).perform(ViewActions.click())
+        onView(withId(R.id.profileFragment)).perform(ViewActions.click())
+        onView(withId(R.id.fabProfile)).perform(ViewActions.click())
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 
     @After
