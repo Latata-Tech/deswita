@@ -96,6 +96,7 @@
                 android:text="@string/not_have_account" />
 
             <TextView
+                android:id="@+id/textRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
@@ -103,7 +104,6 @@
                 android:linksClickable="true"
                 android:text="@string/register"
                 android:clickable="true"
-                android:onClick="registerActivity"
                 android:textColor="@color/blue" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
