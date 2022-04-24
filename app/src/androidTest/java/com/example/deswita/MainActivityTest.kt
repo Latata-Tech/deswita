@@ -3,6 +3,7 @@ package com.example.deswita
 import android.view.View
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeLeft
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -19,6 +20,7 @@ import com.example.deswita.ui.destination.DestinationActivity
 import com.example.deswita.ui.event.EventActivity
 import com.example.deswita.ui.mainmenu.search.SearchActivity
 import com.example.deswita.ui.notification.NotificationActivity
+import com.example.deswita.ui.reviews.AddReviewActivity
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -101,6 +103,35 @@ class MainActivityTest {
         onView(withId(R.id.btnCanceDialog)).perform(ViewActions.click())
         onView(withId(R.id.profileFragment)).perform(ViewActions.click())
         onView(withId(R.id.fabProfile)).perform(ViewActions.click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+    @Test
+    fun testAddStory(){
+        onView(withId(R.id.btnCanceDialog)).perform(click())
+        onView(withId(R.id.storyFragment)).perform(ViewActions.click())
+        onView(withId(R.id.fabStory)).perform(ViewActions.click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+
+    @Test
+    fun testAddReview(){
+        val destination = Destination(
+            1,
+            "des_1",
+            "Danau Toba",
+            "Bukit Barisan, Kabupaten Toba Samosir, Sumatera Utara.",
+            false,
+            3.5,
+            2323.2
+        )
+
+        onView(withId(R.id.btnCanceDialog)).perform(click())
+        onView(withText(destination.name)).perform(click())
+        onView(withId(R.id.nestedScrollView)).perform(ViewActions.swipeUp())
+        onView(withId(R.id.btnGiveReview)).perform(click())
+        Intents.intended(IntentMatchers.hasComponent(DestinationActivity::class.java.name))
         onView(isRoot()).perform(ViewActions.pressBack())
     }
 
