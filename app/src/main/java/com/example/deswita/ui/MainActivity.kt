@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         val bitmapLargeIcon = BitmapFactory.decodeResource(applicationContext.resources,R.drawable.ic_deswita_icon)
         val bitmapImage = BitmapFactory.decodeResource(applicationContext.resources,R.drawable.des_10)
 
-        val builder = NotificationCompat.Builder(this,"asynctaskloader")
+        val builder = NotificationCompat.Builder(this)
             .setSmallIcon(R.drawable.ic_deswita_icon)
             .setContentTitle(destination.name)
             .setContentText(destination.location)

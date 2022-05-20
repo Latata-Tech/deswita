@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.deswita.R
 import com.example.deswita.databinding.FragmentSearchRecomendationBinding
 import com.example.deswita.models.SearchRecomendation
+import com.example.deswita.utils.SharePrefHelper
 
 class SearchRecomendationFragment : Fragment() {
     private lateinit var _binding : FragmentSearchRecomendationBinding
@@ -25,7 +26,6 @@ class SearchRecomendationFragment : Fragment() {
         _binding = FragmentSearchRecomendationBinding.inflate(inflater, container, false)
         searchRecomendationAdapter = SearchRecomendationAdapter()
         initRecyleView()
-
         setData()
 
         return binding.root

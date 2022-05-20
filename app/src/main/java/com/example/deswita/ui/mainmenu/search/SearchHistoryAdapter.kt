@@ -9,17 +9,17 @@ import com.example.deswita.models.Event
 import com.example.deswita.models.SearchHistory
 
 class SearchHistoryAdapter : RecyclerView.Adapter<SearchHistoryAdapter.ViewHolder>() {
-    private var searchHistories = emptyList<SearchHistory>()
+    private var searchHistories = emptyList<String>()
 
-    fun setData(searchHistories : List<SearchHistory>){
+    fun setData(searchHistories : List<String>){
         this.searchHistories = searchHistories
         notifyDataSetChanged()
     }
 
 
     inner class ViewHolder(private val binding: ItemSearchHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(searchHistories : SearchHistory){
-            binding.textSearch.text = searchHistories.name + " " + searchHistories.location
+        fun bind(searchHistories : String){
+            binding.textSearch.text = searchHistories
         }
     }
 

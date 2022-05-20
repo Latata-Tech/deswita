@@ -13,6 +13,14 @@ class NotificationSchedulerService : Service() {
     private var pendingIntent : PendingIntent? = null
     override fun onBind(intent: Intent): IBinder?= null
 
+    override fun onCreate() {
+        super.onCreate()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         if(pendingIntent != null){

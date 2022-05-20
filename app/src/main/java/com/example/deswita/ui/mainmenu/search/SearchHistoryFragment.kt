@@ -1,6 +1,7 @@
 package com.example.deswita.ui.mainmenu.search
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.deswita.databinding.FragmentSearchHistoryBinding
 import com.example.deswita.models.SearchHistory
 import com.google.android.material.appbar.AppBarLayout
 import java.util.*
+import kotlin.collections.ArrayList
 
 class SearchHistoryFragment : Fragment() {
     private lateinit var _binding: FragmentSearchHistoryBinding
@@ -29,7 +31,10 @@ class SearchHistoryFragment : Fragment() {
         searhHistoryAdapter = SearchHistoryAdapter()
         initRecyleView()
 
-        setData()
+        val arg = arguments?.getStringArrayList(SearchActivity.HISTORY_LIST)
+        if(!arg.isNullOrEmpty()) {
+            setData(arg)
+        }
 
         return binding.root
     }
@@ -43,13 +48,9 @@ class SearchHistoryFragment : Fragment() {
         binding.listSearchHistory.adapter = searhHistoryAdapter
     }
 
-    private fun setData()
+    private fun setData(histories: ArrayList<String>)
     {
-        val searchHistories = listOf(
-            SearchHistory(1, "Istana Maimun", "Medan"),
-            SearchHistory(2, "Danau Toba", "Karo"),
-        )
-        searhHistoryAdapter.setData(searchHistories)
+        searhHistoryAdapter.setData(histories)
     }
 
 }

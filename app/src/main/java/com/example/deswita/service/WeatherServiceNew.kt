@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.util.Log
 import com.example.deswita.models.weatherResponse
+import com.example.deswita.ui.MainActivity
 import com.example.deswita.utils.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -44,6 +45,7 @@ class WeatherServiceNew : JobService() {
                         intent.putExtra(EXTRA_WEATHER,responseBody)
                         sendBroadcast(intent)
                     }
+
                 } else {
                     Log.e("GET WEATHER", "onFailure: ${response.message()}")
                     jobFinished(param,true)

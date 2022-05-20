@@ -4,7 +4,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SearchHistory(
-    var id: Int,
+    var id: String,
     var name: String,
-    var location: String
 ) : Parcelable
