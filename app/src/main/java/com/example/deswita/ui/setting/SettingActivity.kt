@@ -1,11 +1,15 @@
 package com.example.deswita.ui.setting
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivitySettingBinding
+import com.example.deswita.ui.EditProfileActivity
+import com.example.deswita.constant.EXTRA_NAME
+import com.example.deswita.constant.EXTRA_EMAIL
 
 class SettingActivity : AppCompatActivity() {
 
@@ -19,9 +23,11 @@ class SettingActivity : AppCompatActivity() {
 
         var sharedPref = this.getSharedPreferences("nama", Context.MODE_PRIVATE )
         var editor = sharedPref?.edit()
-        binding.tvName.text = sharedPref?.getString("nama","")
+        val nameUser = sharedPref?.getString("nama", "")
+        val emailUser = nameUser+"@gmail.com"
+        binding.tvName.text = nameUser
 
-        binding.tvEmail.text = sharedPref?.getString("nama","") +"@gmail.com"
+        binding.tvEmail.text = emailUser
 
 
         editor?.commit()
@@ -31,7 +37,10 @@ class SettingActivity : AppCompatActivity() {
         }
 
         binding.clEditProfile.setOnClickListener {
-            Toast.makeText(this, "edit profile on progress", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, EditProfileActivity::class.java)
+            intent.putExtra(EXTRA_NAME, nameUser)
+            intent.putExtra(EXTRA_EMAIL, emailUser)
+            startActivity(intent)
         }
 
         binding.clChangePassword.setOnClickListener {
