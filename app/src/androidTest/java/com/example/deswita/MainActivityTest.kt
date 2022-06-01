@@ -69,8 +69,8 @@ class MainActivityTest {
         onView(withId(R.id.chip_filter_recommended)).perform(ViewActions.click())
         onView(withId(R.id.chip_filter_popular)).perform(ViewActions.click())
         onView(withId(R.id.chip_filter_rating)).perform(ViewActions.click())
-        onView(withId(R.id.chip_filter_favorite)).perform(ViewActions.click())
-        onView(withId(R.id.chip_filter_all)).perform(ViewActions.click())
+        onView(withId(R.id.chip_filter_favorite)).perform(ViewActions.scrollTo(), click())
+        onView(withId(R.id.chip_filter_all)).perform(ViewActions.scrollTo(), click())
     }
 
     @Test
@@ -116,7 +116,7 @@ class MainActivityTest {
 
 
     @Test
-    fun testAddReview(){
+    fun testSeeReview(){
         val destination = Destination(
             1,
             "des_1",
@@ -130,9 +130,7 @@ class MainActivityTest {
         onView(withId(R.id.btnCanceDialog)).perform(click())
         onView(withText(destination.name)).perform(click())
         onView(withId(R.id.nestedScrollView)).perform(ViewActions.swipeUp())
-        onView(withId(R.id.btnGiveReview)).perform(click())
         Intents.intended(IntentMatchers.hasComponent(DestinationActivity::class.java.name))
-        onView(isRoot()).perform(ViewActions.pressBack())
     }
 
     @After

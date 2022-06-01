@@ -1,23 +1,31 @@
 package com.example.deswita.ui.reviews
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityAddReviewBinding
 import com.example.deswita.models.Destination
+import com.example.deswita.models.Review
+import com.example.deswita.utils.UserReviewHelperDB
 
 class AddReviewActivity : AppCompatActivity() {
 
     private var _binding: ActivityAddReviewBinding? = null
     private val binding get() = _binding
     private var destination: Destination? = null
+    private var deswita_db : UserReviewHelperDB? = null
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_review)
         _binding = ActivityAddReviewBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        deswita_db = UserReviewHelperDB(this)
 
         destination = intent.getParcelableExtra(EXTRA_DESTINATION)
 
@@ -26,7 +34,20 @@ class AddReviewActivity : AppCompatActivity() {
         }
 
         binding?.btnPosting?.setOnClickListener {
-            Toast.makeText(this, "Review untuk ${destination?.name} diposting!", Toast.LENGTH_SHORT).show()
+            val userReview : Review = Review()
+            userReview.content = binding?.editText?.text.toString()
+            userReview.rating = binding?.ratingBar?.rating?.toFloat() ?: 0f
+            userReview.destination_id = 1
+            userReview.user_id = 1
+            var result = deswita_db?.addUserReview(userReview)
+            if(result!=-1L){
+                onBackPressed()
+                Toast.makeText(this, "Berhasil memberikan review",Toast.LENGTH_SHORT).show()
+            }
+            else{
+                onBackPressed()
+                Toast.makeText(this, "Gagal memberikan review",Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding?.tvName?.text = "Berikan penilaian untuk ${destination?.name}"
