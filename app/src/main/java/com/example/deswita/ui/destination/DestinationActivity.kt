@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -43,9 +44,11 @@ class DestinationActivity : AppCompatActivity() {
     private lateinit var destinationAdapter: TopDestinationAdapter
     private lateinit var eventAdapter: TopEventAdapter
     private lateinit var mainViewModel: MainViewModel
+    private var deswita_db : UserReviewHelperDB? = null
 
     companion object {
         const val EXTRA_DESTINATION = "extra_destination"
+        const val RESULT_WRITE = "result_write"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +56,8 @@ class DestinationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_destination)
         binding = ActivityDestinationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        deswita_db = UserReviewHelperDB(this)
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -77,16 +82,16 @@ class DestinationActivity : AppCompatActivity() {
         initialRecyclerViewTopDestination()
         initialRecyclerViewTopEvent()
 
-
         binding.tvLookAllComment.setOnClickListener {
             val intent = Intent(this@DestinationActivity,ReviewsActivity::class.java)
             intent.putExtra(AddReviewActivity.EXTRA_DESTINATION,destination)
             startActivity(intent)
         }
+
         binding.btnGiveReview.setOnClickListener {
             val intent = Intent(this@DestinationActivity,AddReviewActivity::class.java)
             intent.putExtra(AddReviewActivity.EXTRA_DESTINATION,destination)
-            startActivity(intent)
+            startActivityForResult(intent,0)
         }
 
         binding.tvLookAllGallery.setOnClickListener {
@@ -152,8 +157,18 @@ class DestinationActivity : AppCompatActivity() {
         binding.rvReview.setHasFixedSize(true)
         binding.rvReview.adapter = reviewAdapter
 
-        reviewAdapter.setData(mainViewModel.reviewDummy2)
+        val result = deswita_db?.viewAllData(destination.id)
+        binding.tvUlasan.text = "Ulasan (${result?.size ?: 0})"
+        if(!result.isNullOrEmpty()) {
+            reviewAdapter.setData(result)
+        }
 
+        reviewAdapter.setOnItemClickCallback(object: ReviewAdapter.OnItemClickCcallback{
+            override fun onClick(review: Review) {
+//                delete item disini dan update reviewadapter setelah delete
+                Toast.makeText(this@DestinationActivity,"${review.content} deleted", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun initialRecyclerViewTopDestination() {
@@ -171,7 +186,6 @@ class DestinationActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-
     }
 
     private fun initialRecyclerViewTopEvent() {
@@ -189,8 +203,23 @@ class DestinationActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
+        if(requestCode == 0) {
+            if(resultCode == 0) {
+                val result = data?.getBooleanExtra(RESULT_WRITE,false)
+                if(result == true) {
+                    val result = deswita_db?.viewAllData(destination.id)
+                    binding.tvUlasan.text = "Ulasan (${result?.size ?: 0}) "
+                    if(!result.isNullOrEmpty()) {
+                        reviewAdapter.setData(result)
+                    }
+                }
+            }
+        }
     }
 
 }

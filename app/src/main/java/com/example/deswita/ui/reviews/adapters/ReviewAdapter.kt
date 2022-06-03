@@ -18,6 +18,16 @@ class ReviewAdapter(private val context: Context): RecyclerView.Adapter<ReviewAd
         notifyDataSetChanged()
     }
 
+    private lateinit var onItemClickCallback: OnItemClickCcallback
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCcallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCcallback {
+        fun onClick(review: Review)
+    }
+
     inner class ViewHolder(private val binding: ItemReviewLayoutBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(review: Review,position: Int) {
             with(binding) {
@@ -26,6 +36,9 @@ class ReviewAdapter(private val context: Context): RecyclerView.Adapter<ReviewAd
                 tvContentReview.text = review.content
                 tvDateReview.text = review.date
                 ratingBar.rating = review.rating
+                btnDelete.setOnClickListener{
+                    onItemClickCallback.onClick(review)
+                }
             }
         }
     }

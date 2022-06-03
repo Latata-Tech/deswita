@@ -49,6 +49,9 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/ic_launcher_background.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/ic_star.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/ic_star_grey.xml" value="0.20052083333333334" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/round_button.xml" value="0.253" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/round_corner.xml" value="0.253" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/small_round_button.xml" value="0.253" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/drawable/tab_selector.xml" value="0.20052083333333334" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_add.xml" value="0.184375" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/activity_add_destination.xml" value="0.184375" />
@@ -99,7 +102,7 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_event_layout.xml" value="0.5" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_galery_layout.xml" value="0.13722826086956522" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_notification_layout.xml" value="0.33" />
-        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_review_layout.xml" value="0.22" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_review_layout.xml" value="0.5" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_search.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_search_history.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_slider_welcome.xml" value="0.25" />

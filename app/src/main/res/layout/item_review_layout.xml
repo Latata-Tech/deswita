@@ -37,15 +37,25 @@
         app:layout_constraintStart_toStartOf="@+id/tvNameReview"
         app:layout_constraintTop_toBottomOf="@+id/tvNameReview" />
 
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corner"
+        android:padding="7dp"
+        android:src="@drawable/ic_baseline_delete_24"
+        android:tint="@color/grey_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNameReview"
+        tools:ignore="UseAppTint" />
+
     <TextView
         android:id="@+id/tvContentReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins"
-        android:text="@string/review_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:text="wkwk"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDateReview" />
 

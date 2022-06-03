@@ -65,10 +65,11 @@ class UserReviewHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE
     }
 
     @SuppressLint("Range")
-    fun viewAllData(): List<String> {
-        val nameList = ArrayList<String>()
-        val SELECT_NAME = "SELECT ${deswitaDB.UserReviewTable.COLUMN_CONTENT} " +
-                "FROM ${deswitaDB.UserReviewTable.TABLE_USER_REVIEW}"
+    fun viewAllData(destinationId: Int): List<Review> {
+        val reviews = ArrayList<Review>()
+//        val SELECT_NAME = "SELECT ${deswitaDB.UserReviewTable.COLUMN_CONTENT} " +
+//                "FROM ${deswitaDB.UserReviewTable.TABLE_USER_REVIEW}"
+        val SELECT_NAME = "SELECT * FROM ${deswitaDB.UserReviewTable.TABLE_USER_REVIEW} WHERE ${deswitaDB.UserReviewTable.COLUMN_DESTINATION_ID} = ${destinationId} "
         val db = this.readableDatabase
         var cursor: Cursor? = null
         try {
@@ -77,17 +78,19 @@ class UserReviewHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE
             //db.execSQL(SELECT_NAME)
             return ArrayList()
         }
-        var userNama: String = ""
         if (cursor.moveToFirst()) {
             do {
-                userNama = cursor.getString(
-                    cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_CONTENT)
-                )
-                nameList.add(userNama)
+                val content = cursor.getString( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_CONTENT) )
+                val rating = cursor.getFloat( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_RATING) )
+                val destinationId = cursor.getInt( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_DESTINATION_ID) )
+                val userId = cursor.getInt( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_USER_ID) )
+                val createdAt = cursor.getString( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_CREATED_AT) )
+                reviews.add(Review("Jhon doe","user_1",createdAt,content,rating,destinationId,userId))
+
             } while (cursor.moveToNext())
         }
-        print(nameList)
-        return nameList
+        print(reviews)
+        return reviews
     }
 
     fun viewAllReviewOnDestinantion(): List<String> {
