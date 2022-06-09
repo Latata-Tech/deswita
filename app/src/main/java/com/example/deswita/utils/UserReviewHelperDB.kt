@@ -67,15 +67,12 @@ class UserReviewHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE
     @SuppressLint("Range")
     fun viewAllData(destinationId: Int): List<Review> {
         val reviews = ArrayList<Review>()
-//        val SELECT_NAME = "SELECT ${deswitaDB.UserReviewTable.COLUMN_CONTENT} " +
-//                "FROM ${deswitaDB.UserReviewTable.TABLE_USER_REVIEW}"
         val SELECT_NAME = "SELECT * FROM ${deswitaDB.UserReviewTable.TABLE_USER_REVIEW} WHERE ${deswitaDB.UserReviewTable.COLUMN_DESTINATION_ID} = ${destinationId} "
         val db = this.readableDatabase
         var cursor: Cursor? = null
         try {
             cursor = db.rawQuery(SELECT_NAME, null)
         } catch (e: SQLException) {
-            //db.execSQL(SELECT_NAME)
             return ArrayList()
         }
         if (cursor.moveToFirst()) {
@@ -105,5 +102,48 @@ class UserReviewHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE
         val selection = "${deswitaDB.UserReviewTable.TABLE_USER_REVIEW} = ?"
         val selectionArgs = arrayOf(nama)
         db.delete(deswitaDB.UserReviewTable.TABLE_USER_REVIEW,selection,selectionArgs)
+    }
+
+    fun deleteAllUserReviewOnDestination(destinationId: Int) {
+        var db = this.writableDatabase
+        val selection = "${deswitaDB.UserReviewTable.COLUMN_DESTINATION_ID} = ?"
+        val selectionArgs = arrayOf(destinationId.toString())
+        db.delete(deswitaDB.UserReviewTable.TABLE_USER_REVIEW, selection, selectionArgs)
+    }
+
+    fun beginUserReviewTransaction() {
+        this.writableDatabase.beginTransaction()
+    }
+
+    fun successUserReviewTransaction() {
+        this.writableDatabase.setTransactionSuccessful()
+    }
+
+    fun endUserReviewTransaction() {
+        this.writableDatabase.endTransaction()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun addUserReviewTransaction(review : Review) {
+        val current = LocalDateTime.now()
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+        val formatted = current.format(formatter)
+        val sqlString = "INSERT INTO ${deswitaDB.UserReviewTable.TABLE_USER_REVIEW}" +
+                "(${deswitaDB.UserReviewTable.COLUMN_CONTENT}" +
+                ",${deswitaDB.UserReviewTable.COLUMN_RATING}" +
+                ",${deswitaDB.UserReviewTable.COLUMN_DESTINATION_ID}" +
+                ",${deswitaDB.UserReviewTable.COLUMN_USER_ID}" +
+                ",${deswitaDB.UserReviewTable.COLUMN_CREATED_AT}" +
+                ",${deswitaDB.UserReviewTable.COLUMN_UPDATED_AT}) VALUES (?, ?, ?, ?, ?, ?)"
+        val myStatement = this.writableDatabase.compileStatement(sqlString)
+        myStatement.bindString(1, review.content)
+        myStatement.bindDouble(2, review.rating.toDouble())
+        myStatement.bindLong(3, review.destination_id.toLong())
+        myStatement.bindLong(4, review.user_id.toLong())
+        myStatement.bindString(5, formatted)
+        myStatement.bindString(6, formatted)
+        myStatement.execute()
+        myStatement.clearBindings()
     }
 }

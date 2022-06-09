@@ -1,17 +1,13 @@
 package com.example.deswita.ui.destination
 
-import android.app.Activity
-import android.app.job.JobInfo
-import android.app.job.JobScheduler
-import android.content.ComponentName
-import android.content.Context
+import android.app.LoaderManager
 import android.content.Intent
+import android.content.Loader
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -20,22 +16,18 @@ import com.example.deswita.databinding.ActivityDestinationBinding
 import com.example.deswita.models.Destination
 import com.example.deswita.models.Event
 import com.example.deswita.models.Review
-import com.example.deswita.models.weatherResponse
-import com.example.deswita.service.WeatherServiceNew
+import com.example.deswita.service.ReviewLoader
 import com.example.deswita.ui.MainViewModel
 import com.example.deswita.ui.destination.adapters.GaleryAdapter
 import com.example.deswita.ui.reviews.adapters.ReviewAdapter
 import com.example.deswita.ui.event.EventActivity
 import com.example.deswita.ui.mainmenu.home.adapters.TopDestinationAdapter
 import com.example.deswita.ui.mainmenu.home.adapters.TopEventAdapter
-import com.example.deswita.ui.mainmenu.home.fragments.AllFragment
-import com.example.deswita.ui.mainmenu.story.adapters.StoryAdapter
 import com.example.deswita.ui.reviews.AddReviewActivity
 import com.example.deswita.ui.reviews.ReviewsActivity
 import com.example.deswita.utils.*
-import java.util.*
 
-class DestinationActivity : AppCompatActivity() {
+class DestinationActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<String> {
 
     private lateinit var binding: ActivityDestinationBinding
     private lateinit var destination: Destination
@@ -44,7 +36,7 @@ class DestinationActivity : AppCompatActivity() {
     private lateinit var destinationAdapter: TopDestinationAdapter
     private lateinit var eventAdapter: TopEventAdapter
     private lateinit var mainViewModel: MainViewModel
-    private var deswita_db : UserReviewHelperDB? = null
+    private var deswitaDB : UserReviewHelperDB? = null
 
     companion object {
         const val EXTRA_DESTINATION = "extra_destination"
@@ -57,7 +49,7 @@ class DestinationActivity : AppCompatActivity() {
         binding = ActivityDestinationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        deswita_db = UserReviewHelperDB(this)
+        deswitaDB = UserReviewHelperDB(this)
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -77,8 +69,10 @@ class DestinationActivity : AppCompatActivity() {
             ratingBar.rating = destination.rating.toFloat()
         }
 
-        initRecyclerviewGalery()
+        loaderManager.initLoader(11, Bundle.EMPTY, this)
+        deswitaDB?.deleteAllUserReviewOnDestination(destination.id)
         initRecyclerviewReview()
+        initRecyclerviewGalery()
         initialRecyclerViewTopDestination()
         initialRecyclerViewTopEvent()
 
@@ -157,7 +151,7 @@ class DestinationActivity : AppCompatActivity() {
         binding.rvReview.setHasFixedSize(true)
         binding.rvReview.adapter = reviewAdapter
 
-        val result = deswita_db?.viewAllData(destination.id)
+        val result = deswitaDB?.viewAllData(destination.id)
         binding.tvUlasan.text = "Ulasan (${result?.size ?: 0})"
         if(!result.isNullOrEmpty()) {
             reviewAdapter.setData(result)
@@ -182,7 +176,7 @@ class DestinationActivity : AppCompatActivity() {
         destinationAdapter.setOnClickItemCallback(object: TopDestinationAdapter.OnClickItemCallback {
             override fun onClick(destination: Destination) {
                 val intent = Intent(this@DestinationActivity,DestinationActivity::class.java)
-                intent.putExtra(DestinationActivity.EXTRA_DESTINATION,destination)
+                intent.putExtra(EXTRA_DESTINATION,destination)
                 startActivity(intent)
             }
         })
@@ -212,7 +206,7 @@ class DestinationActivity : AppCompatActivity() {
             if(resultCode == 0) {
                 val result = data?.getBooleanExtra(RESULT_WRITE,false)
                 if(result == true) {
-                    val result = deswita_db?.viewAllData(destination.id)
+                    val result = deswitaDB?.viewAllData(destination.id)
                     binding.tvUlasan.text = "Ulasan (${result?.size ?: 0}) "
                     if(!result.isNullOrEmpty()) {
                         reviewAdapter.setData(result)
@@ -222,4 +216,21 @@ class DestinationActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        initRecyclerviewReview()
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<String>? {
+        return ReviewLoader(this, destination.id)
+    }
+
+    override fun onLoadFinished(loader: Loader<String>, data: String?) {
+        if(data != null) {
+            initRecyclerviewReview()
+        }
+    }
+
+    override fun onLoaderReset(loader: Loader<String>) {
+    }
 }
