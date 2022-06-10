@@ -16,6 +16,18 @@ object deswitaDB {
         }
     }
 
+    class EventTable : BaseColumns {
+        companion object {
+            const val TABLE_EVENT = "event"
+            const val COLUMN_ID = "id"
+            const val COLUMN_IMAGE = "image"
+            const val COLUMN_DATE = "date"
+            const val COLUMN_NAME = "name"
+            const val COLUMN_LOCATION = "location"
+            const val COLUMN_DESCRIPTION = "description"
+        }
+    }
+
     class UserTable : BaseColumns {
         companion object {
             const val TABLE_USER = "user"

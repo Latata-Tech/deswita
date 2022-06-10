@@ -17,6 +17,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -40,6 +41,7 @@ import com.example.deswita.ui.mainmenu.home.HomeViewModel
 import com.example.deswita.ui.mainmenu.profile.ProfileFragment
 import com.example.deswita.ui.mainmenu.story.StoryFragment
 import com.example.deswita.ui.notification.NotificationActivity
+import com.example.deswita.utils.EventHelperDB
 import com.example.deswita.utils.Utils
 import com.google.android.material.navigation.NavigationBarView
 
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var mainViewModel: MainViewModel
     private lateinit var username: String
+    private var deswitaDB : EventHelperDB? = null
 
     private val weatherReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -62,6 +65,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -127,6 +131,12 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         val weatherIntentFilter = IntentFilter(WeatherServiceNew.EXTRA_INTENT)
         registerReceiver(weatherReceiver,weatherIntentFilter)
+
+        deswitaDB = EventHelperDB(this)
+
+        mainViewModel.eventDummy1.forEach {
+            deswitaDB?.addEvent(it)
+        }
     }
 
     private fun startWeatherJob() {

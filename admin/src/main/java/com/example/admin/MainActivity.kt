@@ -2,6 +2,7 @@ package com.example.admin
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -66,6 +67,10 @@ class MainActivity : AppCompatActivity() {
         )
 
         eventAdapter.setData(eventDummy4)
+
+        var temp = EventTransaction(this)
+        var result = temp.getEvents().toString()
+        Log.e("EVENTS",result.toString())
 
     }
 

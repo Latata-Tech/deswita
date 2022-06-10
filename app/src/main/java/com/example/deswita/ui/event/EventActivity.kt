@@ -1,5 +1,6 @@
 package com.example.deswita.ui.event
 
+import android.app.LoaderManager
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -10,16 +11,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.loader.content.Loader
 import coil.load
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityEventBinding
 import com.example.deswita.models.Event
+import com.example.deswita.service.EventLoader
 import com.example.deswita.ui.MainActivity
 import com.example.deswita.utils.Utils
 import com.example.deswita.utils.*
 import java.lang.Exception
 
-class EventActivity : AppCompatActivity() {
+class EventActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<String> {
 
     private lateinit var binding: ActivityEventBinding
     private lateinit var event: Event
@@ -36,6 +39,8 @@ class EventActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         event = intent.getParcelableExtra<Event>(EXTRA_EVENT) as Event
+
+        loaderManager.initLoader(11, Bundle.EMPTY, this)
 
         try {
             binding.ivEvent.load(event.image)
@@ -64,4 +69,17 @@ class EventActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(shareIntent,"Pilih dong"))
         }
     }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): android.content.Loader<String> {
+        return EventLoader(this)
+    }
+
+    override fun onLoadFinished(loader: android.content.Loader<String>?, data: String?) {
+
+    }
+
+    override fun onLoaderReset(loader: android.content.Loader<String>?) {
+
+    }
+
 }
