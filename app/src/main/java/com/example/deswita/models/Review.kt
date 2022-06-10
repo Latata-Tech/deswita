@@ -1,6 +1,7 @@
 package com.example.deswita.models
 
 data class Review (
+    var id: Int? = 0,
     var name: String = "",
     var image: String = "",
     var date: String = "",

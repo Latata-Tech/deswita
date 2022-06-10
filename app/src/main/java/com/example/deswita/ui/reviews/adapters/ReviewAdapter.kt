@@ -2,9 +2,12 @@ package com.example.deswita.ui.reviews.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.deswita.R
 import com.example.deswita.databinding.ItemReviewLayoutBinding
 import com.example.deswita.models.Review
 import com.example.deswita.utils.Utils
@@ -13,8 +16,16 @@ class ReviewAdapter(private val context: Context): RecyclerView.Adapter<ReviewAd
 
     private var reviews = emptyList<Review>()
 
-    fun setData(reviews: List<Review>) {
-        this.reviews = reviews
+    fun setData(reviews: List<Review>?) {
+
+        when {
+            reviews?.isEmpty() == true -> {
+                this.reviews = emptyList<Review>()
+            }
+            reviews?.isEmpty() == false -> {
+                this.reviews = reviews
+            }
+        }
         notifyDataSetChanged()
     }
 
@@ -25,7 +36,7 @@ class ReviewAdapter(private val context: Context): RecyclerView.Adapter<ReviewAd
     }
 
     interface OnItemClickCcallback {
-        fun onClick(review: Review)
+        fun onClick(review: Review,id: Int)
     }
 
     inner class ViewHolder(private val binding: ItemReviewLayoutBinding): RecyclerView.ViewHolder(binding.root) {
@@ -36,8 +47,19 @@ class ReviewAdapter(private val context: Context): RecyclerView.Adapter<ReviewAd
                 tvContentReview.text = review.content
                 tvDateReview.text = review.date
                 ratingBar.rating = review.rating
-                btnDelete.setOnClickListener{
-                    onItemClickCallback.onClick(review)
+                btnMenu.setOnClickListener{
+                    val popMenu = PopupMenu(context,btnMenu)
+                    popMenu.menuInflater.inflate(R.menu.review_menu,popMenu.menu)
+                    popMenu.setOnMenuItemClickListener(object: PopupMenu.OnMenuItemClickListener{
+                        override fun onMenuItemClick(item: MenuItem?): Boolean {
+                            when(item?.itemId) {
+                                R.id.reviewDelete -> onItemClickCallback.onClick(review,R.id.reviewDelete)
+                                R.id.reviewReport -> onItemClickCallback.onClick(review,R.id.reviewReport)
+                            }
+                            return true;
+                        }
+                    })
+                    popMenu.show()
                 }
             }
         }

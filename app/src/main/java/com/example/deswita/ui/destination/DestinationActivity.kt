@@ -7,6 +7,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -70,7 +71,7 @@ class DestinationActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<S
         }
 
         loaderManager.initLoader(11, Bundle.EMPTY, this)
-        deswitaDB?.deleteAllUserReviewOnDestination(destination.id)
+//        deswitaDB?.deleteAllUserReviewOnDestination(destination.id)
         initRecyclerviewReview()
         initRecyclerviewGalery()
         initialRecyclerViewTopDestination()
@@ -158,9 +159,24 @@ class DestinationActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<S
         }
 
         reviewAdapter.setOnItemClickCallback(object: ReviewAdapter.OnItemClickCcallback{
-            override fun onClick(review: Review) {
+            override fun onClick(review: Review,id: Int) {
 //                delete item disini dan update reviewadapter setelah delete
-                Toast.makeText(this@DestinationActivity,"${review.content} deleted", Toast.LENGTH_SHORT).show()
+
+                when(id) {
+                    R.id.reviewDelete -> {
+                        val result = review.id?.let { deswitaDB?.deleteReview(it) }
+                        if(result == 1) {
+                            val result = deswitaDB?.viewAllData(destination.id)
+                            binding.tvUlasan.text = "Ulasan (${result?.size ?: 0}) "
+                            if(!result.isNullOrEmpty()) {
+                                reviewAdapter.setData(result)
+                            }
+                        }
+                    }
+                    R.id.reviewReport -> {
+                        Toast.makeText(this@DestinationActivity,"${review.content} reported", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         })
     }
@@ -208,9 +224,7 @@ class DestinationActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<S
                 if(result == true) {
                     val result = deswitaDB?.viewAllData(destination.id)
                     binding.tvUlasan.text = "Ulasan (${result?.size ?: 0}) "
-                    if(!result.isNullOrEmpty()) {
-                        reviewAdapter.setData(result)
-                    }
+                    reviewAdapter.setData(result)
                 }
             }
         }

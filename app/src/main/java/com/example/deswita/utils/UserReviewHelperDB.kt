@@ -82,7 +82,8 @@ class UserReviewHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE
                 val destinationId = cursor.getInt( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_DESTINATION_ID) )
                 val userId = cursor.getInt( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_USER_ID) )
                 val createdAt = cursor.getString( cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_CREATED_AT) )
-                reviews.add(Review("Jhon doe","user_1",createdAt,content,rating,destinationId,userId))
+                val id = cursor.getInt(cursor.getColumnIndex(deswitaDB.UserReviewTable.COLUMN_ID))
+                reviews.add(Review(id,"Jhon doe","user_1",createdAt,content,rating,destinationId,userId))
 
             } while (cursor.moveToNext())
         }
@@ -95,6 +96,14 @@ class UserReviewHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE
         val SELECT_NAME = "SELECT * " +
                 "FROM ${deswitaDB.UserReviewTable.TABLE_USER_REVIEW} WHERE ${deswitaDB.UserReviewTable.COLUMN_DESTINATION_ID} = ?"
         return nameList
+    }
+
+    fun deleteReview(id: Int): Int{
+        val db = this.writableDatabase
+        val selection = "${deswitaDB.UserReviewTable.COLUMN_ID}=?"
+        val selectionArgs = arrayOf(id.toString())
+        val result = db.delete(deswitaDB.UserReviewTable.TABLE_USER_REVIEW,selection,selectionArgs)
+        return result
     }
 
     fun deleteData(nama: String){

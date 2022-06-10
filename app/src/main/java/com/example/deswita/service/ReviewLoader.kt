@@ -15,9 +15,13 @@ class ReviewLoader(context: Context?, private val destination_id: Int) : AsyncTa
     @RequiresApi(Build.VERSION_CODES.O)
     override fun loadInBackground(): String {
         deswitaDB = UserReviewHelperDB(context)
-        val preReviewData = cretateDataReview(destination_id)
-        for(data in preReviewData) {
-            deswitaDB?.addUserReview(data)
+
+        val result = deswitaDB?.viewAllData(destination_id)
+        if(result.isNullOrEmpty()) {
+            val preReviewData = cretateDataReview(destination_id)
+            for(data in preReviewData) {
+                deswitaDB?.addUserReview(data)
+            }
         }
         Thread.sleep(1000L)
         return "Success"
@@ -27,6 +31,7 @@ class ReviewLoader(context: Context?, private val destination_id: Int) : AsyncTa
         val data  = ArrayList<Review>()
         for (i in 1..5) {
             data.add(Review(
+                i,
                 "John Doe",
                 "",
                 "2022-06-08",

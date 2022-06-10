@@ -532,98 +532,98 @@ class MainViewModel : ViewModel() {
 
 
     val reviewDummy1 = arrayListOf<Review>(
-        Review(
-            "Fiqri ardians",
-            "user_1",
-            "1 minggu lalu",
-            "Tempat bersejarah, belajar sejarah, salah satu icon sejarah suku tionghoa datang ke kota medan pada zaman kesultanan Deli Medan",
-            3.5f,
-            1,
-            1
-        ),
-        Review(
-            "Farhan ismul",
-            "user_3",
-            "1 hari lalu",
-            "Di dalamnya anda akan menikmati pemandangan taman yang sangat cantik",
-            4.5f,
-            1,
-            1
-        ),
-        Review(
-            "Rizky kurniawan",
-            "user_4",
-            "3 hari lalu",
-            "Meskipun perjalanan tempuh harus dilalui dengan sangat lama",
-            4.5f,
-            1,
-            1
-        ),
-        Review(
-            "Nona muda",
-            "user_2",
-            "3 hari lalu",
-            "seolah – olah anda akan merasa sedang berada di London.",
-            4.5f,
-            1,
-            1
-        ),
-        Review(
-            "Rafael 12",
-            "user_5",
-            "3 hari lalu",
-            "Dengan pengelolaan yang tepat, lokasi persawahan pun bisa menjadi objek wisata yang menarik animo warga",
-            4.5f,
-            1,
-            1
-        ),
+//        Review(
+//            "Fiqri ardians",
+//            "user_1",
+//            "1 minggu lalu",
+//            "Tempat bersejarah, belajar sejarah, salah satu icon sejarah suku tionghoa datang ke kota medan pada zaman kesultanan Deli Medan",
+//            3.5f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Farhan ismul",
+//            "user_3",
+//            "1 hari lalu",
+//            "Di dalamnya anda akan menikmati pemandangan taman yang sangat cantik",
+//            4.5f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Rizky kurniawan",
+//            "user_4",
+//            "3 hari lalu",
+//            "Meskipun perjalanan tempuh harus dilalui dengan sangat lama",
+//            4.5f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Nona muda",
+//            "user_2",
+//            "3 hari lalu",
+//            "seolah – olah anda akan merasa sedang berada di London.",
+//            4.5f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Rafael 12",
+//            "user_5",
+//            "3 hari lalu",
+//            "Dengan pengelolaan yang tepat, lokasi persawahan pun bisa menjadi objek wisata yang menarik animo warga",
+//            4.5f,
+//            1,
+//            1
+//        ),
     )
     val reviewDummy2 = arrayListOf<Review>(
-        Review(
-            "Jhony margue",
-            "user_7",
-            "1 minggu lalu",
-            "Seperti di Wisata Sawah Pematang Johar",
-            4.0f,
-            1,
-            1
-        ),
-        Review(
-            "Rumanah_23",
-            "user_8",
-            "1 minggu lalu",
-            "Tidak hanya itu, jalur setapaknya pun dihiasi dengan payung gantung yang kerap dijadikan spot",
-            4.0f,
-            1,
-            1
-        ),
-        Review(
-            "Robinrobin",
-            "user_9",
-            "1 minggu lalu",
-            "Destinasi menarik di kota Medan yang masih sangat alami adalah Sipisopiso",
-            4.0f,
-            1,
-            1
-        ),
-        Review(
-            "Robinrobin",
-            "user_10",
-            "2 minggu lalu",
-            "Tak sedikit wisatawan lokal dan asing yang mengunjungi tempat bersejarah ini",
-            4.5f,
-            1,
-            1
-        ),
-        Review(
-            "Dodi_j12",
-            "user_6",
-            "1 minggu lalu",
-            "Tak hanya itu, masih banyak fasilitas lain yang disediakan.",
-            4.5f,
-            1,
-            1
-        ),
+//        Review(
+//            "Jhony margue",
+//            "user_7",
+//            "1 minggu lalu",
+//            "Seperti di Wisata Sawah Pematang Johar",
+//            4.0f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Rumanah_23",
+//            "user_8",
+//            "1 minggu lalu",
+//            "Tidak hanya itu, jalur setapaknya pun dihiasi dengan payung gantung yang kerap dijadikan spot",
+//            4.0f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Robinrobin",
+//            "user_9",
+//            "1 minggu lalu",
+//            "Destinasi menarik di kota Medan yang masih sangat alami adalah Sipisopiso",
+//            4.0f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Robinrobin",
+//            "user_10",
+//            "2 minggu lalu",
+//            "Tak sedikit wisatawan lokal dan asing yang mengunjungi tempat bersejarah ini",
+//            4.5f,
+//            1,
+//            1
+//        ),
+//        Review(
+//            "Dodi_j12",
+//            "user_6",
+//            "1 minggu lalu",
+//            "Tak hanya itu, masih banyak fasilitas lain yang disediakan.",
+//            4.5f,
+//            1,
+//            1
+//        ),
     )
 
     fun getReview(): List<Review> {
