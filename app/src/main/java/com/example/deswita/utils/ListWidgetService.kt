@@ -2,6 +2,7 @@ package com.example.deswita.utils
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.example.deswita.R
@@ -56,6 +57,12 @@ class ListRemoteViewFactory(private val context: Context, intent: Intent) : Remo
     override fun getViewAt(p0: Int): RemoteViews {
         return RemoteViews(context.packageName, R.layout.item_event).apply {
             setTextViewText(R.id.tvDateEventItem, widgetItems[p0].date)
+            setTextViewText(R.id.tvNameEventItem, widgetItems[p0].name)
+            setTextViewText(R.id.tvLocationEventItem, widgetItems[p0].location)
+            setTextViewText(R.id.tvDescEventItem, widgetItems[p0].description)
+            var image = widgetItems[p0].image
+            setImageViewUri(R.id.ivEventItem, Uri.parse(Utils.getImageDrawable(context, image).toString()))
+
         }
     }
 
