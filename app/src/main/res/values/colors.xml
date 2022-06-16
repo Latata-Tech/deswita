@@ -30,5 +30,7 @@
     <color name="transparent_500">#92000000</color>
     <color name="transparent">#00000000</color>
     <color name="place_holder">#EFEFEF</color>
+    <color name="light_blue_50">#FFE1F5FE</color>
+    <color name="light_blue_200">#FF81D4FA</color>
 
 </resources>

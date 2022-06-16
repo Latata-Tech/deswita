@@ -53,4 +53,7 @@
     <string name="event_tab">Events</string>
     <string name="destination_tab">Destinations</string>
     <string name="story_tab">Stories</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>
