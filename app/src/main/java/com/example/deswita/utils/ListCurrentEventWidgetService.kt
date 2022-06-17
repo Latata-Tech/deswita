@@ -8,30 +8,14 @@ import android.widget.RemoteViewsService
 import com.example.deswita.R
 import com.example.deswita.models.Event
 
-class ListWidgetService : RemoteViewsService() {
+class ListCurrentEventWidgetService : RemoteViewsService() {
     override fun onGetViewFactory(intent: Intent): RemoteViewsFactory {
-        return ListRemoteViewFactory(this.applicationContext, intent)
+        return ListCurrentEventFactory(this.applicationContext, intent)
     }
 }
 
-class ListRemoteViewFactory(private val context: Context, intent: Intent) : RemoteViewsService.RemoteViewsFactory {
+class ListCurrentEventFactory(private val context: Context, intent: Intent) : RemoteViewsService.RemoteViewsFactory {
     private var widgetItems : List<Event> = listOf(
-        Event(
-            id = 6,
-            image = "ev_6",
-            date = "1 january 2022",
-            name = "Istana Maimun",
-            location = "Jl. Sultan Ma’moen Al Rasyid",
-            description = "Istana Maimun merupakan salah satu objek wisata ikonik di kota Medan."
-        ),
-        Event(
-            id = 7,
-            image = "ev_7",
-            date = "1 january 2022",
-            name = "Danau Siombak",
-            location = "Jl. Pasar Nippon Ujung Kel, Paya Pasir,",
-            description = "Perlu diketahui bahwa danau Siombak ini merupakan salah satu danau buatan yang terletak diantara sungai Deli"
-        ),
         Event(
             id = 8,
             image = "ev_8",

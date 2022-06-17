@@ -29,7 +29,7 @@ class EventHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE_NAME
                 "${deswitaDB.EventTable.COLUMN_DATE} TEXT," +
                 "${deswitaDB.EventTable.COLUMN_DESCRIPTION} TEXT," +
                 "${deswitaDB.EventTable.COLUMN_IMAGE} TEXT," +
-                "${deswitaDB.EventTable.COLUMN_LOCATION} TEXT," )
+                "${deswitaDB.EventTable.COLUMN_LOCATION} TEXT)" )
         db!!.execSQL(CREATE_EVENT_TABLE)
     }
 

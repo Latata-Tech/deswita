@@ -20,6 +20,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <receiver
+            android:name=".ui.widget.EventWidget"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/event_widget_info" />
+        </receiver>
+        <receiver
             android:name=".ui.widget.UpcomingEventWidget"
             android:exported="true">
             <intent-filter>
@@ -48,9 +59,10 @@
             android:name=".service.NotificationSchedulerService"
             android:enabled="true"
             android:exported="true" />
-        <service android:name=".utils.ListWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS"
-            />
+        <service
+            android:name=".utils.ListWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
         <receiver
             android:name=".service.BootReceiver"
             android:enabled="true"

@@ -83,6 +83,7 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/destination_card_layout_2.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/dummy.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/event_card_layout.xml" value="0.67" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/event_widget.xml" value="0.25" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_all.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_calendar.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_change_password.xml" value="0.22" />
@@ -105,6 +106,7 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_story.xml" value="0.16" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/fragment_success.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_comment.xml" value="0.33" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_event.xml" value="0.1828125" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_event_grid_layout.xml" value="0.1" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_event_layout.xml" value="0.5" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_galery_layout.xml" value="0.13722826086956522" />
@@ -116,13 +118,10 @@
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_story_grid_layout.xml" value="0.33" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/item_story_layout.xml" value="0.22" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/rating_layout.xml" value="0.184375" />
+        <entry key="..\:/androidproject/Deswita/app/src/main/res/layout/upcoming_event_widget.xml" value="0.346875" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/menu/bottom_menu.xml" value="0.184375" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/menu/review_menu.xml" value="0.21979166666666666" />
         <entry key="..\:/androidproject/Deswita/app/src/main/res/xml/provider_paths.xml" value="0.346875" />
-        <entry key="app/src/main/res/layout/activity_event.xml" value="0.3567708333333333" />
-        <entry key="app/src/main/res/layout/item_event.xml" value="0.3734375" />
-        <entry key="app/src/main/res/layout/item_event_layout.xml" value="0.291213768115942" />
-        <entry key="app/src/main/res/layout/upcoming_event_widget.xml" value="0.3734375" />
       </map>
     </option>
   </component>
