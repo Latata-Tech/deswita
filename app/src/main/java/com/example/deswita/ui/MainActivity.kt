@@ -43,6 +43,9 @@ import com.example.deswita.ui.mainmenu.story.StoryFragment
 import com.example.deswita.ui.notification.NotificationActivity
 import com.example.deswita.utils.EventHelperDB
 import com.example.deswita.utils.Utils
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.navigation.NavigationBarView
 
 const val EXTRA_USER = "EXTRA_USER"
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     private lateinit var mainViewModel: MainViewModel
     private lateinit var username: String
     private var deswitaDB : EventHelperDB? = null
+    private var mInterAds : InterstitialAd?= null
 
     private val weatherReceiver = object: BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
@@ -69,6 +73,15 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this)
+        var adRequires = AdRequest.Builder()
+            .build()
+        mInterAds = InterstitialAd(this).apply {
+            adUnitId = "ca-app-pub-3940256099942544/1033173712"
+        }
+
+        mInterAds?.loadAd(adRequires)
 
         loaderManager.initLoader(1,Bundle.EMPTY,this)
 
@@ -90,6 +103,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         val btnNantiAja = dialog.findViewById<Button>(R.id.btnCanceDialog)
         btnNantiAja?.setOnClickListener {
+            showInterstitial()
             dialog.dismiss()
         }
 
@@ -137,6 +151,16 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         mainViewModel.eventDummy1.forEach {
             deswitaDB?.addEvent(it)
         }
+
+    }
+
+    private fun showInterstitial() {
+       if (mInterAds?.isLoaded == true)
+           mInterAds!!.show()
+        else
+           Toast.makeText(this,
+               "Load Failed",Toast.LENGTH_SHORT).show()
+
     }
 
     private fun startWeatherJob() {
