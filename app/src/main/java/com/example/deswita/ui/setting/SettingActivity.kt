@@ -2,6 +2,7 @@ package com.example.deswita.ui.setting
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -25,24 +26,27 @@ class SettingActivity : AppCompatActivity() {
         var editor = sharedPref?.edit()
         val nameUser = sharedPref?.getString("nama", "")
         val emailUser = nameUser+"@gmail.com"
-        binding.tvName.text = nameUser
-
-        binding.tvEmail.text = emailUser
-
-
         editor?.commit()
-
+        updateStatusRemoveAds()
+        binding.tvName.text = nameUser
+        binding.tvEmail.text = emailUser
         binding.btnBack.setOnClickListener {
             onBackPressed()
         }
-
         binding.clEditProfile.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
             intent.putExtra(EXTRA_NAME, nameUser)
             intent.putExtra(EXTRA_EMAIL, emailUser)
             startActivity(intent)
         }
-
+        binding.clRemoveAds.setOnClickListener {
+            val sharedPref: SharedPreferences = this.getSharedPreferences("removeAds", Context.MODE_PRIVATE)
+            val isAdsActive = sharedPref?.getBoolean("removeAds", false);
+            val editor = sharedPref.edit()
+            editor.putBoolean("removeAds", !isAdsActive)
+            editor.commit()
+            updateStatusRemoveAds()
+        }
         binding.clChangePassword.setOnClickListener {
             Toast.makeText(this, "change password on progress", Toast.LENGTH_SHORT).show()
         }
@@ -52,6 +56,14 @@ class SettingActivity : AppCompatActivity() {
         binding.clsSetting.setOnClickListener {
             Toast.makeText(this, "setting on progress", Toast.LENGTH_SHORT).show()
         }
-
+    }
+    fun updateStatusRemoveAds() {
+        var sharedPref = this.getSharedPreferences("removeAds", Context.MODE_PRIVATE )
+        val isAdsActive = sharedPref?.getBoolean("removeAds", false);
+        if(isAdsActive == true){
+            binding.tvRemoveAds.text = "Display Ads"
+        }else{
+            binding.tvRemoveAds.text = "Remove Ads"
+        }
     }
 }

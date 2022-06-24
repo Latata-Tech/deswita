@@ -28,6 +28,8 @@ import com.example.deswita.ui.event.EventActivity
 import com.example.deswita.ui.mainmenu.home.adapters.DestinationAdapter
 import com.example.deswita.ui.mainmenu.home.adapters.TopDestinationAdapter
 import com.example.deswita.ui.mainmenu.home.adapters.TopEventAdapter
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 
 
 class AllFragment : Fragment() {
@@ -45,7 +47,12 @@ class AllFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAllBinding.inflate(LayoutInflater.from(inflater.context),container,false)
-
+        var sharedPref = this.activity?.getSharedPreferences("removeAds", Context.MODE_PRIVATE )
+        val statusAds = sharedPref?.getBoolean("removeAds", false)
+        if(statusAds == false){
+            MobileAds.initialize(inflater.context)
+            binding.adView.loadAd(AdRequest.Builder().build())
+        }
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         topDestinationAdapter = TopDestinationAdapter(requireActivity())
@@ -133,6 +140,7 @@ class AllFragment : Fragment() {
                 return false
             }
         }
+
         binding.rvDestinations.setHasFixedSize(true)
         binding.rvDestinations.adapter = destinationAdapter
 
