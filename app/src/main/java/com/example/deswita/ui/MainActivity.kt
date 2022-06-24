@@ -80,9 +80,11 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         mInterAds = InterstitialAd(this).apply {
             adUnitId = "ca-app-pub-3940256099942544/1033173712"
         }
-
-        mInterAds?.loadAd(adRequires)
-
+        var sharedPref = this.getSharedPreferences("removeAds", Context.MODE_PRIVATE )
+        val statusAds = sharedPref?.getBoolean("removeAds", false)
+        if(statusAds == false){
+            mInterAds?.loadAd(adRequires)
+        }
         loaderManager.initLoader(1,Bundle.EMPTY,this)
 
         createNotificationChannel()
@@ -157,10 +159,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     private fun showInterstitial() {
        if (mInterAds?.isLoaded == true)
            mInterAds!!.show()
-        else
-           Toast.makeText(this,
-               "Load Failed",Toast.LENGTH_SHORT).show()
-
     }
 
     private fun startWeatherJob() {
