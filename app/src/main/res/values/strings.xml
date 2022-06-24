@@ -56,4 +56,6 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-8993378482639161~6401341293</string>
 </resources>

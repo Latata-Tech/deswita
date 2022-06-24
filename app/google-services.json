@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "204636280092",
+    "project_id": "deswita-c5da3",
+    "storage_bucket": "deswita-c5da3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204636280092:android:5a833ecb37eaf5521616d9",
+        "android_client_info": {
+          "package_name": "com.example.deswita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "204636280092-bvplsfbjqthfsgne1kb03k7ecpbfgikj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAR4WHFaW9eBhUVwml47mPDYH9ohE43V8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "204636280092-bvplsfbjqthfsgne1kb03k7ecpbfgikj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
