@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityRegisterBinding
 import com.example.deswita.service.OtpReceiver
+import com.example.deswita.utils.DatabaseController
 import com.example.deswita.utils.PermissionManager
 
 
@@ -24,11 +25,14 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityRegisterBinding
 
+    lateinit var controller: DatabaseController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        controller = DatabaseController(this)
 
         val  sharedPref = this.getSharedPreferences("nama", Context.MODE_PRIVATE)
 
@@ -70,7 +74,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                         binding.password.error = "Password must be longer than 5"
                     }
                     fullNameReg.isNotEmpty() || usernameReg.isNotEmpty() || passwordReg.isNotEmpty() ->{
-                        Toast.makeText(this, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
+                        controller.saveUser(fullNameReg, usernameReg, passwordReg)
                         Intent(this, LoginActivity::class.java).also {
                             it.putExtra("EXTRA_NAME", fullNameReg)
                             it.putExtra("EXTRA_USER", usernameReg)

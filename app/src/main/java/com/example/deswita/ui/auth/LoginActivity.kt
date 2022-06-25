@@ -3,8 +3,10 @@ package com.example.deswita.ui.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager.LayoutParams.*
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityLoginBinding
@@ -12,17 +14,24 @@ import com.example.deswita.databinding.ActivityRegisterBinding
 import com.example.deswita.ui.EXTRA_USER
 import com.example.deswita.ui.MainActivity
 import com.example.deswita.ui.MainViewModel
+import com.example.deswita.utils.DatabaseController
+import kotlinx.coroutines.*
+import java.util.*
+import kotlin.concurrent.schedule
+
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var mainViewModel: MainViewModel
+    lateinit var controller: DatabaseController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        controller = DatabaseController(this)
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -45,29 +54,26 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             binding.btnLogin.id -> {
                 val usernameData = binding.username.text?.trim().toString()
                 val passwordData = binding.password.text?.trim().toString()
-                var usernameLogin = intent.getStringExtra("EXTRA_USER")
-                var passwordUser = intent.getStringExtra("EXTRA_PASSWORD")
 
-//                when {
-//                    usernameData.isEmpty() -> {
-//                        binding.username.error = "Field required"
-//                    }
-//                    passwordData.length < 5 ->{
-//                        binding.password.error = "Password must be longer than 5"
-//                    }
-//                    passwordData != passwordUser || usernameData != usernameLogin  ->{
-//                        binding.password.error = "Username or Password not valid"
-//                    }
-//                   passwordData == passwordUser || usernameData == usernameLogin ->{
-//                       var intent = Intent(this,MainActivity::class.java)
-//                       intent.putExtra(EXTRA_USER, usernameLogin)
-//                       startActivity(intent)
-//                    }
-//                }
-
-                var intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
-
+                when {
+                    usernameData.isEmpty() -> {
+                        binding.username.error = "Field required"
+                    }
+                    passwordData.length < 5 ->{
+                        binding.password.error = "Password must be longer than 5"
+                    }
+                   else -> {
+                       GlobalScope.launch(Dispatchers.IO) {
+                           val getUser = async { loadUser(usernameData, passwordData) }.await()
+                           if(getUser){
+                               Log.i("Ingfo kesini maseh", "asdoaksodkasokdoaskdoaskd")
+                               val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                               startActivity(intent)
+                           }
+                           Log.i("Pertama kali mulai maseh", "kansdiajsodkoasjdiajsidjasijdas")
+                       }
+                    }
+                }
             }
 
             binding.tvForgotPassword.id -> {
@@ -75,6 +81,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 changePasswordFragment.show(supportFragmentManager,ChangePasswordFragment::class.java.simpleName)
             }
         }
+    }
+
+    private suspend fun loadUser(username: String, password: String): Boolean {
+        val user = controller.getUser(username, password)
+        delay(700L)
+        return user
     }
 
 }
