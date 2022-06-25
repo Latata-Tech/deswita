@@ -1,6 +1,8 @@
 package com.example.deswita.ui
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -41,6 +43,11 @@ class WelcomeActivity : AppCompatActivity() {
 
     fun loginActivity(view : View)
     {
+        val  sharedPref: SharedPreferences = this.getSharedPreferences("skipWelcomeActivity", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("skipWelcomeActivity", true)
+        editor.apply()
+
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()

@@ -9,6 +9,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.loader.content.Loader
@@ -43,8 +44,9 @@ class EventActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<String>
         loaderManager.initLoader(11, Bundle.EMPTY, this)
 
         try {
-            binding.ivEvent.load(event.image)
+            binding.ivEvent.load(Utils.getImageDrawable(this,event.image))
         }catch (e: Exception) {
+            Log.i("info error", e.message.toString())
             binding.ivEvent.load(Utils.getImageDrawable(this,event.image))
         }
 

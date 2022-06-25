@@ -61,8 +61,7 @@ class ListRemoteViewFactory(private val context: Context, intent: Intent) : Remo
             setTextViewText(R.id.tvLocationEventItem, widgetItems[p0].location)
             setTextViewText(R.id.tvDescEventItem, widgetItems[p0].description)
             var image = widgetItems[p0].image
-            setImageViewUri(R.id.ivEventItem,Uri.parse(""))
-            setImageViewUri(R.id.ivEventItem, Uri.parse(Utils.getImageDrawable(context, image).toString()))
+            setImageViewResource(R.id.ivEventItem, context.resources.getIdentifier(image, "drawable", context.packageName))
         }
     }
 

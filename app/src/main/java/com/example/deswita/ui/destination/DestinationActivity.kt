@@ -154,7 +154,9 @@ class DestinationActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<S
 
         val result = deswitaDB?.viewAllData(destination.id)
         binding.tvUlasan.text = "Ulasan (${result?.size ?: 0})"
+
         if(!result.isNullOrEmpty()) {
+            binding.ratingBar.rating = calculateRating(result)
             reviewAdapter.setData(result)
         }
 
@@ -243,6 +245,14 @@ class DestinationActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<S
         if(data != null) {
             initRecyclerviewReview()
         }
+    }
+
+    private fun calculateRating(review: List<Review>) : Float {
+        var rate = 0f;
+        review.forEach {
+            rate+=it.rating
+        }
+        return rate / review.size;
     }
 
     override fun onLoaderReset(loader: Loader<String>) {

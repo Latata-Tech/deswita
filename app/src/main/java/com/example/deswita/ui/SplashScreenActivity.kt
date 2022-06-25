@@ -1,5 +1,6 @@
 package com.example.deswita.ui
 
+import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
 import android.media.SoundPool
@@ -9,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import com.example.deswita.R
+import com.example.deswita.ui.auth.LoginActivity
 
 private var sp : SoundPool? = null
 private var soundID = 0
@@ -21,8 +23,14 @@ class SplashScreenActivity : AppCompatActivity() {
                 sp?.play(soundID, .99f, .99f, 1, 0, .99f)
             }
             Thread.sleep(3000L)
-            val intent = Intent(this, WelcomeActivity::class.java)
-            startActivity(intent)
+            var sharedPref = this.getSharedPreferences("skipWelcomeActivity", Context.MODE_PRIVATE )
+            val status = sharedPref?.getBoolean("skipWelcomeActivity", false);
+            if(status == true){
+                startActivity(Intent(this, LoginActivity::class.java))
+            }else{
+                startActivity(Intent(this, WelcomeActivity::class.java))
+            }
+
             finish()
         }, 1000)
     }

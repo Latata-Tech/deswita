@@ -36,7 +36,7 @@ class EventHelperDB(context: Context) : SQLiteOpenHelper (context, DATABASE_NAME
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         db?.execSQL(
             "DROP TABLE IF EXISTS " +
-                    "${deswitaDB.EventTable.TABLE_EVENT}"
+                    deswitaDB.EventTable.TABLE_EVENT
         )
         onCreate(db)
     }
