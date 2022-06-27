@@ -7,7 +7,7 @@ import com.example.deswita.models.Notification
 class NotificationLoader(context: Context?) : AsyncTaskLoader<List<Notification>>(context!!) {
     override fun loadInBackground(): List<Notification>? {
         val notifications = listOf(
-            Notification("your password has been successfully chnaged","post_1","des 15, 2021 at 12:20 am"),
+            Notification("your password has been successfully changed","post_1","des 15, 2021 at 12:20 am"),
             Notification("Saya pernah bekerja di mall, tenant sebelah adalah breadtalk. ","post_2","des 15, 2021 at 12:20 am"),
             Notification("saya pernah melihat mereka siap2 untuk membereskan dagangannya.","user_1","des 15, 2021 at 12:20 am"),
             Notification("Ini foto standing POP yang memuat informasi roti fresh breadtalk yang saya kunjungi tadi sore","post_2","des 15, 2021 at 12:20 am"),

@@ -1,23 +1,22 @@
 package com.example.deswita.ui.auth
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.view.WindowManager.LayoutParams.*
-import android.widget.Toast
+import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityLoginBinding
-import com.example.deswita.databinding.ActivityRegisterBinding
-import com.example.deswita.ui.EXTRA_USER
 import com.example.deswita.ui.MainActivity
 import com.example.deswita.ui.MainViewModel
 import com.example.deswita.utils.DatabaseController
-import kotlinx.coroutines.*
-import java.util.*
-import kotlin.concurrent.schedule
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -25,6 +24,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var mainViewModel: MainViewModel
     lateinit var controller: DatabaseController
+    lateinit var editor : SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +32,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         controller = DatabaseController(this)
+
+        val  sharedPref: SharedPreferences = this.getSharedPreferences("login", Context.MODE_PRIVATE)
+        editor = sharedPref.edit()
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -64,13 +67,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     }
                    else -> {
                        GlobalScope.launch(Dispatchers.IO) {
-                           val getUser = async { loadUser(usernameData, passwordData) }.await()
+                           val getUser =
+                               withContext(Dispatchers.Default) {
+                                   controller.getUser(
+                                       usernameData,
+                                       passwordData
+                                   )
+                               }
                            if(getUser){
-                               Log.i("Ingfo kesini maseh", "asdoaksodkasokdoaskdoaskd")
+                               if(binding.cbRememberMe.isChecked){
+                                   editor.putString("username", usernameData)
+                                   editor.putString("password", passwordData)
+                               }
                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                startActivity(intent)
                            }
-                           Log.i("Pertama kali mulai maseh", "kansdiajsodkoasjdiajsidjasijdas")
                        }
                     }
                 }
@@ -81,12 +92,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 changePasswordFragment.show(supportFragmentManager,ChangePasswordFragment::class.java.simpleName)
             }
         }
-    }
-
-    private suspend fun loadUser(username: String, password: String): Boolean {
-        val user = controller.getUser(username, password)
-        delay(700L)
-        return user
     }
 
 }
