@@ -19,6 +19,7 @@ class StoryAdapter(private val context: Context) : RecyclerView.Adapter<StoryAda
     }
 
     private var stories = emptyList<Story>()
+    private var storageDB: Storage = Storage
 
     private lateinit var onItemClickCallback: OnItemClickCallback
 
@@ -45,8 +46,11 @@ class StoryAdapter(private val context: Context) : RecyclerView.Adapter<StoryAda
                 tvContentPost.text = story.contentText.CapitalizeFirstWord()
                 tvLike.text = story.likeTotal.toString()
                 tvComment.text = story.commentTotal.toString()
-                profileImage.load(Utils.getImageDrawable(context,story.profile))
-                ivPost.load(Utils.getImageDrawable(context,story.contentImage))
+
+                storageDB.getImage(story.profile ){ url ->
+                    profileImage.load(url)
+                }
+                ivPost.load(story.contentImage)
 
                 tvNamePost.setOnClickListener {
                     onItemClickCallback.onClick(story, CLICK_USER)

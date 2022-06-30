@@ -17,6 +17,7 @@ class ImageFragment : DialogFragment() {
     private lateinit var _binding: FragmentImageBinding
     private val binding get() = _binding
     private lateinit var imageString: String
+    private lateinit var storageDB: Storage
 
     companion object {
         const val IMAGE_STR = "IMAGE_STR"
@@ -27,8 +28,9 @@ class ImageFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentImageBinding.inflate(inflater,container,false)
-
         imageString = arguments?.getString(IMAGE_STR,"") as String
+
+        storageDB = Storage
 
         return binding.root
     }
@@ -50,8 +52,7 @@ class ImageFragment : DialogFragment() {
         binding.btnClose.setOnClickListener {
             dismiss()
         }
-
-        binding.imageView.load(Utils.getImageDrawable(requireActivity(),imageString))
+        binding.imageView.load(imageString)
     }
 
 }

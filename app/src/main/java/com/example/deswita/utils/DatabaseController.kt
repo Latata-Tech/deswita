@@ -8,9 +8,10 @@ import com.google.firebase.database.*
 class DatabaseController (activityContext: Context) {
     private var ref: DatabaseReference = FirebaseDatabase.getInstance("https://deswita-c5da3-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("USER")
     private var context = activityContext
+
     fun saveUser(name: String, username: String, password: String) {
         val userID = ref.push().key.toString()
-        val userData = User(name, username, password)
+        val userData = User(userID,name, username, password)
 
         ref.child(userID).setValue(userData).apply {
             addOnCompleteListener {
@@ -42,4 +43,5 @@ class DatabaseController (activityContext: Context) {
         Thread.sleep(1000L)
         return result
     }
+
 }

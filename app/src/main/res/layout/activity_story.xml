@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:maxHeight="300dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/post_1" />
+                    android:src="@color/grey" />
 
             </androidx.cardview.widget.CardView>
 

@@ -67,7 +67,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 3,
             contentImage = "post_4",
             likeTotal = 3,
-            comments = comments
+            comments = 1
         ),
         Story(
             id = 2,
@@ -78,7 +78,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 5,
             contentImage = "post_3",
             likeTotal = 7,
-            comments = comments
+            comments = 1
         ),
         Story(
             id = 3,
@@ -89,7 +89,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 3,
             contentImage = "post_2",
             likeTotal = 10,
-            comments = comments
+            comments = 1
         ),
         Story(
             id = 4,
@@ -100,7 +100,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 2,
             contentImage = "post_1",
             likeTotal = 3,
-            comments = comments
+            comments = 1
         ),
         Story(
             id = 5,
@@ -111,7 +111,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 1,
             contentImage = "post_5",
             likeTotal = 5,
-            comments = comments
+            comments = 1
         ),
         Story(
             id = 6,
@@ -122,7 +122,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 0,
             contentImage = "post_6",
             likeTotal = 2,
-            comments = comments
+            comments = 1
         )
     )
 
@@ -136,7 +136,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 3,
             contentImage = "post_4",
             likeTotal = 3,
-            comments = comments
+            comments = 1
         ),
         Story(
             id = 2,
@@ -147,7 +147,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 3,
             contentImage = "post_7",
             likeTotal = 3,
-            comments = comments
+            comments = 1
         ),
         Story(
             id = 3,
@@ -158,7 +158,7 @@ class MainViewModel : ViewModel() {
             commentTotal = 3,
             contentImage = "post_8",
             likeTotal = 3,
-            comments = comments
+            comments = 1
         ),
     )
 
