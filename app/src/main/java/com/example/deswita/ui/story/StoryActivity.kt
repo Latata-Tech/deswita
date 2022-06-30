@@ -1,14 +1,20 @@
 package com.example.deswita.ui.story
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.deswita.R
 import com.example.deswita.databinding.ActivityStoryBinding
 import com.example.deswita.models.Destination
 import com.example.deswita.models.Story
+import com.example.deswita.ui.auth.RegisterActivity
+import com.example.deswita.ui.mainmenu.story.AddStoryActivity
+import com.example.deswita.ui.mainmenu.story.CommentStoryActivity
 import com.example.deswita.ui.mainmenu.story.adapters.CommentAdapter
+import com.example.deswita.ui.reviews.AddReviewActivity
 import com.example.deswita.utils.CapitalizeAllWord
 import com.example.deswita.utils.CapitalizeFirstWord
 import com.example.deswita.utils.Utils
@@ -38,6 +44,17 @@ class StoryActivity : AppCompatActivity() {
         binding.btnBack.setOnClickListener {
             onBackPressed()
         }
+
+        binding.BtnAddComment.setOnClickListener{
+            AddComment()
+
+        }
+    }
+
+    private fun AddComment() {
+//        val intent = Intent(this@StoryActivity,CommentStoryActivity::class.java)
+//        startActivity(intent)
+        startActivity(Intent(this@StoryActivity, CommentStoryActivity::class.java))
     }
 
     private fun init() {
